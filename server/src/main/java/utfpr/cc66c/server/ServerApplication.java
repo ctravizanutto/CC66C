@@ -4,17 +4,31 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import utfpr.cc66c.server.controllers.TCPServerController;
 
 import java.io.IOException;
 
 public class ServerApplication extends Application {
+    private TCPServerController serverThread;
+
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(ServerApplication.class.getResource("hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ServerApplication.class.getResource("port-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+
+        stage.setTitle("Server");
+        stage.setResizable(false);
+        stage.setOnHiding( windowEvent -> serverThread.interrupt());
         stage.setScene(scene);
         stage.show();
+
+        serverThread = new TCPServerController(3000);
+        serverThread.start();
+    }
+
+    @Override
+    public void stop() {
+        serverThread.shutdown();
     }
 
     public static void main(String[] args) {

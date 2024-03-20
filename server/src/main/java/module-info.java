@@ -7,4 +7,7 @@ module utfpr.cc66c.server {
 
     opens utfpr.cc66c.server to javafx.fxml;
     exports utfpr.cc66c.server;
+
+    opens utfpr.cc66c.server.controllers to javafx.fxml;
+    exports utfpr.cc66c.server.controllers;
 }
