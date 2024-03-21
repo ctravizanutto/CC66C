@@ -1,15 +1,20 @@
 package utfpr.cc66c.client.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 public class ClientApplicationController {
     @FXML
-    private Label welcomeText;
+    public Label textLabel;
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
+    public TextField textField;
 
+    public void sendText(ActionEvent ignoredEvent) {
+        var message = textField.getText();
+        message = ClientController.echoText(message);
+        textLabel.setText(message);
+    }
 }

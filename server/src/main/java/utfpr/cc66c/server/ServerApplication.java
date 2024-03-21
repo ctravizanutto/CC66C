@@ -4,12 +4,12 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import utfpr.cc66c.server.controllers.TCPServerController;
+import utfpr.cc66c.server.controllers.ServerController;
 
 import java.io.IOException;
 
 public class ServerApplication extends Application {
-    private TCPServerController serverThread;
+    private ServerController serverThread;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -22,7 +22,7 @@ public class ServerApplication extends Application {
         stage.setScene(scene);
         stage.show();
 
-        serverThread = new TCPServerController(3000);
+        serverThread = new ServerController(3000);
         serverThread.start();
     }
 
