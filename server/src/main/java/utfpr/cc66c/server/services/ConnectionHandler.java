@@ -1,4 +1,4 @@
-package utfpr.cc66c.server.controllers;
+package utfpr.cc66c.server.services;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,7 +24,7 @@ public class ConnectionHandler extends Thread {
                 var message = in.readLine();
                 if (message == null) {
                     clientSocket.close();
-                    continue;
+                    break;
                 }
                 System.out.println("[INFO] Message incoming: " + message);
                 out.println(message.toUpperCase());
