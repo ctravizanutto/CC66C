@@ -1,6 +1,9 @@
 package utfpr.cc66c.client.controllers;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.Socket;
 
 public class ClientController extends Thread{
@@ -15,18 +18,9 @@ public class ClientController extends Thread{
                 in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 out = new PrintWriter(clientSocket.getOutputStream(), true);
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                //throw new RuntimeException(e); DEBUG
             }
-        }
-    }
-
-    public static String echoText(String message) {
-        out.println(message);
-        try {
-            var retMessage =  in.readLine();
-            return retMessage != null ? retMessage : "";
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            this.start();
         }
     }
 
@@ -38,6 +32,16 @@ public class ClientController extends Thread{
         }
         System.out.println("[INFO] Client closed.");
         System.exit(0);
+    }
+
+    public static String sendJSON(String json) {
+        System.out.println("[INFO] Sending request: " + json);
+        out.println(json);
+        try {
+            return in.readLine();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

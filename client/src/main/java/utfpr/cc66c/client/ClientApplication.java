@@ -5,22 +5,26 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import utfpr.cc66c.client.controllers.ClientController;
+import utfpr.cc66c.client.views.ClientApplicationView;
 
 import java.io.IOException;
 
 public class ClientApplication extends Application {
     private ClientController client;
+    private static ClientApplicationView clientApplicationView;
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(ClientApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        var fxmlLoader = new FXMLLoader(ClientApplication.class.getResource("login-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Client");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
 
-        client = new ClientController(3000);
-        client.start();
+        clientApplicationView = fxmlLoader.getController();
+
+        client = new ClientController(21234);
     }
 
     @Override
@@ -30,5 +34,9 @@ public class ClientApplication extends Application {
 
     public static void main(String[] args) {
        launch();
+    }
+
+    public static ClientApplicationView getClientApplicationView() {
+        return clientApplicationView;
     }
 }

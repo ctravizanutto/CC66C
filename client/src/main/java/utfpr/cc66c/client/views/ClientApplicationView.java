@@ -2,20 +2,32 @@ package utfpr.cc66c.client.views;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import utfpr.cc66c.client.controllers.ClientController;
+import utfpr.cc66c.client.controllers.LoginController;
 
-public class ClientApplicationView {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class ClientApplicationView implements Initializable {
     @FXML
-    public Label textLabel;
+    public TextField emailField;
+    public PasswordField passwordField;
+    public ChoiceBox<String> choiceBoxLogin;
 
-    @FXML
-    public TextField textField;
+    private final String[] userTypes = {"Candidate", "Recruiter"};
 
-    public void sendText(ActionEvent ignoredEvent) {
-        var message = textField.getText();
-        message = ClientController.echoText(message);
-        textLabel.setText(message);
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        choiceBoxLogin.getItems().addAll(userTypes);
+        choiceBoxLogin.setValue(userTypes[0]);
     }
+
+    @FXML
+    public void onEnterLogin(ActionEvent ignoredE) {
+        LoginController.validateLoginFields(emailField, passwordField);
+    }
+
 }

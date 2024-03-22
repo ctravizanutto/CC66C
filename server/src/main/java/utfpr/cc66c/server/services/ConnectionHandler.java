@@ -7,27 +7,34 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 public class ConnectionHandler extends Thread {
-    private final Socket clientSocket;
-    private final PrintWriter out;
-    private final BufferedReader in;
+    private static Socket clientSocket;
+    private static PrintWriter out;
+    private static BufferedReader in;
 
-    public ConnectionHandler(Socket clientSocket) throws IOException {
-        this.clientSocket = clientSocket;
-        out = new PrintWriter(clientSocket.getOutputStream(), true);
-        in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+    public ConnectionHandler(Socket socket) throws IOException {
+        if (clientSocket == null) {
+            clientSocket = socket;
+            out = new PrintWriter(clientSocket.getOutputStream(), true);
+            in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+        }
+    }
+
+    public static void sendJSON(String response) {
+        System.out.println("[INFO] Sending response: " + response);
+        out.println(response);
     }
 
     @Override
     public void run() {
         while (!clientSocket.isClosed()) {
             try {
-                var message = in.readLine();
-                if (message == null) {
+                var request = in.readLine();
+                if (request == null) {
                     clientSocket.close();
-                    break;
+                    interrupt();
                 }
-                System.out.println("[INFO] Message incoming: " + message);
-                out.println(message.toUpperCase());
+                System.out.println("[INFO] Request incoming: " + request);
+                JSONParser.parseJSON(request);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

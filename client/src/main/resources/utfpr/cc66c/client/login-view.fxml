@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+           prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.2-ea"
+           xmlns:fx="http://javafx.com/fxml/1" fx:controller="utfpr.cc66c.client.views.ClientApplicationView">
+    <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+        <Tab text="Login">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <TextField fx:id="emailField" layoutX="226.0" layoutY="130.0" onAction="#onEnterLogin"
+                           promptText="Email"/>
+                <PasswordField fx:id="passwordField" layoutX="226.0" layoutY="173.0"
+                               onAction="#onEnterLogin" promptText="Password"/>
+                <Button layoutX="274.0" layoutY="219.0" mnemonicParsing="false" onAction="#onEnterLogin"
+                        text="Login"/>
+                <ChoiceBox fx:id="choiceBoxLogin" layoutX="14.0" layoutY="14.0" prefWidth="150.0"/>
+            </AnchorPane>
+        </Tab>
+        <Tab text="Sign Up">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+        </Tab>
+    </TabPane>
+</StackPane>
