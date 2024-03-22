@@ -6,15 +6,15 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class ClientController extends Thread{
+public class ConnectionController extends Thread{
     private static Socket clientSocket;
     private static BufferedReader in;
     private static PrintWriter out;
 
-    public ClientController(Integer port) {
+    public ConnectionController(String addr, Integer port) {
         if (clientSocket == null) {
             try {
-                clientSocket = new Socket("0.0.0.0", port);
+                clientSocket = new Socket(addr, port);
                 in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 out = new PrintWriter(clientSocket.getOutputStream(), true);
             } catch (IOException e) {

@@ -1,8 +1,9 @@
 package utfpr.cc66c.client.services;
 
 import org.json.JSONObject;
-import utfpr.cc66c.client.ClientApplication;
-import utfpr.cc66c.client.controllers.ClientController;
+import utfpr.cc66c.client.controllers.ConnectionController;
+import utfpr.cc66c.client.controllers.gui.ClientApplicationController;
+import utfpr.cc66c.client.types.UserType;
 
 import java.util.Objects;
 
@@ -18,12 +19,12 @@ public class LoginRequest {
         data.put("email", emailAddr);
         data.put("password", password);
 
-        var option = ClientApplication.getClientApplicationView().choiceBoxLogin.getValue();
+        var option = ClientApplicationController.getLoginViewController().getOption();
 
-        json.put("operation", Objects.equals(option, "Candidate") ? "LOGIN_CANDIDATE" : "LOGIN_RECRUITER");
+        json.put("operation", option == UserType.CANDIDATE ? "LOGIN_CANDIDATE" : "LOGIN_RECRUITER");
         json.put("data", data);
 
-        var response = ClientController.sendJSON(json.toString());
+        var response = ConnectionController.sendJSON(json.toString());
         parseLoginResponse(response);
     }
 
