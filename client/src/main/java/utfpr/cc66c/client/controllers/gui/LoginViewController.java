@@ -1,5 +1,6 @@
 package utfpr.cc66c.client.controllers.gui;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,6 +27,7 @@ public class LoginViewController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         choiceBoxLogin.getItems().addAll(userTypes);
         choiceBoxLogin.setValue(userTypes[0]);
+        var a = new ObjectMapper();
     }
 
     @FXML

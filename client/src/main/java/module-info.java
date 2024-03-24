@@ -5,14 +5,20 @@ module utfpr.cc66c.client {
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
 
+    requires utfpr.cc66c.core;
+
     opens utfpr.cc66c.client to javafx.fxml;
     exports utfpr.cc66c.client;
     exports utfpr.cc66c.client.controllers;
     opens utfpr.cc66c.client.controllers to javafx.fxml;
-//    exports utfpr.cc66c.client.views;
-//    opens utfpr.cc66c.client.views to javafx.fxml;
+    exports utfpr.cc66c.client.views;
+    opens utfpr.cc66c.client.views to javafx.fxml;
     exports utfpr.cc66c.client.controllers.gui;
     opens utfpr.cc66c.client.controllers.gui to javafx.fxml;
+    exports utfpr.cc66c.client.types;
+    opens utfpr.cc66c.client.serializers to com.fasterxml.jackson.databind;
+    exports utfpr.cc66c.client.serializers;
+    exports utfpr.cc66c.client.models;
 
-    requires org.json;
+    requires com.fasterxml.jackson.databind;
 }

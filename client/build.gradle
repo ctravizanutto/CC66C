@@ -26,7 +26,6 @@ tasks.withType(JavaCompile) {
 
 application {
   mainModule = 'utfpr.cc66c.client'
-  mainClass = 'utfpr.cc66c.client.HelloApplication'
 }
 
 javafx {
@@ -41,7 +40,8 @@ dependencies {
   testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 
-  implementation 'org.json:json:20230227'
+  implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.0'
+  implementation project(':core')
 }
 
 test {
@@ -57,4 +57,12 @@ jlink {
 
 jlinkZip {
   group = 'distribution'
+}
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '8.5'
+}
+
+task prepareKotlinBuildScriptModel {
+
 }

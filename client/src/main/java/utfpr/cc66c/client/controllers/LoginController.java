@@ -31,7 +31,6 @@ public class LoginController {
 
         if (isValid)
             LoginRequest.sendLoginRequest(emailAddr, password);
-
     }
 
     private static boolean emailIsValid(String emailAddr) {

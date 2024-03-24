@@ -18,7 +18,7 @@ public class ConnectionController extends Thread{
                 in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 out = new PrintWriter(clientSocket.getOutputStream(), true);
             } catch (IOException e) {
-                //throw new RuntimeException(e); DEBUG
+                throw new RuntimeException("[ERROR] Invalid ip address.");
             }
             this.start();
         }

@@ -1,5 +1,6 @@
 package utfpr.cc66c.server.controllers;
 
+
 import utfpr.cc66c.server.services.JSONParser;
 
 import java.io.BufferedReader;
@@ -15,6 +16,7 @@ public class ConnectionController extends Thread {
     private BufferedReader in;
     private InetAddress addr;
     private int port;
+
 
     public ConnectionController(Socket socket) throws IOException {
         if (clientSocket == null) {
