@@ -103,7 +103,6 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
-*.gradle*
 build
 
 !/gradle/wrapper/gradle-wrapper.jar
