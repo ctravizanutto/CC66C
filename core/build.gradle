@@ -20,7 +20,7 @@ ext {
 sourceCompatibility = '21'
 targetCompatibility = '21'
 
-tasks.withType(JavaCompile) {
+tasks.withType(JavaCompile).configureEach {
   options.encoding = 'UTF-8'
 }
 
@@ -58,10 +58,10 @@ jlinkZip {
   group = 'distribution'
 }
 
-task wrapper(type: Wrapper) {
+tasks.register('wrapper', Wrapper) {
   gradleVersion = '8.5'
 }
 
-task prepareKotlinBuildScriptModel {
+tasks.register('prepareKotlinBuildScriptModel') {
 
 }

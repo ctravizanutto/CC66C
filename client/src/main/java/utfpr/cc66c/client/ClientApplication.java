@@ -23,11 +23,4 @@ public class ClientApplication extends Application {
         launch();
     }
 
-    public static ClientApplicationController getController() {
-        return controller;
-    }
-
-    public static void setController(ClientApplicationController controller) {
-        ClientApplication.controller = controller;
-    }
 }

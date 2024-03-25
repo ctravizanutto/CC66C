@@ -1,7 +1,6 @@
 package utfpr.cc66c.server.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
@@ -11,7 +10,7 @@ public class JSONParser {
     private static final ObjectMapper mapper = new ObjectMapper();
 
     public static String parseJSON(String request) {
-        ObjectNode json = null;
+        ObjectNode json;
         try {
             json = (ObjectNode) mapper.readTree(request);
         } catch (JsonProcessingException e) {

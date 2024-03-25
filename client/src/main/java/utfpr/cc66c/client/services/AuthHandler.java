@@ -16,7 +16,7 @@ public class AuthHandler {
     }
 
     private static void sendLoginJSON(LoginModel model) {
-        String json = null;
+        String json;
         try {
             json = mapper.writeValueAsString(model);
         } catch (JsonProcessingException e) {
@@ -27,7 +27,7 @@ public class AuthHandler {
     }
 
     private static void parseLoginResponse(String response) {
-        ObjectNode json = null;
+        ObjectNode json;
         try {
             json = (ObjectNode) mapper.readTree(response);
         } catch (JsonProcessingException e) {

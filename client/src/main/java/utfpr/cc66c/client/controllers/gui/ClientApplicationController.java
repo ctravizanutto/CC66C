@@ -49,15 +49,4 @@ public class ClientApplicationController {
         return loginViewController;
     }
 
-    public static void setLoginViewController(LoginViewController controller) {
-        loginViewController = controller;
-    }
-
-    public static ConnectionController getConnectionController() {
-        return connectionController;
-    }
-
-    public static void setConnectionController(ConnectionController controller) {
-        connectionController = controller;
-    }
 }

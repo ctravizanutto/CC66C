@@ -21,8 +21,6 @@ public class ServerApplication extends Application {
 //        stage.setScene(scene);
         //stage.show(); DEBUG
 
-        serverThread = new ServerController();
-        serverThread.start();
     }
 
     @Override
@@ -31,6 +29,8 @@ public class ServerApplication extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
+//        launch();
+
+    new ServerController();
     }
 }

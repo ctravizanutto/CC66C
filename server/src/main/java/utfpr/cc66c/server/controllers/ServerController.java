@@ -1,6 +1,7 @@
 package utfpr.cc66c.server.controllers;
 
 import java.io.IOException;
+import java.net.Inet4Address;
 import java.net.ServerSocket;
 
 public class ServerController extends Thread {
@@ -9,14 +10,19 @@ public class ServerController extends Thread {
     public ServerController() {
         try {
             serverSocket = new ServerSocket(21234);
-            System.out.printf("[INFO] Server listening at %s:%s", serverSocket.getInetAddress(), serverSocket.getLocalPort());
+            start();
+            System.out.printf("[INFO] Server listening at %s:%s\n", Inet4Address.getLocalHost().getHostAddress(), serverSocket.getLocalPort());
         } catch (IOException e) {
             throw new RuntimeException();
         }
     }
 
     public void shutdown() {
-
+        try {
+            serverSocket.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -24,7 +30,8 @@ public class ServerController extends Thread {
         while(!serverSocket.isClosed()) {
             try {
                 var conn = serverSocket.accept();
-                new ConnectionController(conn);
+                if (conn != null)
+                    new ConnectionController(conn);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
