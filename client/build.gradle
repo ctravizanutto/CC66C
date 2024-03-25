@@ -26,6 +26,8 @@ tasks.withType(JavaCompile) {
 
 application {
   mainModule = 'utfpr.cc66c.client'
+  mainClassName = 'utfpr.cc66c.client.ClientApplication'
+
 }
 
 javafx {

@@ -5,7 +5,6 @@
       <module name="client" target="21" />
       <module name="client.main" target="21" />
       <module name="client.test" target="21" />
-      <module name="core" target="21" />
       <module name="core.main" target="21" />
       <module name="core.test" target="21" />
       <module name="server" target="21" />

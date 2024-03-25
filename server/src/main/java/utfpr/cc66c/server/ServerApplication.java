@@ -13,15 +13,15 @@ public class ServerApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(ServerApplication.class.getResource("port-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-
-        stage.setTitle("Server");
-        stage.setResizable(false);
-        stage.setScene(scene);
+//        FXMLLoader fxmlLoader = new FXMLLoader(ServerApplication.class.getResource("port-view.fxml"));
+//        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+//
+//        stage.setTitle("Server");
+//        stage.setResizable(false);
+//        stage.setScene(scene);
         //stage.show(); DEBUG
 
-        serverThread = new ServerController(21234);
+        serverThread = new ServerController();
         serverThread.start();
     }
 
