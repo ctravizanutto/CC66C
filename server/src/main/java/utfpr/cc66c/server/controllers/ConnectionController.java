@@ -1,7 +1,7 @@
 package utfpr.cc66c.server.controllers;
 
 
-import utfpr.cc66c.server.services.JSONParser;
+import utfpr.cc66c.server.services.RequestParser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -47,7 +47,7 @@ public class ConnectionController extends Thread {
                     return;
                 }
                 System.out.printf("[INFO] Request incoming from %s:%s: %s\n", addr, port, request);
-                sendJSON(JSONParser.parseJSON(request));
+                sendJSON(RequestParser.parseJSON(request));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

@@ -4,9 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import java.util.Objects;
-
-public class JSONParser {
+public class RequestParser {
     private static final ObjectMapper mapper = new ObjectMapper();
 
     public static String parseJSON(String request) {
@@ -17,11 +15,14 @@ public class JSONParser {
             throw new RuntimeException(e);
         }
         var operation = json.get("operation").asText();
-
-        if (Objects.equals(operation, "LOGIN_CANDIDATE")) {
+        if (operation.contains("LOGIN")) {
             json.set("data", mapper.createObjectNode());
             json.put("status", "SUCCESS");
             return json.toString();
+        } else if (operation.contains("LOGOUT")) {
+            return json.toString();
+        } else if (operation.contains("SIGN_UP")) {
+
         }
         return "";
     }

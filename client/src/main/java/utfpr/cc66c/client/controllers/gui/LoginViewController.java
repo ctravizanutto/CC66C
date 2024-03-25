@@ -5,8 +5,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import utfpr.cc66c.client.controllers.LoginController;
+import utfpr.cc66c.client.services.AuthHandler;
+import utfpr.cc66c.core.models.LoginModel;
 import utfpr.cc66c.core.types.UserType;
+import utfpr.cc66c.core.validators.LoginValidator;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,7 +20,6 @@ public class LoginViewController implements Initializable {
     private PasswordField passwordField;
     @FXML
     private ChoiceBox<String> choiceBoxLogin;
-
     private final String[] userTypes = {"Candidate", "Recruiter"};
 
     @Override
@@ -29,7 +30,32 @@ public class LoginViewController implements Initializable {
 
     @FXML
     public void onEnterLogin() {
-        LoginController.validateLoginFields(emailField, passwordField);
+        var loginModel = validLoginFields();
+        if (loginModel != null)
+            AuthHandler.sendLoginRequest(loginModel);
+    }
+
+    public LoginModel validLoginFields() {
+        var emailAddr = emailField.getText();
+        var password = passwordField.getText();
+        var userType = getChoiceToUserType();
+
+        if (!LoginValidator.emailIsValid(emailAddr)) {
+            emailField.getStyleClass().add("error");
+            return null;
+        } else if (emailField.getStyleClass().contains("error")) {
+            emailField.getStyleClass().removeAll("error");
+            emailField.setStyle(null);
+        }
+        if (!LoginValidator.passwordIsValid(password)) {
+            passwordField.getStyleClass().add("error");
+            return null;
+        } else if (passwordField.getStyleClass().contains("error")) {
+            passwordField.getStyleClass().removeAll("error");
+            passwordField.setStyle(null);
+        }
+
+        return new LoginModel(emailAddr, password, userType);
     }
 
     public UserType getChoiceToUserType() {

@@ -5,24 +5,19 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import utfpr.cc66c.client.controllers.ConnectionController;
 import utfpr.cc66c.core.models.LoginModel;
-
-import java.util.Objects;
+import utfpr.cc66c.core.validators.JSONFields;
 
 public class AuthHandler {
     private static final ObjectMapper mapper = new ObjectMapper();
 
     public static void sendLoginRequest(LoginModel model) {
-        sendLoginJSON(model);
-    }
-
-    private static void sendLoginJSON(LoginModel model) {
         String json;
         try {
             json = mapper.writeValueAsString(model);
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("[ERROR] Invalid LoginModel.");
         }
-        var response = ConnectionController.sendJSON(json);
+        var response = ConnectionController.requestResponse(json);
         parseLoginResponse(response);
     }
 
@@ -31,11 +26,9 @@ public class AuthHandler {
         try {
             json = (ObjectNode) mapper.readTree(response);
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("[ERROR] Invalid json login response.");
         }
-        var status = json.get("status").asText();
-        if (Objects.equals(status, "SUCCESS")) {
-            System.out.println("[INFO] Successful login.");
-        }
+        var test = JSONFields.getAllFields(json);
+        System.out.println(test);
     }
 }

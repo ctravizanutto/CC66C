@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class ConnectionController extends Thread{
+public class ConnectionController {
     private static Socket clientSocket;
     private static BufferedReader in;
     private static PrintWriter out;
@@ -20,7 +20,6 @@ public class ConnectionController extends Thread{
             } catch (IOException e) {
                 throw new RuntimeException("[ERROR] Invalid ip address.");
             }
-            this.start();
         }
     }
 
@@ -34,18 +33,14 @@ public class ConnectionController extends Thread{
         System.exit(0);
     }
 
-    public static String sendJSON(String json) {
+    public static String requestResponse(String json) {
         System.out.println("[INFO] Sending request: " + json);
         out.println(json);
         try {
             return in.readLine();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("[ERROR] Couldn't receive response from server.");
         }
     }
 
-    @Override
-    public void run() {
-
-    }
 }

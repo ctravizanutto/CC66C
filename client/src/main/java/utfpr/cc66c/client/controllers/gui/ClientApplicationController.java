@@ -11,7 +11,6 @@ public class ClientApplicationController {
     private static Stage stage;
 
     private static ConnectionController connectionController;
-    private static LoginViewController loginViewController;
 
     private static Scene loginScene;
     private static Scene IPScene;
@@ -31,7 +30,6 @@ public class ClientApplicationController {
 
         stage.setScene(IPScene);
 
-        loginViewController = fxmlLoader.getController();
     }
 
     public void shutdown() {
@@ -44,9 +42,5 @@ public class ClientApplicationController {
         stage.setScene(loginScene);
     }
 
-
-    public static LoginViewController getLoginViewController() {
-        return loginViewController;
-    }
-
 }
+
