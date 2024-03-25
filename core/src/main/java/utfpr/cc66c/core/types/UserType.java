@@ -1,4 +1,4 @@
-package utfpr.cc66c.client.types;
+package utfpr.cc66c.core.types;
 
 public enum UserType {
     CANDIDATE,

@@ -18,6 +18,9 @@ public class IPViewController implements Initializable {
     }
 
     public void onEnterIP(ActionEvent ignoredE) {
+        var addr = ipTextField.getText();
+        if (addr == null)
+            throw new RuntimeException("[ERROR] Invalid ip address.");
         ClientApplicationController.toLogin(ipTextField.getText());
     }
 }

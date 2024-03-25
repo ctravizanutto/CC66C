@@ -2,7 +2,9 @@ package utfpr.cc66c.client.controllers;
 
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import utfpr.cc66c.client.services.LoginRequest;
+import utfpr.cc66c.client.controllers.gui.ClientApplicationController;
+import utfpr.cc66c.client.services.AuthHandler;
+import utfpr.cc66c.core.models.LoginModel;
 
 import java.util.regex.Pattern;
 
@@ -11,12 +13,13 @@ public class LoginController {
     public static void validateLoginFields(TextField emailField, PasswordField passwordField) {
         var emailAddr = emailField.getText();
         var password = passwordField.getText();
+        var userType = ClientApplicationController.getLoginViewController().getChoiceToUserType();
         var isValid = true;
 
         if (!emailIsValid(emailAddr)) {
             emailField.getStyleClass().add("error");
             isValid = false;
-        } else {
+        } else if (emailField.getStyleClass().contains("error")) {
             emailField.getStyleClass().removeAll("error");
             emailField.setStyle(null);
         }
@@ -24,13 +27,14 @@ public class LoginController {
         if (!passwordIsValid(password)) {
             passwordField.getStyleClass().add("error");
             isValid = false;
-        } else {
+        } else if (passwordField.getStyleClass().contains("error")) {
             passwordField.getStyleClass().removeAll("error");
             passwordField.setStyle(null);
         }
 
         if (isValid)
-            LoginRequest.sendLoginRequest(emailAddr, password);
+//            AuthHandler.sendLoginRequest(new LoginModel(emailAddr, password, userType));
+            AuthHandler.sendLoginRequest(new LoginModel(emailAddr, password, userType));
     }
 
     private static boolean emailIsValid(String emailAddr) {

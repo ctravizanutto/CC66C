@@ -1,7 +1,5 @@
 package utfpr.cc66c.server.controllers;
 
-import utfpr.cc66c.core.TestClass;
-
 import java.io.IOException;
 import java.net.ServerSocket;
 

@@ -1,14 +1,13 @@
 package utfpr.cc66c.client.controllers.gui;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import utfpr.cc66c.client.controllers.LoginController;
-import utfpr.cc66c.client.types.UserType;
+import utfpr.cc66c.core.types.UserType;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,11 +30,11 @@ public class LoginViewController implements Initializable {
     }
 
     @FXML
-    public void onEnterLogin(ActionEvent ignoredE) {
+    public void onEnterLogin() {
         LoginController.validateLoginFields(emailField, passwordField);
     }
 
-    public UserType getOption() {
+    public UserType getChoiceToUserType() {
         var userType = choiceBoxLogin.getValue();
         return switch (userType) {
             case "Candidate" -> UserType.CANDIDATE;

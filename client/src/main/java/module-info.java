@@ -15,10 +15,6 @@ module utfpr.cc66c.client {
     opens utfpr.cc66c.client.views to javafx.fxml;
     exports utfpr.cc66c.client.controllers.gui;
     opens utfpr.cc66c.client.controllers.gui to javafx.fxml;
-    exports utfpr.cc66c.client.types;
-    opens utfpr.cc66c.client.serializers to com.fasterxml.jackson.databind;
-    exports utfpr.cc66c.client.serializers;
-    exports utfpr.cc66c.client.models;
 
     requires com.fasterxml.jackson.databind;
 }

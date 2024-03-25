@@ -1,35 +1,28 @@
 package utfpr.cc66c.client.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import utfpr.cc66c.client.controllers.ConnectionController;
-import utfpr.cc66c.client.controllers.gui.ClientApplicationController;
-import utfpr.cc66c.client.types.UserType;
+import utfpr.cc66c.core.models.LoginModel;
 
 import java.util.Objects;
 
-public class LoginRequest {
+public class AuthHandler {
     private static final ObjectMapper mapper = new ObjectMapper();
 
-    public static void sendLoginRequest(String emailAddr, String password) {
-        sendLoginJSON(emailAddr, password);
+    public static void sendLoginRequest(LoginModel model) {
+        sendLoginJSON(model);
     }
 
-    private static void sendLoginJSON(String emailAddr, String password) {
-        var json = mapper.createObjectNode();
-        var data = mapper.createObjectNode();
-
-        data.put("email", emailAddr);
-        data.put("password", password);
-
-        var option = ClientApplicationController.getLoginViewController().getOption();
-
-        json.put("operation", option == UserType.CANDIDATE ? "LOGIN_CANDIDATE" : "LOGIN_RECRUITER");
-        json.set("data", data);
-
-        var response = ConnectionController.sendJSON(json.toString());
+    private static void sendLoginJSON(LoginModel model) {
+        String json = null;
+        try {
+            json = mapper.writeValueAsString(model);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+        var response = ConnectionController.sendJSON(json);
         parseLoginResponse(response);
     }
 
