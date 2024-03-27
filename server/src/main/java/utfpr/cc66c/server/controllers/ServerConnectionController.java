@@ -10,7 +10,7 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 
-public class ConnectionController extends Thread {
+public class ServerConnectionController extends Thread {
     private Socket clientSocket;
     private PrintWriter out;
     private BufferedReader in;
@@ -18,7 +18,7 @@ public class ConnectionController extends Thread {
     private int port;
 
 
-    public ConnectionController(Socket socket) throws IOException {
+    public ServerConnectionController(Socket socket) throws IOException {
         if (clientSocket == null) {
             clientSocket = socket;
             out = new PrintWriter(clientSocket.getOutputStream(), true);
@@ -37,6 +37,16 @@ public class ConnectionController extends Thread {
         out.println(response);
     }
 
+    public void shutdown() {
+        try {
+            clientSocket.close();
+            in.close();
+            out.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Override
     public void run() {
         while (!clientSocket.isClosed()) {
@@ -44,6 +54,7 @@ public class ConnectionController extends Thread {
                 var request = in.readLine();
                 if (request == null) {
                     System.out.printf("[INFO] %s:%s disconnected.\n", addr, port);
+                    shutdown();
                     return;
                 }
                 System.out.printf("[INFO] Request incoming from %s:%s: %s\n", addr, port, request);

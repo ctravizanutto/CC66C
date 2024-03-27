@@ -3,14 +3,14 @@ package utfpr.cc66c.client.controllers.gui;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import utfpr.cc66c.client.controllers.ConnectionController;
+import utfpr.cc66c.client.controllers.ClientConnectionController;
 
 import java.io.IOException;
 
 public class ClientApplicationController {
     private static Stage stage;
 
-    private static ConnectionController connectionController;
+    private static ClientConnectionController connectionController;
 
     private static Scene loginScene;
     private static Scene IPScene;
@@ -38,7 +38,7 @@ public class ClientApplicationController {
     }
 
     public static void toLogin(String addr) {
-        connectionController = new ConnectionController(addr, 21234);
+        connectionController = new ClientConnectionController(addr, 21234);
         stage.setScene(loginScene);
     }
 

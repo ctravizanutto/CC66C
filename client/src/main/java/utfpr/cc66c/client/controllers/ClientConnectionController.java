@@ -6,12 +6,12 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class ConnectionController {
+public class ClientConnectionController {
     private static Socket clientSocket;
     private static BufferedReader in;
     private static PrintWriter out;
 
-    public ConnectionController(String addr, Integer port) {
+    public ClientConnectionController(String addr, Integer port) {
         if (clientSocket == null) {
             try {
                 clientSocket = new Socket(addr, port);
@@ -25,6 +25,8 @@ public class ConnectionController {
 
     public void shutdown() {
         try {
+            in.close();
+            out.close();
             clientSocket.close();
         } catch (IOException e) {
             throw new RuntimeException(e);

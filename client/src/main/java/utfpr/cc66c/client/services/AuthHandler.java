@@ -3,7 +3,7 @@ package utfpr.cc66c.client.services;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import utfpr.cc66c.client.controllers.ConnectionController;
+import utfpr.cc66c.client.controllers.ClientConnectionController;
 import utfpr.cc66c.core.models.LoginModel;
 import utfpr.cc66c.core.validators.JSONFields;
 
@@ -17,7 +17,7 @@ public class AuthHandler {
         } catch (JsonProcessingException e) {
             throw new RuntimeException("[ERROR] Invalid LoginModel.");
         }
-        var response = ConnectionController.requestResponse(json);
+        var response = ClientConnectionController.requestResponse(json);
         parseLoginResponse(response);
     }
 

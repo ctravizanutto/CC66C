@@ -31,7 +31,7 @@ public class ServerController extends Thread {
             try {
                 var conn = serverSocket.accept();
                 if (conn != null)
-                    new ConnectionController(conn);
+                    new ServerConnectionController(conn);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
