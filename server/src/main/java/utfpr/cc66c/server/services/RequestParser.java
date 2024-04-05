@@ -3,6 +3,7 @@ package utfpr.cc66c.server.services;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import utfpr.cc66c.server.controllers.AuthController;
 
 public class RequestParser {
     private static final ObjectMapper mapper = new ObjectMapper();
@@ -15,14 +16,8 @@ public class RequestParser {
             throw new RuntimeException(e);
         }
         var operation = json.get("operation").asText();
-        if (operation.contains("LOGIN")) {
-            json.set("data", mapper.createObjectNode());
-            json.put("status", "SUCCESS");
-            return json.toString();
-        } else if (operation.contains("LOGOUT")) {
-            return json.toString();
-        } else if (operation.contains("SIGN_UP")) {
-
+        switch (operation) {
+            case "LOGIN_CANDIDATE" -> AuthController.loginCandidate(json);
         }
         return "";
     }

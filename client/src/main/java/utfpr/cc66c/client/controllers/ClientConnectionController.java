@@ -39,7 +39,11 @@ public class ClientConnectionController {
         System.out.println("[INFO] Sending request: " + json);
         out.println(json);
         try {
-            return in.readLine();
+            var response = in.readLine();
+            if (response == null) {
+                throw new RuntimeException("[ERROR] Response is null.");
+            }
+            return response;
         } catch (IOException e) {
             throw new RuntimeException("[ERROR] Couldn't receive response from server.");
         }

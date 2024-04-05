@@ -55,7 +55,7 @@ public class LoginViewController implements Initializable {
             passwordField.setStyle(null);
         }
 
-        return new LoginModel(emailAddr, password, userType);
+        return new LoginModel(emailAddr, password, getChoiceToUserType());
     }
 
     public UserType getChoiceToUserType() {

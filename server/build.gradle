@@ -41,6 +41,7 @@ dependencies {
 
   implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.1'
   implementation project(':core')
+  implementation 'org.xerial:sqlite-jdbc:3.45.2.0'
 }
 
 test {
