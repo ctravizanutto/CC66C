@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="CC66C" type="CompoundRunConfigurationType">
+    <toRun name="ClientApplication" type="Application" />
+    <toRun name="ServerApplication" type="Application" />
+    <method v="2" />
+  </configuration>
+</component>

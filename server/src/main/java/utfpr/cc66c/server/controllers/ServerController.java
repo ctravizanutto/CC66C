@@ -1,7 +1,7 @@
 package utfpr.cc66c.server.controllers;
 
 import utfpr.cc66c.server.ServerApplication;
-import utfpr.cc66c.server.services.DatabaseService;
+import utfpr.cc66c.server.services.db.DatabaseService;
 
 import java.io.IOException;
 import java.net.Inet4Address;

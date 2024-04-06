@@ -14,8 +14,8 @@ public class LoginModelSerializer extends JsonSerializer<LoginModel> {
         jsonGenerator.writeStartObject();
 
         var data = new ObjectMapper().createObjectNode();
-        data.put("email", loginModel.getLogin());
-        data.put("password", loginModel.getPassword());
+        data.put("email", loginModel.login());
+        data.put("password", loginModel.password());
 
         jsonGenerator.writeStringField("operation", loginModel.getUserTypeOperation());
         jsonGenerator.writeObjectField("data", data);

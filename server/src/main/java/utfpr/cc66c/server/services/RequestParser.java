@@ -17,7 +17,12 @@ public class RequestParser {
         }
         var operation = json.get("operation").asText();
         switch (operation) {
-            case "LOGIN_CANDIDATE" -> AuthController.loginCandidate(json);
+            case "LOGIN_CANDIDATE", "LOGIN_RECRUITER" -> {
+                return AuthController.login(json);
+            }
+            case "SIGNUP_CANDIDATE", "SIGNUP_RECRUITER" -> {
+                return "TODO";
+            }
         }
         return "";
     }
