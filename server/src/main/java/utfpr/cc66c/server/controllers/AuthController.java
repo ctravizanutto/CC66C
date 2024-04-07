@@ -9,39 +9,34 @@ import java.util.Objects;
 public class AuthController {
     public static String login(ObjectNode json) {
         var operation = json.get("operation").asText();
-        var email = json.get("email").asText();
-        var password = json.get("password").asText();
+        var email = json.get("data").get("email").asText();
+        var password = json.get("data").get("password").asText();
         json.set("data", JsonNodeFactory.instance.objectNode());
 
-        String status;
-        if (operation.contentEquals("CANDIDATE")) {
-            status = loginCandidate(email, password);
+        String dbPassword, status;
+        if (operation.equals("LOGIN_CANDIDATE")) {
+            dbPassword = LoginDatabaseDriver.getCandidatePasswordByEmail(email);
         } else {
-            status = loginRecruiter(email, password);
+            dbPassword = LoginDatabaseDriver.getRecruiterPasswordByEmail(email);
+        }
+        if (dbPassword == null) {
+            status = "USER_NOT_FOUND";
+        } else if (!Objects.equals(dbPassword, password)) {
+            status = "INVALID_PASSWORD";
+        } else {
+            status = "SUCCESS";
         }
         json.put("status", status);
         return json.toString();
     }
 
-    private static String loginCandidate(String email, String password) {
-        var correct_password = LoginDatabaseDriver.getCandidatePasswordByEmail(email);
-        if (correct_password == null) {
-            return "USER_NOT_FOUND";
-        }
-        if (!Objects.equals(correct_password, password)) {
-            return "INVALID_PASSWORD";
-        }
-        return "SUCCESS";
+    public static String singup(ObjectNode json) {
+        var operation = json.get("operation").asText();
+        var email = json.get("email").asText();
+        var password = json.get("password").asText();
+
+
+        return "";
     }
 
-    private static String loginRecruiter(String email, String password) {
-        var correct_password = LoginDatabaseDriver.getRecruiterPasswordByEmail(email);
-        if (correct_password == null) {
-            return "USER_NOT_FOUND";
-        }
-        if (!Objects.equals(correct_password, password)) {
-            return "INVALID_PASSWORD";
-        }
-        return "SUCCESS";
-    }
 }

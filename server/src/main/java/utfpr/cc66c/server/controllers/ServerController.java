@@ -6,9 +6,11 @@ import utfpr.cc66c.server.services.db.DatabaseService;
 import java.io.IOException;
 import java.net.Inet4Address;
 import java.net.ServerSocket;
+import java.sql.Connection;
 
 public class ServerController extends Thread {
     private final ServerSocket serverSocket;
+    private static DatabaseService databaseService;
 
     public ServerController() {
         String ip;
@@ -24,7 +26,8 @@ public class ServerController extends Thread {
         String info = "[INFO] Server listening at " + ip + ":" + port;
         System.out.println(info);
         ServerApplication.getServerApplicationController().ipLabel.setText(info);
-        new DatabaseService();
+
+        databaseService = new DatabaseService();
     }
 
     public void shutdown() {
@@ -47,5 +50,9 @@ public class ServerController extends Thread {
             }
 
         }
+    }
+
+    public static Connection getDatabaseConnection() {
+        return databaseService.getConnection();
     }
 }

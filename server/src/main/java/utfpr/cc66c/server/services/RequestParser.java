@@ -23,8 +23,8 @@ public class RequestParser {
             case "SIGNUP_CANDIDATE", "SIGNUP_RECRUITER" -> {
                 return "TODO";
             }
+            default -> throw new IllegalStateException("Unexpected value: " + operation);
         }
-        return "";
     }
 
 }
