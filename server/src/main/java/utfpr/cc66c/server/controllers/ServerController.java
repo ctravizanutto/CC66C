@@ -1,6 +1,5 @@
 package utfpr.cc66c.server.controllers;
 
-import utfpr.cc66c.server.controllers.gui.DashboardViewController;
 import utfpr.cc66c.server.services.db.DatabaseService;
 import utfpr.cc66c.server.views.DashboardViewFactory;
 
@@ -14,9 +13,8 @@ import java.sql.SQLException;
 public class ServerController extends Thread {
     private final ServerSocket serverSocket;
     private static DatabaseService databaseService;
-    private static DashboardViewController dashboardViewController;
 
-    public ServerController(DashboardViewController viewController) {
+    public ServerController() {
         String ip;
         int port;
         try {
@@ -31,12 +29,7 @@ public class ServerController extends Thread {
         System.out.println(info);
 
         databaseService = new DatabaseService();
-        dashboardViewController = viewController;
         DashboardViewFactory.setIp(ip);
-    }
-
-    public static DashboardViewController getServerDashboardController() {
-        return dashboardViewController;
     }
 
     public static Connection getDatabaseConnection() {

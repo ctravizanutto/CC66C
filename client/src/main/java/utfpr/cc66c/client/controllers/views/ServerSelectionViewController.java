@@ -1,4 +1,4 @@
-package utfpr.cc66c.client.controllers.gui;
+package utfpr.cc66c.client.controllers.views;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class IPViewController implements Initializable {
+public class ServerSelectionViewController implements Initializable {
     @FXML
     public TextField ipTextField;
 
@@ -21,6 +21,6 @@ public class IPViewController implements Initializable {
         var addr = ipTextField.getText();
         if (addr == null || addr.isBlank())
             throw new RuntimeException("[ERROR] Invalid ip address.");
-        ClientApplicationController.toLogin(ipTextField.getText());
+        ApplicationViewController.toLogin(ipTextField.getText());
     }
 }

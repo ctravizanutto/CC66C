@@ -1,17 +1,17 @@
 package utfpr.cc66c.server.views;
 
 import javafx.application.Platform;
-import utfpr.cc66c.server.controllers.ServerController;
+import utfpr.cc66c.server.controllers.views.ApplicationViewController;
 
 public class DashboardViewFactory {
     public static void setIp(String ip) {
-        var controller = ServerController.getServerDashboardController();
+        var controller = ApplicationViewController.getDashboardController();
         controller.getIpLabel().setText(ip);
     }
 
     public static void addClient(String ip, int port) {
         var client = formatClient(ip, port);
-        var controller = ServerController.getServerDashboardController();
+        var controller = ApplicationViewController.getDashboardController();
         controller.getConnectedClients().add(client);
         Platform.runLater(() -> {
             controller.getListView().getItems().clear();
@@ -21,7 +21,7 @@ public class DashboardViewFactory {
 
     public static void removeClient(String ip, int port) {
         var client = formatClient(ip, port);
-        var controller = ServerController.getServerDashboardController();
+        var controller = ApplicationViewController.getDashboardController();
         controller.getConnectedClients().remove(client);
         Platform.runLater(() -> {
             controller.getListView().getItems().clear();

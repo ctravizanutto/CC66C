@@ -1,4 +1,4 @@
-package utfpr.cc66c.client.controllers.gui;
+package utfpr.cc66c.client.controllers.views;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -7,28 +7,28 @@ import utfpr.cc66c.client.controllers.ClientConnectionController;
 
 import java.io.IOException;
 
-public class ClientApplicationController {
+public class ApplicationViewController {
     private static Stage stage;
 
     private static ClientConnectionController connectionController;
 
     private static Scene loginScene;
-    private static Scene IPScene;
+    private static Scene severSelectionScene;
 
-    public ClientApplicationController(Stage stage) throws IOException {
-        ClientApplicationController.stage = stage;
+    public ApplicationViewController(Stage stage) throws IOException {
+        ApplicationViewController.stage = stage;
 
         var fxmlLoader = new FXMLLoader(getClass().getResource("/utfpr/cc66c/client/ip-view.fxml"));
-        ClientApplicationController.IPScene = new Scene(fxmlLoader.load());
+        ApplicationViewController.severSelectionScene = new Scene(fxmlLoader.load());
 
         fxmlLoader = new FXMLLoader(getClass().getResource("/utfpr/cc66c/client/login-view.fxml"));
-        ClientApplicationController.loginScene = new Scene(fxmlLoader.load());
+        ApplicationViewController.loginScene = new Scene(fxmlLoader.load());
 
         stage.setTitle("Client");
         stage.setResizable(false);
         stage.show();
 
-        stage.setScene(IPScene);
+        stage.setScene(severSelectionScene);
     }
 
     public void shutdown() {

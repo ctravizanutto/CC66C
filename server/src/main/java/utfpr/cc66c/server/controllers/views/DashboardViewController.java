@@ -1,4 +1,4 @@
-package utfpr.cc66c.server.controllers.gui;
+package utfpr.cc66c.server.controllers.views;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
