@@ -3,7 +3,7 @@ package utfpr.cc66c.server.services;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import utfpr.cc66c.server.controllers.AuthController;
+import utfpr.cc66c.server.controllers.auth.AuthController;
 
 public class RequestParser {
     private static final ObjectMapper mapper = new ObjectMapper();
