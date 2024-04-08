@@ -29,7 +29,6 @@ public class ClientApplicationController {
         stage.show();
 
         stage.setScene(IPScene);
-
     }
 
     public void shutdown() {

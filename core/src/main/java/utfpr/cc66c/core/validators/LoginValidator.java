@@ -3,19 +3,19 @@ package utfpr.cc66c.core.validators;
 import java.util.regex.Pattern;
 
 public class LoginValidator {
-    public static boolean emailIsValid(String emailAddr) {
+    public static boolean invalidEmail(String emailAddr) {
         if (emailAddr.isBlank())
-            return false;
+            return true;
 
         var regexPattern = "^(?=.{1,64}@)[A-Za-z0-9+_-]+(\\.[A-Za-z0-9+_-]+)*@"
                 + "[^-][A-Za-z0-9+-]+(\\.[A-Za-z0-9+-]+)*(\\.[A-Za-z]{2,})$";
 
-        return Pattern.compile(regexPattern)
+        return !Pattern.compile(regexPattern)
                 .matcher(emailAddr)
                 .matches();
     }
 
-    public static boolean passwordIsValid(String password) {
-        return !password.isBlank() && password.length() <= 255;
+    public static boolean invalidPassword(String password) {
+        return password.isBlank() || password.length() > 255;
     }
 }

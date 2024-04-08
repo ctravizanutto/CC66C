@@ -1,6 +1,7 @@
 package utfpr.cc66c.server.controllers;
 
 import utfpr.cc66c.server.services.RequestParser;
+import utfpr.cc66c.server.views.DashboardViewFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,7 +10,7 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 
-public class ServerConnectionController extends Thread {
+public class ConnectionController extends Thread {
     private Socket clientSocket;
     private PrintWriter out;
     private BufferedReader in;
@@ -17,7 +18,7 @@ public class ServerConnectionController extends Thread {
     private int port;
 
 
-    public ServerConnectionController(Socket socket) throws IOException {
+    public ConnectionController(Socket socket) throws IOException {
         if (clientSocket == null) {
             clientSocket = socket;
             out = new PrintWriter(clientSocket.getOutputStream(), true);
@@ -29,6 +30,7 @@ public class ServerConnectionController extends Thread {
             this.start();
         }
         System.out.printf("[INFO] %s:%s connected.\n", addr, port);
+        DashboardViewFactory.addClient(addr.toString(), port);
     }
 
     public void sendJSON(String response) {
@@ -41,6 +43,7 @@ public class ServerConnectionController extends Thread {
             clientSocket.close();
             in.close();
             out.close();
+            DashboardViewFactory.removeClient(addr.toString(), port);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

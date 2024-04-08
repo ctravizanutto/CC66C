@@ -21,7 +21,7 @@ public class RequestParser {
                 return AuthController.login(json);
             }
             case "SIGNUP_CANDIDATE", "SIGNUP_RECRUITER" -> {
-                return "TODO";
+                return AuthController.signup(json);
             }
             default -> throw new IllegalStateException("Unexpected value: " + operation);
         }

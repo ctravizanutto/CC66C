@@ -1,4 +1,4 @@
-package utfpr.cc66c.core.validators;
+package utfpr.cc66c.core.serializers;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class JSONFields {
+public class JsonFields {
     public static Map<String, String> getAllFields(ObjectNode json) {
         var jsonFields = new HashMap<String, String>();
         var fields = json.fields();

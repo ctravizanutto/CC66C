@@ -1,18 +1,22 @@
 package utfpr.cc66c.server.controllers;
 
-import utfpr.cc66c.server.ServerApplication;
+import utfpr.cc66c.server.controllers.gui.DashboardViewController;
 import utfpr.cc66c.server.services.db.DatabaseService;
+import utfpr.cc66c.server.views.DashboardViewFactory;
 
 import java.io.IOException;
 import java.net.Inet4Address;
 import java.net.ServerSocket;
+import java.net.SocketException;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 public class ServerController extends Thread {
     private final ServerSocket serverSocket;
     private static DatabaseService databaseService;
+    private static DashboardViewController dashboardViewController;
 
-    public ServerController() {
+    public ServerController(DashboardViewController viewController) {
         String ip;
         int port;
         try {
@@ -25,15 +29,26 @@ public class ServerController extends Thread {
         }
         String info = "[INFO] Server listening at " + ip + ":" + port;
         System.out.println(info);
-        ServerApplication.getServerApplicationController().ipLabel.setText(info);
 
         databaseService = new DatabaseService();
+        dashboardViewController = viewController;
+        DashboardViewFactory.setIp(ip);
+    }
+
+    public static DashboardViewController getServerDashboardController() {
+        return dashboardViewController;
+    }
+
+    public static Connection getDatabaseConnection() {
+        return databaseService.getConnection();
     }
 
     public void shutdown() {
         try {
+            interrupt();
             serverSocket.close();
-        } catch (IOException e) {
+            databaseService.getConnection().close();
+        } catch (IOException | SQLException e) {
             throw new RuntimeException(e);
         }
     }
@@ -44,15 +59,13 @@ public class ServerController extends Thread {
             try {
                 var conn = serverSocket.accept();
                 if (conn != null)
-                    new ServerConnectionController(conn);
+                    new ConnectionController(conn);
             } catch (IOException e) {
+                if (e instanceof SocketException) {
+                    return;
+                }
                 throw new RuntimeException(e);
             }
-
         }
-    }
-
-    public static Connection getDatabaseConnection() {
-        return databaseService.getConnection();
     }
 }

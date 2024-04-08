@@ -38,16 +38,15 @@ public class LoginViewController implements Initializable {
     public LoginModel validLoginFields() {
         var emailAddr = emailField.getText();
         var password = passwordField.getText();
-        var userType = getChoiceToUserType();
 
-        if (!LoginValidator.emailIsValid(emailAddr)) {
+        if (LoginValidator.invalidEmail(emailAddr)) {
             emailField.getStyleClass().add("error");
             return null;
         } else if (emailField.getStyleClass().contains("error")) {
             emailField.getStyleClass().removeAll("error");
             emailField.setStyle(null);
         }
-        if (!LoginValidator.passwordIsValid(password)) {
+        if (LoginValidator.invalidPassword(password)) {
             passwordField.getStyleClass().add("error");
             return null;
         } else if (passwordField.getStyleClass().contains("error")) {
