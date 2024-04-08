@@ -18,4 +18,5 @@ module utfpr.cc66c.server {
     exports utfpr.cc66c.server.services.db;
     opens utfpr.cc66c.server.services.db to javafx.fxml;
     requires org.xerial.sqlitejdbc;
+    requires java.desktop;
 }
