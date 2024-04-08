@@ -25,7 +25,7 @@ public class AuthRequestHandler {
         try {
             json = (ObjectNode) mapper.readTree(response);
         } catch (JsonProcessingException e) {
-            throw new RuntimeException("[ERROR] Invalid json email response.");
+            throw new RuntimeException("[ERROR] Invalid json login response.");
         }
         var test = JsonFields.getAllFields(json);
         System.out.println(test);
@@ -40,7 +40,14 @@ public class AuthRequestHandler {
     }
 
     private static void parseSignupResponse(String response) {
-        return;
+        ObjectNode json;
+        try {
+            json = (ObjectNode) mapper.readTree(response);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("[ERROR] Invalid json signup response.");
+        }
+        var test = JsonFields.getAllFields(json);
+        System.out.println(test);
     }
 
 }

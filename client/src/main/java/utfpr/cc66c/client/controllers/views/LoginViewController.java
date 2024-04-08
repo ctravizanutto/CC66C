@@ -42,7 +42,7 @@ public class LoginViewController {
     }
 
     public UserType toggleSwitchToUserType() {
-        return toggleSwitch.isSelected() ? UserType.CANDIDATE : UserType.RECRUITER;
+        return toggleSwitch.isSelected() ? UserType.RECRUITER : UserType.CANDIDATE;
     }
 
     public void toSignup() {

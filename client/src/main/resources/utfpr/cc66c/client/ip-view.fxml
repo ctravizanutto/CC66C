@@ -10,7 +10,7 @@
             fx:controller="utfpr.cc66c.client.controllers.views.ServerSelectionViewController">
    <TextField fx:id="ipTextField" layoutX="226.0" layoutY="149.0" onAction="#onEnterIP"/>
    <Button layoutX="270.0" layoutY="188.0" mnemonicParsing="false" text="Connect" onAction="#onEnterIP"/>
-   <Label layoutX="233.0" layoutY="120.0" text="Server IP Address">
+   <Label layoutX="233.0" layoutY="120.0" text="Server Address">
       <font>
          <Font name="Droid Sans" size="17.0"/>
       </font>

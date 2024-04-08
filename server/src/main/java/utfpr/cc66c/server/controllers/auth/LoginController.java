@@ -10,7 +10,7 @@ import java.util.Objects;
 
 public class LoginController extends DatabaseService {
     public static String getCandidatePasswordByEmail(String email) {
-        var sql = "SELECT password FROM candidates WHERE email = " + email;
+        var sql = "SELECT password FROM candidates WHERE email = \"" + email + "\"";
         var query = DatabaseDriver.query(sql);
         try {
             assert query != null;
@@ -21,7 +21,7 @@ public class LoginController extends DatabaseService {
     }
 
     public static String getRecruiterPasswordByEmail(String email) {
-        var sql = "SELECT password FROM recruiters WHERE email = " + email;
+        var sql = "SELECT password FROM recruiters WHERE email = \"" + email + "\"";
         var query = DatabaseDriver.query(sql);
         try {
             assert query != null;
