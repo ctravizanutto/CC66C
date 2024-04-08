@@ -2,7 +2,7 @@ package utfpr.cc66c.core.validators;
 
 import java.util.regex.Pattern;
 
-public class LoginValidator {
+public class FieldValidator {
     public static boolean invalidEmail(String emailAddr) {
         if (emailAddr.isBlank())
             return true;

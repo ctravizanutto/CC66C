@@ -14,6 +14,7 @@ public class ApplicationViewController {
 
     private static Scene loginScene;
     private static Scene severSelectionScene;
+    public static LoginViewController loginController;
 
     public ApplicationViewController(Stage stage) throws IOException {
         ApplicationViewController.stage = stage;
@@ -23,6 +24,7 @@ public class ApplicationViewController {
 
         fxmlLoader = new FXMLLoader(getClass().getResource("/utfpr/cc66c/client/login-view.fxml"));
         ApplicationViewController.loginScene = new Scene(fxmlLoader.load());
+        loginController = fxmlLoader.getController();
 
         stage.setTitle("Client");
         stage.setResizable(false);

@@ -7,5 +7,10 @@ import utfpr.cc66c.core.serializers.recruiter.RecruiterModelSerializer;
 
 @JsonSerialize(using = RecruiterModelSerializer.class)
 @JsonDeserialize(using = RecruiterModelDeserializer.class)
-public record RecruiterModel(String name, String description, String industry, LoginModel login) {
+public record RecruiterModel(String name, String description, String industry,
+                             LoginModel login) implements SignupModel {
+    @Override
+    public LoginModel getLoginModel() {
+        return login;
+    }
 }

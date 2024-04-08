@@ -1,6 +1,6 @@
 package utfpr.cc66c.server.controllers.auth;
 
-import utfpr.cc66c.core.validators.LoginValidator;
+import utfpr.cc66c.core.validators.FieldValidator;
 import utfpr.cc66c.server.services.db.DatabaseDriver;
 import utfpr.cc66c.server.services.db.DatabaseService;
 
@@ -32,9 +32,9 @@ public class LoginController extends DatabaseService {
     }
 
     public static String getLoginStatus(String operation, String email, String password) {
-        if (LoginValidator.invalidEmail(email)) {
+        if (FieldValidator.invalidEmail(email)) {
             return "INVALID_EMAIL";
-        } else if (LoginValidator.invalidPassword(password)) {
+        } else if (FieldValidator.invalidPassword(password)) {
             return "INVALID_PASSWORD";
         }
 

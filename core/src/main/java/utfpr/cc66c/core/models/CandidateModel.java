@@ -7,6 +7,10 @@ import utfpr.cc66c.core.serializers.candidate.CandidateModelSerializer;
 
 @JsonSerialize(using = CandidateModelSerializer.class)
 @JsonDeserialize(using = CandidateModelDeserializer.class)
-public record CandidateModel(String name, LoginModel login) {
+public record CandidateModel(String name, LoginModel login) implements SignupModel {
+    @Override
+    public LoginModel getLoginModel() {
+        return login;
+    }
 }
 

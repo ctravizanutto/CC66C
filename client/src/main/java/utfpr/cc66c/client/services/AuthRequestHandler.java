@@ -5,9 +5,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import utfpr.cc66c.client.controllers.ClientConnectionController;
 import utfpr.cc66c.core.models.LoginModel;
+import utfpr.cc66c.core.models.SignupModel;
 import utfpr.cc66c.core.serializers.JsonFields;
 
-public class AuthHandler {
+public class AuthRequestHandler {
     private static final ObjectMapper mapper = new ObjectMapper();
 
     public static void sendLoginRequest(LoginModel model) {
@@ -17,6 +18,7 @@ public class AuthHandler {
         var response = ClientConnectionController.requestResponse(json.toString());
         parseLoginResponse(response);
     }
+
 
     private static void parseLoginResponse(String response) {
         ObjectNode json;
@@ -28,4 +30,17 @@ public class AuthHandler {
         var test = JsonFields.getAllFields(json);
         System.out.println(test);
     }
+
+    public static void sendSignupRequest(SignupModel model) {
+        ObjectNode json = mapper.valueToTree(model);
+        json.put("operation", model.getLoginModel().getSingupOperation());
+
+        var response = ClientConnectionController.requestResponse(json.toString());
+        parseSignupResponse(response);
+    }
+
+    private static void parseSignupResponse(String response) {
+        return;
+    }
+
 }
