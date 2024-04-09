@@ -33,7 +33,7 @@ public class ConnectionController extends Thread {
         DashboardViewFactory.addClient(addr.toString(), port);
     }
 
-    public void sendJSON(String response) {
+    public void sendJson(String response) {
         System.out.printf("[INFO] Sending response to %s:%s: %s\n", addr, port, response);
         out.println(response);
     }
@@ -60,7 +60,7 @@ public class ConnectionController extends Thread {
                     return;
                 }
                 System.out.printf("[INFO] Request incoming from %s:%s: %s\n", addr, port, request);
-                sendJSON(RequestParser.parseJSON(request));
+                sendJson(RequestParser.parseJson(request));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

@@ -6,48 +6,47 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.ToggleSwitch?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-            minWidth="-Infinity"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
             prefHeight="400.0" prefWidth="600.0" stylesheets="@style.css"
             xmlns="http://javafx.com/javafx/21"
             fx:controller="utfpr.cc66c.client.controllers.views.LoginViewController">
-   <AnchorPane fx:id="signupPane" disable="true" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="600.0"
-               visible="false">
-      <TextField fx:id="emailSignupField" layoutX="40.0" layoutY="64.0" onAction="#onEnterSignup" promptText="Email"/>
-      <PasswordField fx:id="passwordSignupField" layoutX="40.0" layoutY="99.0" onAction="#onEnterSignup"
-                     promptText="Password"/>
-      <Button layoutX="277.0" layoutY="297.0" mnemonicParsing="false" onAction="#onEnterSignup" text="Signup"/>
-      <TextField fx:id="nameField" layoutX="40.0" layoutY="137.0" onAction="#onEnterSignup" promptText="Name"/>
-      <TextField fx:id="industryField" disable="true" layoutX="40.0" layoutY="175.0" onAction="#onEnterSignup"
-                 promptText="Industry"/>
-      <TextArea fx:id="descriptionField" disable="true" layoutX="204.0" layoutY="66.0" prefHeight="135.0"
-                prefWidth="347.0" promptText="Description"/>
-      <Label layoutX="286.0" layoutY="332.0" onMousePressed="#toLogin" styleClass="label-button" text="Login"/>
+    <AnchorPane fx:id="signupPane" disable="true" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="600.0"
+                visible="false">
+        <TextField fx:id="emailSignupField" layoutX="40.0" layoutY="64.0" onAction="#onEnterSignup" promptText="Email"/>
+        <PasswordField fx:id="passwordSignupField" layoutX="40.0" layoutY="99.0" onAction="#onEnterSignup"
+                       promptText="Password"/>
+        <TextField fx:id="nameField" layoutX="40.0" layoutY="137.0" onAction="#onEnterSignup" promptText="Name"/>
+        <TextField fx:id="industryField" disable="true" layoutX="40.0" layoutY="175.0" onAction="#onEnterSignup"
+                   promptText="Industry"/>
+        <TextArea fx:id="descriptionField" disable="true" layoutX="204.0" layoutY="66.0" prefHeight="135.0"
+                  prefWidth="347.0" promptText="Description"/>
+        <Button layoutX="277.0" layoutY="297.0" mnemonicParsing="false" onAction="#onEnterSignup" text="Signup"/>
+        <Label layoutX="286.0" layoutY="332.0" onMousePressed="#toLogin" styleClass="label-button" text="Login"/>
    </AnchorPane>
    <AnchorPane fx:id="loginPane" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="600.0">
-      <TextField fx:id="emailLoginField" layoutX="226.0" layoutY="130.0" onAction="#onEnterLogin" promptText="Email"
-                 AnchorPane.leftAnchor="226.0" AnchorPane.topAnchor="130.0"/>
-      <PasswordField fx:id="passwordLoginField" layoutX="226.0" layoutY="173.0" onAction="#onEnterLogin"
-                     promptText="Password" AnchorPane.leftAnchor="226.0" AnchorPane.topAnchor="173.0"/>
-      <Button layoutX="274.0" layoutY="219.0" mnemonicParsing="false" onAction="#onEnterLogin" text="Login"
-              AnchorPane.leftAnchor="274.0" AnchorPane.topAnchor="219.0"/>
-      <Label layoutX="276.0" layoutY="253.0" onMousePressed="#toSignup" styleClass="label-button" text="Sign Up"
-             textAlignment="CENTER" textFill="#007bff" AnchorPane.leftAnchor="276.0" AnchorPane.topAnchor="253.0"/>
+       <TextField fx:id="emailLoginField" layoutX="226.0" layoutY="130.0" onAction="#onEnterLogin" promptText="Email"
+                  AnchorPane.leftAnchor="226.0" AnchorPane.topAnchor="130.0"/>
+       <PasswordField fx:id="passwordLoginField" layoutX="226.0" layoutY="173.0" onAction="#onEnterLogin"
+                      promptText="Password" AnchorPane.leftAnchor="226.0" AnchorPane.topAnchor="173.0"/>
+       <Button layoutX="274.0" layoutY="219.0" mnemonicParsing="false" onAction="#onEnterLogin" text="Login"
+               AnchorPane.leftAnchor="274.0" AnchorPane.topAnchor="219.0"/>
+       <Label layoutX="276.0" layoutY="253.0" onMousePressed="#toSignup" styleClass="label-button" text="Sign Up"
+              textAlignment="CENTER" textFill="#007bff" AnchorPane.leftAnchor="276.0" AnchorPane.topAnchor="253.0"/>
    </AnchorPane>
    <Pane prefHeight="54.0" prefWidth="112.0">
-      <ToggleSwitch fx:id="toggleSwitch" layoutX="29.0" layoutY="15.0" onMouseClicked="#toggleSwitch" prefHeight="18.0"
-                    prefWidth="33.0">
+       <ToggleSwitch fx:id="toggleSwitch" layoutX="29.0" layoutY="15.0" onMouseClicked="#toggleSwitch" prefHeight="18.0"
+                     prefWidth="33.0">
          <font>
-            <Font name="JetBrains Mono Regular" size="12.0"/>
+             <Font name="JetBrains Mono Regular" size="12.0"/>
          </font>
       </ToggleSwitch>
-      <ImageView fitHeight="150.0" fitWidth="16.0" layoutX="7.0" layoutY="16.0" pickOnBounds="true"
-                 preserveRatio="true">
-         <Image url="@assets/candidate.png"/>
+       <ImageView fitHeight="150.0" fitWidth="16.0" layoutX="7.0" layoutY="16.0" pickOnBounds="true"
+                  preserveRatio="true">
+           <Image url="@assets/candidate.png"/>
       </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="16.0" layoutX="72.0" layoutY="16.0" pickOnBounds="true"
-                 preserveRatio="true">
-         <Image url="@assets/recruiter.png"/>
+       <ImageView fitHeight="150.0" fitWidth="16.0" layoutX="72.0" layoutY="16.0" pickOnBounds="true"
+                  preserveRatio="true">
+           <Image url="@assets/recruiter.png"/>
       </ImageView>
    </Pane>
 </AnchorPane>

@@ -39,7 +39,7 @@ public class LoginController extends DatabaseService {
         }
 
         String dbPassword;
-        if (operation.equals("LOGIN_CANDIDATE")) {
+        if (operation.equals("LOGIN_CANDIDATE") || operation.equals("SIGNUP_CANDIDATE")) {
             dbPassword = LoginController.getCandidatePasswordByEmail(email);
         } else {
             dbPassword = LoginController.getRecruiterPasswordByEmail(email);

@@ -26,9 +26,11 @@ public class SignupController {
         var name = fields.get("name");
         var email = fields.get("email");
         var password = fields.get("password");
-        var status = LoginController.getLoginStatus(email, password, name);
+        var operation = fields.get("operation");
+
+        var status = LoginController.getLoginStatus(operation, email, password);
         if (status.equals("USER_NOT_FOUND")) {
-            if (fields.get("operation").equals("SIGNUP_CANDIDATE")) {
+            if (operation.equals("SIGNUP_CANDIDATE")) {
                 if (SignupController.signupCandidate(email, password, name)) {
                     return "SUCCESS";
                 }
@@ -39,6 +41,8 @@ public class SignupController {
                     return "SUCCESS";
                 }
             }
+        } else if (status.equals("SUCCESS")) {
+            return "USER_EXISTS";
         }
         return status;
     }

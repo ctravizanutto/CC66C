@@ -41,6 +41,7 @@ dependencies {
 
   implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.1'
   implementation project(':core')
+  implementation 'org.slf4j:slf4j-api:1.7.36'
   implementation 'org.xerial:sqlite-jdbc:3.45.2.0'
 }
 
@@ -65,4 +66,8 @@ tasks.register('wrapper', Wrapper) {
 
 tasks.register('prepareKotlinBuildScriptModel') {
 
+}
+
+configurations.configureEach {
+  exclude group: 'org.slf4j', module: 'slf4j-log4'
 }

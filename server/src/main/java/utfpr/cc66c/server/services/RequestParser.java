@@ -8,7 +8,7 @@ import utfpr.cc66c.server.controllers.auth.AuthController;
 public class RequestParser {
     private static final ObjectMapper mapper = new ObjectMapper();
 
-    public static String parseJSON(String request) {
+    public static String parseJson(String request) {
         ObjectNode json;
         try {
             json = (ObjectNode) mapper.readTree(request);

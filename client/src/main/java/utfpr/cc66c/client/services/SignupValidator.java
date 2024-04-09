@@ -30,7 +30,7 @@ public class SignupValidator {
 
     private static LoginModel validLoginFields() {
         var emailField = ApplicationViewController.loginController.emailSignupField;
-        var passwordField = ApplicationViewController.loginController.emailSignupField;
+        var passwordField = ApplicationViewController.loginController.passwordSignupField;
         var emailAddr = emailField.getText();
         var password = passwordField.getText();
 
