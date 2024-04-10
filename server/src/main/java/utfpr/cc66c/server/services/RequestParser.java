@@ -15,6 +15,7 @@ public class RequestParser {
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
+
         var operation = json.get("operation").asText();
         switch (operation) {
             case "LOGIN_CANDIDATE", "LOGIN_RECRUITER" -> {

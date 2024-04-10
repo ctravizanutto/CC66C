@@ -27,7 +27,7 @@ public class AuthRequestHandler {
         } catch (JsonProcessingException e) {
             throw new RuntimeException("[ERROR] Invalid json login response.");
         }
-        var test = JsonFields.getAllFields(json);
+        var test = JsonFields.getStringFields(json);
         System.out.println(test);
     }
 
@@ -46,7 +46,7 @@ public class AuthRequestHandler {
         } catch (JsonProcessingException e) {
             throw new RuntimeException("[ERROR] Invalid json signup response.");
         }
-        var test = JsonFields.getAllFields(json);
+        var test = JsonFields.getStringFields(json);
         System.out.println(test);
     }
 

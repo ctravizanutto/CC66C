@@ -19,7 +19,6 @@ public class ServerController extends Thread {
         int port;
         try {
             serverSocket = new ServerSocket(21234);
-            start();
             ip = Inet4Address.getLocalHost().getHostAddress();
             port = serverSocket.getLocalPort();
         } catch (IOException e) {
@@ -30,6 +29,8 @@ public class ServerController extends Thread {
 
         databaseService = new DatabaseService();
         DashboardViewFactory.setIp(ip);
+
+        start();
     }
 
     public static Connection getDatabaseConnection() {
@@ -40,7 +41,7 @@ public class ServerController extends Thread {
         try {
             interrupt();
             serverSocket.close();
-            databaseService.getConnection().close();
+            getDatabaseConnection().close();
         } catch (IOException | SQLException e) {
             throw new RuntimeException(e);
         }

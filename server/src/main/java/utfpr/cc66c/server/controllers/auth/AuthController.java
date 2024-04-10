@@ -6,10 +6,13 @@ import utfpr.cc66c.core.serializers.JsonFields;
 
 public class AuthController {
     public static String login(ObjectNode json) {
-        var fields = JsonFields.getAllFields(json);
+        var fields = JsonFields.getStringFields(json);
         var status = LoginController.getLoginStatus(fields.get("operation"), fields.get("email"), fields.get("password"));
 
-        json.set("data", JsonNodeFactory.instance.objectNode());
+        var data = JsonNodeFactory.instance.objectNode();
+        data.put("token", "[DEBUG} TODO");
+
+        json.set("data", data);
         json.put("status", status);
         return json.toString();
     }

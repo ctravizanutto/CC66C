@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public class JsonFields {
-    public static Map<String, String> getAllFields(ObjectNode json) {
+    public static Map<String, String> getStringFields(ObjectNode json) {
         var jsonFields = new HashMap<String, String>();
         var fields = json.fields();
         while (fields.hasNext()) {
@@ -15,7 +15,7 @@ public class JsonFields {
             var key = field.getKey();
             var value = field.getValue();
             if (Objects.equals(key, "data")) {
-                var nestedFields = getAllFields((ObjectNode) value);
+                var nestedFields = getStringFields((ObjectNode) value);
                 for (var nestedField : nestedFields.entrySet()) {
                     var nestedKey = nestedField.getKey();
                     var nestedValue = nestedField.getValue();

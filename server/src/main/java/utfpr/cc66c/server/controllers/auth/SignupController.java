@@ -22,7 +22,7 @@ public class SignupController {
     }
 
     public static String getSignupStatus(ObjectNode json) {
-        var fields = JsonFields.getAllFields(json);
+        var fields = JsonFields.getStringFields(json);
         var name = fields.get("name");
         var email = fields.get("email");
         var password = fields.get("password");
@@ -30,14 +30,14 @@ public class SignupController {
 
         var status = LoginController.getLoginStatus(operation, email, password);
         if (status.equals("USER_NOT_FOUND")) {
-            if (operation.equals("SIGNUP_CANDIDATE")) {
-                if (SignupController.signupCandidate(email, password, name)) {
+            if (operation.contains("CANDIDATE")) {
+                if (signupCandidate(email, password, name)) {
                     return "SUCCESS";
                 }
             } else {
                 var description = fields.get("description");
                 var industry = fields.get("industry");
-                if (SignupController.signupRecruiter(email, password, name, description, industry)) {
+                if (signupRecruiter(email, password, name, description, industry)) {
                     return "SUCCESS";
                 }
             }
