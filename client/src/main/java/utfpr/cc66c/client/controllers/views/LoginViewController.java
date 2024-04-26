@@ -34,6 +34,15 @@ public class LoginViewController {
     @FXML
     public ToggleSwitch toggleSwitch;
 
+    public static LoginViewController instance;
+
+    public static LoginViewController getInstance() {
+        if (instance == null) {
+            instance = new LoginViewController();
+        }
+        return instance;
+    }
+
     @FXML
     public void onEnterLogin() {
         var loginModel = LoginValidator.validLoginFields();

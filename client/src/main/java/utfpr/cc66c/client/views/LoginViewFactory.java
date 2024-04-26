@@ -1,10 +1,42 @@
 package utfpr.cc66c.client.views;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Control;
 import javafx.scene.layout.Pane;
 import org.controlsfx.control.ToggleSwitch;
+import utfpr.cc66c.client.controllers.views.LoginViewController;
+
+import java.io.IOException;
 
 public class LoginViewFactory {
+    private static LoginViewFactory instance;
+    private Scene loginScene;
+
+    public static LoginViewFactory getInstance() {
+        if (instance == null) {
+            instance = new LoginViewFactory();
+        }
+        return instance;
+    }
+
+    private void setLoginScene() {
+        var fxmlLoader = new FXMLLoader(getClass().getResource("/utfpr/cc66c/client/login/login-view.fxml"));
+        try {
+            fxmlLoader.setController(LoginViewController.getInstance());
+            loginScene = new Scene(fxmlLoader.load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Scene getScene() {
+        if (loginScene == null) {
+            setLoginScene();
+        }
+        return loginScene;
+    }
+
     public static void setErrorField(Control field) {
         field.getStyleClass().add("error");
     }

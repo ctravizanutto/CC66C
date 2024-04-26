@@ -11,10 +11,10 @@ public class ClientConnectionController {
     private static BufferedReader in;
     private static PrintWriter out;
 
-    public ClientConnectionController(String addr, Integer port) {
+    public static void start(String addr) {
         if (clientSocket == null) {
             try {
-                clientSocket = new Socket(addr, port);
+                clientSocket = new Socket(addr, SessionController.getPort());
                 in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 out = new PrintWriter(clientSocket.getOutputStream(), true);
             } catch (IOException e) {
@@ -23,16 +23,18 @@ public class ClientConnectionController {
         }
     }
 
-    public void shutdown() {
-        try {
-            in.close();
-            out.close();
-            clientSocket.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    public static void shutdown() {
+        if (clientSocket != null) {
+            try {
+                in.close();
+                out.close();
+                clientSocket.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println("[INFO] Client closed.");
+            System.exit(0);
         }
-        System.out.println("[INFO] Client closed.");
-        System.exit(0);
     }
 
     public static String requestResponse(String json) {
