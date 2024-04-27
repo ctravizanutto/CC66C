@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ServerSelectionViewController implements Initializable {
+public class IpSelectionViewController implements Initializable {
     @FXML
     public TextField ipTextField;
 

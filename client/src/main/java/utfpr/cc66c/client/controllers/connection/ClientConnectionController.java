@@ -1,4 +1,4 @@
-package utfpr.cc66c.client.controllers;
+package utfpr.cc66c.client.controllers.connection;
 
 import java.io.BufferedReader;
 import java.io.IOException;

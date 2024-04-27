@@ -9,10 +9,13 @@ import java.net.ServerSocket;
 import java.net.SocketException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ServerController extends Thread {
     private final ServerSocket serverSocket;
     private static DatabaseService databaseService;
+    private final static Map<String, Boolean> sessionPool = new HashMap<>();
 
     public ServerController() {
         String ip;
@@ -35,6 +38,19 @@ public class ServerController extends Thread {
 
     public static Connection getDatabaseConnection() {
         return databaseService.getConnection();
+    }
+
+    public static void addSession(String token) {
+        sessionPool.put(token, true);
+    }
+
+    public static void removeSession(String token) {
+        sessionPool.put(token, false);
+    }
+
+    public static Boolean checkTokenOnSession(String token) {
+        var session = sessionPool.get(token);
+        return session != null ? session : false;
     }
 
     public void shutdown() {

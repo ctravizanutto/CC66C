@@ -1,7 +1,8 @@
 package utfpr.cc66c.client.controllers.views;
 
 import javafx.stage.Stage;
-import utfpr.cc66c.client.controllers.ClientConnectionController;
+import utfpr.cc66c.client.controllers.connection.ClientConnectionController;
+import utfpr.cc66c.client.views.CandidateDashboardFactory;
 import utfpr.cc66c.client.views.IpViewFactory;
 import utfpr.cc66c.client.views.LoginViewFactory;
 
@@ -22,6 +23,10 @@ public class ApplicationViewController {
         ClientConnectionController.start(addr);
         var loginScene = LoginViewFactory.getInstance().getScene();
         stage.setScene(loginScene);
+    }
+
+    public static void toCandidateDashboard() {
+        stage.setScene(CandidateDashboardFactory.getScene());
     }
 
     public void shutdown() {

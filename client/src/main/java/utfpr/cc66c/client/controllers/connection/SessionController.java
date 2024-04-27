@@ -1,4 +1,4 @@
-package utfpr.cc66c.client.controllers;
+package utfpr.cc66c.client.controllers.connection;
 
 public class SessionController {
     private static final int port = 21234;

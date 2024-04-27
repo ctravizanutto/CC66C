@@ -3,10 +3,13 @@ package utfpr.cc66c.client.services;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import utfpr.cc66c.client.controllers.ClientConnectionController;
+import utfpr.cc66c.client.controllers.connection.ClientConnectionController;
+import utfpr.cc66c.client.controllers.views.ApplicationViewController;
 import utfpr.cc66c.core.models.LoginModel;
 import utfpr.cc66c.core.models.SignupModel;
 import utfpr.cc66c.core.serializers.JsonFields;
+
+import java.util.Objects;
 
 public class AuthRequestHandler {
     private static final ObjectMapper mapper = new ObjectMapper();
@@ -27,8 +30,11 @@ public class AuthRequestHandler {
         } catch (JsonProcessingException e) {
             throw new RuntimeException("[ERROR] Invalid json login response.");
         }
-        var test = JsonFields.getStringFields(json);
-        System.out.println(test);
+        var fields = JsonFields.getStringFields(json);
+        System.out.printf("[INFO] Login response: %s\n", fields);
+        if (Objects.equals(fields.get("status"), "SUCCESS")) {
+            ApplicationViewController.toCandidateDashboard();
+        }
     }
 
     public static void sendSignupRequest(SignupModel model) {

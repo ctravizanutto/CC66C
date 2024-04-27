@@ -4,4 +4,12 @@
 <?import javafx.scene.layout.BorderPane?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
             minWidth="-Infinity"
-            prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21"/>
+            xmlns:fx="http://javafx.com/fxml/1" prefHeight="720.0" prefWidth="1280.0"
+            xmlns="http://javafx.com/javafx/21">
+    <left>
+        <fx:include source="sidebar-candidate.fxml"/>
+    </left>
+
+
+</BorderPane>
+
