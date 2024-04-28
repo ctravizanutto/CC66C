@@ -21,7 +21,6 @@ public class AuthController {
 
             if (Objects.equals(status, "SUCCESS")) {
                 var token = generateToken(operation, email);
-                ServerController.addSession(token);
                 json.put("token", token);
             }
         } else {
@@ -45,6 +44,7 @@ public class AuthController {
             token = JWTValidator.generateToken(id, "RECRUITER");
         }
 
+        ServerController.addSession(token);
         return token;
     }
 
@@ -60,4 +60,25 @@ public class AuthController {
         return json.toString();
     }
 
+    public static String logout(ObjectNode json) {
+        if (!validateToken(json)) {
+            return json.toString();
+        }
+
+        json.put("status", "SUCCESS");
+        return json.toString();
+    }
+
+    public static Boolean validateToken(ObjectNode json) {
+        var fields = JsonFields.getStringFields(json);
+        var token = fields.get("token");
+        json.set("data", JsonNodeFactory.instance.objectNode());
+
+        if (!ServerController.checkTokenOnSession(token)) {
+            json.put("status", "INVALID_TOKEN");
+            return false;
+        }
+        ServerController.removeSession(token);
+        return true;
+    }
 }

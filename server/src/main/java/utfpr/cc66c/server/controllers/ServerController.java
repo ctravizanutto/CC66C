@@ -48,7 +48,7 @@ public class ServerController extends Thread {
         sessionPool.put(token, false);
     }
 
-    public static Boolean checkTokenOnSession(String token) {
+    public static boolean checkTokenOnSession(String token) {
         var session = sessionPool.get(token);
         return session != null ? session : false;
     }

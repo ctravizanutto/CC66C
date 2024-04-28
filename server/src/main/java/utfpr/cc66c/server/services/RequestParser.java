@@ -18,11 +18,24 @@ public class RequestParser {
 
         var operation = json.get("operation").asText();
         switch (operation) {
+            // Auth
             case "LOGIN_CANDIDATE", "LOGIN_RECRUITER" -> {
                 return AuthController.login(json);
             }
             case "SIGNUP_CANDIDATE", "SIGNUP_RECRUITER" -> {
                 return AuthController.signup(json);
+            }
+            case "LOGOUT_CANDIDATE", "LOGOUT_RECRUITER" -> {
+                return AuthController.logout(json);
+            }
+            // Lookup
+            case "LOOKUP_CANDIDATE", "LOOKUP_RECRUITER" -> {
+                return "[DEBUG] TODO";
+            }
+            // Update
+            case "UPDATE_CANDIDATE", "UPDATE_RECRUITER" -> {
+                return "[DEBUG] TODO";
+
             }
             default -> throw new IllegalStateException("Unexpected value: " + operation);
         }
