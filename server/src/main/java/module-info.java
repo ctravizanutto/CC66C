@@ -19,7 +19,9 @@ module utfpr.cc66c.server {
     opens utfpr.cc66c.server.services.db to javafx.fxml;
     exports utfpr.cc66c.server.controllers.auth;
     opens utfpr.cc66c.server.controllers.auth to javafx.fxml;
+
     requires org.slf4j;
+    requires ch.qos.logback.classic;
     requires org.xerial.sqlitejdbc;
     requires java.desktop;
 }

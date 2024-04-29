@@ -35,14 +35,13 @@ javafx {
 dependencies {
   implementation('org.controlsfx:controlsfx:11.1.2')
   implementation('org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0')
-
-  testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
-  testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
-
   implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.1'
-  implementation project(':core')
-  implementation 'org.slf4j:slf4j-api:1.7.36'
   implementation 'org.xerial:sqlite-jdbc:3.45.2.0'
+    implementation 'org.slf4j:slf4j-api:2.0.13'
+    testImplementation 'org.slf4j:slf4j-simple:2.0.13'
+    implementation 'ch.qos.logback:logback-classic:1.5.6'
+
+    implementation project(':core')
 }
 
 test {
@@ -69,5 +68,4 @@ tasks.register('prepareKotlinBuildScriptModel') {
 }
 
 configurations.configureEach {
-  exclude group: 'org.slf4j', module: 'slf4j-log4'
 }

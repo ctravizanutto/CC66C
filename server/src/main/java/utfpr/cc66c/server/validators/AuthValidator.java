@@ -22,7 +22,7 @@ public class AuthValidator {
             var fields = JsonFields.getStringFields(json);
             var operation = fields.get("operation");
 
-            if (Objects.equals(operation, "SIGNUP_CANDIDATE")) {
+            if (Objects.equals(operation, "SIGNUP_RECRUITER")) {
                 var industry = fields.get("industry");
                 var description = fields.get("description");
                 if (industry == null || description == null) {

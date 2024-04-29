@@ -2,6 +2,7 @@ package utfpr.cc66c.server.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import utfpr.cc66c.server.controllers.auth.AuthController;
 
@@ -30,14 +31,19 @@ public class RequestParser {
             }
             // Lookup
             case "LOOKUP_CANDIDATE", "LOOKUP_RECRUITER" -> {
-                return "[DEBUG] TODO";
+                return ProfileManager.lookup(json);
             }
             // Update
             case "UPDATE_CANDIDATE", "UPDATE_RECRUITER" -> {
-                return "[DEBUG] TODO";
-
+                return ProfileManager.update(json);
             }
-            default -> throw new IllegalStateException("Unexpected value: " + operation);
+            default -> {
+                System.out.println("[ERROR] Invalid operation: " + operation);
+                json.put("status", "INVALID_OPERATION");
+                json.set("data", JsonNodeFactory.instance.objectNode());
+
+                return json.toString();
+            }
         }
     }
 

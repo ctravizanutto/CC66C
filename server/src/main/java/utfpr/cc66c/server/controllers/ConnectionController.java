@@ -60,7 +60,8 @@ public class ConnectionController extends Thread {
                 System.out.printf("[INFO] Request incoming from %s:%s: %s\n", addr, port, request);
                 sendJson(RequestParser.parseJson(request));
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                this.shutdown();
+                throw new RuntimeException("[ERROR]" + e.getMessage());
             }
         }
     }

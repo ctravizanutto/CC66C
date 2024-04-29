@@ -52,8 +52,8 @@ public class AuthRequestHandler {
         } catch (JsonProcessingException e) {
             throw new RuntimeException("[ERROR] Invalid json signup response.");
         }
-        var test = JsonFields.getStringFields(json);
-        System.out.println(test);
+        var fields = JsonFields.getStringFields(json);
+        System.out.printf("[INFO] Signup response: %s\n", fields);
     }
 
 }
