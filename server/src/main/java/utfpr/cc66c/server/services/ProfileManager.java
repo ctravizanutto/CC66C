@@ -91,7 +91,10 @@ public class ProfileManager {
         }
         if (status) {
             json.put("status", "SUCCESS");
+        } else {
+            json.put("status", "USER_EXISTS");
         }
+
         return json.toString();
     }
 

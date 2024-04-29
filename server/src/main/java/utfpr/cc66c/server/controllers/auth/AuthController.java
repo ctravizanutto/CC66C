@@ -11,6 +11,7 @@ import java.util.Objects;
 
 public class AuthController {
     public static String login(ObjectNode json) {
+        var data = JsonNodeFactory.instance.objectNode();
         if (AuthValidator.assertLogin(json)) {
             var fields = JsonFields.getStringFields(json);
             var operation = fields.get("operation");
@@ -21,13 +22,12 @@ public class AuthController {
 
             if (Objects.equals(status, "SUCCESS")) {
                 var token = generateToken(operation, email);
-                json.put("token", token);
+                data.put("token", token);
             }
         } else {
             json.put("status", "INVALID_FIELD");
         }
 
-        var data = JsonNodeFactory.instance.objectNode();
         json.set("data", data);
 
         return json.toString();
