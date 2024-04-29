@@ -30,8 +30,12 @@ public class RequestParser {
                 return AuthController.logout(json);
             }
             // Lookup
-            case "LOOKUP_CANDIDATE", "LOOKUP_RECRUITER" -> {
+            case "LOOKUP_ACCOUNT_CANDIDATE", "LOOKUP_ACCOUNT_RECRUITER" -> {
                 return ProfileManager.lookup(json);
+            }
+            // Delete
+            case "DELETE_ACCOUNT_CANDIDATE", "DELETE_ACCOUNT_RECRUITER" -> {
+                return ProfileManager.delete(json);
             }
             // Update
             case "UPDATE_CANDIDATE", "UPDATE_RECRUITER" -> {

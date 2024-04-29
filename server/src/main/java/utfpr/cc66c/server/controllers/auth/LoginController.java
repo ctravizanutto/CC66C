@@ -10,10 +10,10 @@ import java.util.Objects;
 public class LoginController extends DatabaseService {
     private static String getCandidatePasswordByEmail(String email) {
         var sql = "SELECT password FROM candidates WHERE email = \"" + email + "\"";
-        var query = DatabaseDriver.query(sql);
+        var resultSet = DatabaseDriver.query(sql);
         try {
-            assert query != null;
-            return query.getString("password");
+            assert resultSet != null;
+            return resultSet.getString("password");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -21,10 +21,10 @@ public class LoginController extends DatabaseService {
 
     private static String getRecruiterPasswordByEmail(String email) {
         var sql = "SELECT password FROM recruiters WHERE email = \"" + email + "\"";
-        var query = DatabaseDriver.query(sql);
+        var resultSet = DatabaseDriver.query(sql);
         try {
-            assert query != null;
-            return query.getString("password");
+            assert resultSet != null;
+            return resultSet.getString("password");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -32,10 +32,10 @@ public class LoginController extends DatabaseService {
 
     public static String getRecruiterIdByEmail(String email) {
         var sql = "SELECT recruiter_id FROM recruiters WHERE email = \"" + email + "\"";
-        var query = DatabaseDriver.query(sql);
+        var resultSet = DatabaseDriver.query(sql);
         try {
-            assert query != null;
-            return query.getString("recruiter_id");
+            assert resultSet != null;
+            return resultSet.getString("recruiter_id");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -43,10 +43,10 @@ public class LoginController extends DatabaseService {
 
     public static String getCandidateIdByEmail(String email) {
         var sql = "SELECT candidate_id FROM candidates WHERE email = \"" + email + "\"";
-        var query = DatabaseDriver.query(sql);
+        var resultSet = DatabaseDriver.query(sql);
         try {
-            assert query != null;
-            return query.getString("candidate_id");
+            assert resultSet != null;
+            return resultSet.getString("candidate_id");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

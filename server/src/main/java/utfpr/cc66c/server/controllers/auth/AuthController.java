@@ -73,6 +73,7 @@ public class AuthController {
         var fields = JsonFields.getStringFields(json);
         var token = fields.get("token");
         json.set("data", JsonNodeFactory.instance.objectNode());
+        json.remove("token");
 
         if (!ServerController.checkTokenOnSession(token)) {
             json.put("status", "INVALID_TOKEN");
