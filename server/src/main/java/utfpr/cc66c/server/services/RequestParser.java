@@ -38,7 +38,7 @@ public class RequestParser {
                 return ProfileManager.delete(json);
             }
             // Update
-            case "UPDATE_CANDIDATE", "UPDATE_RECRUITER" -> {
+            case "UPDATE_ACCOUNT_CANDIDATE", "UPDATE_ACCOUNT_RECRUITER" -> {
                 return ProfileManager.update(json);
             }
             default -> {

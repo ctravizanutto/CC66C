@@ -8,6 +8,7 @@ import utfpr.cc66c.server.controllers.auth.AuthController;
 import utfpr.cc66c.server.services.db.DatabaseDriver;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 
 public class ProfileManager {
     public static String lookup(ObjectNode json) {
@@ -73,7 +74,34 @@ public class ProfileManager {
     }
 
     public static String update(ObjectNode json) {
-        return "";
+        var fields = JsonFields.getStringFields(json);
+        if (!AuthController.validateToken(json)) {
+            return json.toString();
+        }
+        var operation = fields.get("operation");
+        var token = fields.get("token");
+
+        var id = JWTValidator.getIdClaim(token);
+
+        boolean status = false;
+        if (operation.equals("UPDATE_ACCOUNT_CANDIDATE")) {
+            if (updateCandidate(id, (HashMap<String, String>) fields)) status = true;
+        } else {
+            return "[DEBUG] TODO";
+        }
+        if (status) {
+            json.put("status", "SUCCESS");
+        }
+        return json.toString();
+    }
+
+    private static boolean updateCandidate(String id, HashMap<String, String> fields) {
+        var name = fields.get("name");
+        var email = fields.get("email");
+        var password = fields.get("password");
+
+        var sql = "UPDATE candidates SET name =\"" + name + "\",email=\"" + email + "\",password=\"" + password + "\" WHERE candidate_id =" + id;
+        return DatabaseDriver.update(sql);
     }
 
     public static String delete(ObjectNode json) {
@@ -91,7 +119,7 @@ public class ProfileManager {
         if (operation.equals("DELETE_ACCOUNT_CANDIDATE")) {
             deleteCandidate(id);
         } else {
-            return "[DEBUG] TODO";
+            deleteRecruiter(id);
         }
 
         ServerController.removeSession(token);
@@ -100,7 +128,11 @@ public class ProfileManager {
 
     private static void deleteCandidate(String id) {
         var sql = "DELETE FROM candidates WHERE candidate_id =" + id;
-        var resultSet = DatabaseDriver.query(sql);
-        assert resultSet != null;
+        DatabaseDriver.update(sql);
+    }
+
+    private static void deleteRecruiter(String id) {
+        var sql = "DELETE FROM recruiters WHERE recruiter_id =" + id;
+        DatabaseDriver.update(sql);
     }
 }
