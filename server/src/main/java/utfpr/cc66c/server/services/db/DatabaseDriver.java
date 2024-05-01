@@ -10,7 +10,7 @@ public class DatabaseDriver {
     public static ResultSet query(String sql) {
         try {
             PreparedStatement stmt = ServerController.getDatabaseConnection().prepareStatement(sql);
-            System.out.println("[DEBUG] Querying " + stmt);
+//            System.out.println("[DEBUG] Querying " + stmt);
             return stmt.executeQuery();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -22,7 +22,7 @@ public class DatabaseDriver {
         var rs = 0;
         try {
             PreparedStatement stmt = ServerController.getDatabaseConnection().prepareStatement(sql);
-            System.out.println("[DEBUG] Querying " + stmt);
+//            System.out.println("[DEBUG] Querying " + stmt);
             rs = stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());

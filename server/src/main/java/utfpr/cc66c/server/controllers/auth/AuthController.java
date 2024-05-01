@@ -79,7 +79,6 @@ public class AuthController {
             json.put("status", "INVALID_TOKEN");
             return false;
         }
-        ServerController.removeSession(token);
         return true;
     }
 }

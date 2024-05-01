@@ -12,19 +12,19 @@ import java.util.HashMap;
 
 public class ProfileManager {
     public static String lookup(ObjectNode json) {
+        var fields = JsonFields.getStringFields(json);
         if (!AuthController.validateToken(json)) {
             return json.toString();
         }
         json.put("status", "SUCCESS");
 
-        var fields = JsonFields.getStringFields(json);
         var operation = fields.get("operation");
         var token = fields.get("token");
         var data = (ObjectNode) json.get("data");
 
         var id = JWTValidator.getIdClaim(token);
 
-        if (operation.equals("LOOKUP_CANDIDATE")) {
+        if (operation.equals("LOOKUP_ACCOUNT_CANDIDATE")) {
             lookupCandidate(id, data);
         } else {
             lookupRecruiter(id, data);
