@@ -9,6 +9,9 @@
     <left>
         <fx:include source="sidebar-candidate.fxml"/>
     </left>
+    <right>
+        <fx:include source="profile-candidate.fxml"/>
+    </right>
 
 
 </BorderPane>

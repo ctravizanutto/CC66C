@@ -25,6 +25,11 @@ public class ApplicationViewController {
         stage.setScene(loginScene);
     }
 
+    public static void logout() {
+        var loginScene = LoginViewFactory.getInstance().getScene();
+        stage.setScene(loginScene);
+    }
+
     public static void toCandidateDashboard() {
         stage.setScene(CandidateDashboardFactory.getScene());
     }

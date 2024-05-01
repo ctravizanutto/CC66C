@@ -4,6 +4,7 @@ public class SessionController {
     private static final int port = 21234;
     private static final String tokenKey = "DISTRIBUIDOS";
     private static String host = "localhost";
+    private static String token;
 
     public static int getPort() {
         return port;
@@ -19,5 +20,13 @@ public class SessionController {
 
     public static String getTokenKey() {
         return tokenKey;
+    }
+
+    public static String getToken() {
+        return token;
+    }
+
+    public static void setToken(String token) {
+        SessionController.token = token;
     }
 }

@@ -1,0 +1,55 @@
+package utfpr.cc66c.client.controllers.views;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import utfpr.cc66c.client.controllers.connection.SessionController;
+import utfpr.cc66c.client.services.AuthRequestHandler;
+import utfpr.cc66c.core.serializers.JsonFields;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class ProfileCandidateViewController implements Initializable {
+    public static final ObjectMapper mapper = new ObjectMapper();
+    public TextField emailTextField;
+    public TextField passwordTextField;
+    public TextField nameTextField;
+    public Button saveButton;
+
+    public void loadCandidateInfo(String response) {
+        ObjectNode json;
+        try {
+            json = (ObjectNode) mapper.readTree(response);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("[ERROR] Invalid json signup response.");
+        }
+        var fields = JsonFields.getStringFields(json);
+        emailTextField.setText(fields.get("email"));
+        passwordTextField.setText(fields.get("password"));
+        nameTextField.setText(fields.get("name"));
+    }
+
+    public void saveButtonAction() {
+        var json = mapper.createObjectNode();
+        json.put("operation", "UPDATE_ACCOUNT_CANDIDATE");
+        json.put("token", SessionController.getToken());
+
+        var data = mapper.createObjectNode();
+        data.put("email", emailTextField.getText());
+        data.put("password", passwordTextField.getText());
+        data.put("name", nameTextField.getText());
+
+        json.set("data", data);
+        AuthRequestHandler.sendUpdateCandidateRequest(json.toString());
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        var lookupCandidate = AuthRequestHandler.sendLookupCandidateRequest();
+        loadCandidateInfo(lookupCandidate);
+    }
+}

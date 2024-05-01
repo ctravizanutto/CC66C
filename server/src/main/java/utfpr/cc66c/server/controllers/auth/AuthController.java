@@ -64,7 +64,9 @@ public class AuthController {
         if (!validateToken(json)) {
             return json.toString();
         }
-
+        var fields = JsonFields.getStringFields(json);
+        var token = fields.get("token");
+        ServerController.removeSession(token);
         json.put("status", "SUCCESS");
         return json.toString();
     }
