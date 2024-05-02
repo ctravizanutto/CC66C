@@ -29,7 +29,7 @@ public class SignupController {
         var operation = fields.get("operation");
 
         var status = LoginController.getLoginStatus(operation, email, password);
-        if (status.equals("USER_NOT_FOUND")) {
+        if (status.equals("INVALID_LOGIN")) {
             if (operation.contains("CANDIDATE")) {
                 if (signupCandidate(email, password, name)) {
                     return "SUCCESS";

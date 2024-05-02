@@ -60,10 +60,8 @@ public class LoginController extends DatabaseService {
             dbPassword = LoginController.getRecruiterPasswordByEmail(email);
         }
 
-        if (dbPassword == null) {
-            return "USER_NOT_FOUND";
-        } else if (!Objects.equals(dbPassword, password)) {
-            return "INVALID_PASSWORD";
+        if (!Objects.equals(dbPassword, password)) {
+            return "INVALID_LOGIN";
         } else {
             return "SUCCESS";
         }

@@ -24,6 +24,7 @@ public class ProfileManager {
 
         var id = JWTValidator.getIdClaim(token);
 
+
         if (operation.equals("LOOKUP_ACCOUNT_CANDIDATE")) {
             lookupCandidate(id, data);
         } else {
@@ -92,7 +93,7 @@ public class ProfileManager {
         if (status) {
             json.put("status", "SUCCESS");
         } else {
-            json.put("status", "USER_EXISTS");
+            json.put("status", "INVALID_EMAIL");
         }
 
         return json.toString();

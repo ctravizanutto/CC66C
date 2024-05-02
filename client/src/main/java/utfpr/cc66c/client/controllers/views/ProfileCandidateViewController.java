@@ -39,6 +39,13 @@ public class ProfileCandidateViewController implements Initializable {
         json.put("token", SessionController.getToken());
 
         var data = mapper.createObjectNode();
+        var email = emailTextField.getText();
+        var password = passwordTextField.getText();
+        var name = nameTextField.getText();
+        if (email.isBlank() || password.isBlank() || name.isBlank()) {
+            System.out.println("[DEBUG] Invalid field");
+            return;
+        }
         data.put("email", emailTextField.getText());
         data.put("password", passwordTextField.getText());
         data.put("name", nameTextField.getText());
