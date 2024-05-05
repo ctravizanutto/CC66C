@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import utfpr.cc66c.client.controllers.connection.ClientConnectionController;
 import utfpr.cc66c.client.controllers.connection.SessionController;
 import utfpr.cc66c.client.services.AuthRequestHandler;
 import utfpr.cc66c.core.serializers.JsonFields;
@@ -19,6 +20,7 @@ public class ProfileCandidateViewController implements Initializable {
     public TextField passwordTextField;
     public TextField nameTextField;
     public Button saveButton;
+    public Button deleteButton;
 
     public void loadCandidateInfo(String response) {
         ObjectNode json;
@@ -57,6 +59,20 @@ public class ProfileCandidateViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         var lookupCandidate = AuthRequestHandler.sendLookupCandidateRequest();
+        System.out.println("[INFO] Lookup response: " + lookupCandidate);
         loadCandidateInfo(lookupCandidate);
+    }
+
+    public void deleteButtonAction() {
+        var json = mapper.createObjectNode();
+        json.put("operation", "DELETE_ACCOUNT_CANDIDATE");
+        json.put("token", SessionController.getToken());
+
+        json.set("data", mapper.createObjectNode());
+        var response = ClientConnectionController.requestResponse(json.toString());
+        System.out.println(response);
+
+        ClientConnectionController.shutdown();
+        ApplicationViewController.logout();
     }
 }

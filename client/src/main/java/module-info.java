@@ -15,4 +15,5 @@ module utfpr.cc66c.client {
     opens utfpr.cc66c.client.controllers.connection to javafx.fxml;
 
     requires com.fasterxml.jackson.databind;
+    requires java.naming;
 }
