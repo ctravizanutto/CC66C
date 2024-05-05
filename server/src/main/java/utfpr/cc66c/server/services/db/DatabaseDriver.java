@@ -22,7 +22,6 @@ public class DatabaseDriver {
         var rs = 0;
         try {
             PreparedStatement stmt = ServerController.getDatabaseConnection().prepareStatement(sql);
-//            System.out.println("[DEBUG] Querying " + stmt);
             rs = stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());

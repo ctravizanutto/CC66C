@@ -13,7 +13,7 @@ public class LoginCandidateController {
     public static String loginCandidate(ObjectNode request) {
         var fields = JsonFields.getStringFields(request);
         if (!assertRequestFields(fields)) {
-            return buildErrorResponse();
+            return fieldErrorResponse();
         }
 
         var email = fields.get("email");
@@ -23,10 +23,10 @@ public class LoginCandidateController {
         if (dbPassword != null) {
             if (dbPassword.equals(requestPassword)) {
                 var id = LoginCandidate.getCandidateIdByEmail(email);
-                return buildSuccessResponse(id);
+                return successResponse(id);
             }
         }
-        return buildErrorResponse();
+        return loginErrorResponse();
     }
 
     public static String logoutCandidate(ObjectNode request) {
@@ -52,7 +52,18 @@ public class LoginCandidateController {
         return false;
     }
 
-    private static String buildErrorResponse() {
+    private static String fieldErrorResponse() {
+        var json = JsonNodeFactory.instance.objectNode();
+        var data = JsonNodeFactory.instance.objectNode();
+
+        json.put("operation", "LOGIN_CANDIDATE");
+        json.put("status", "INVALID_FIELD");
+        json.set("data", data);
+
+        return json.toString();
+    }
+
+    private static String loginErrorResponse() {
         var json = JsonNodeFactory.instance.objectNode();
         var data = JsonNodeFactory.instance.objectNode();
 
@@ -63,7 +74,7 @@ public class LoginCandidateController {
         return json.toString();
     }
 
-    private static String buildSuccessResponse(String id) {
+    private static String successResponse(String id) {
         var json = JsonNodeFactory.instance.objectNode();
         var data = JsonNodeFactory.instance.objectNode();
         var token = JWTController.generateToken(id, "CANDIDATE");
