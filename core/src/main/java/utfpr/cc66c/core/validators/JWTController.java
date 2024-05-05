@@ -4,7 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 
-public class JWTValidator {
+public class JWTController {
     private static final String TOKEN_KEY = "DISTRIBUIDOS";
     private static final Algorithm algorithm = Algorithm.HMAC256(TOKEN_KEY);
     private static final JWTVerifier verifier = JWT.require(algorithm).build();

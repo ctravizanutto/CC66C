@@ -38,7 +38,7 @@ public class AuthRequestHandler {
             throw new RuntimeException("[ERROR] Invalid token in login response.");
         }
         SessionController.setToken(token);
-        System.out.printf("[INFO] Login response: %s\n", fields);
+        System.out.printf("[INFO] Login response: %s\n", json);
         if (Objects.equals(fields.get("status"), "SUCCESS")) {
             ApplicationViewController.toCandidateDashboard();
         }

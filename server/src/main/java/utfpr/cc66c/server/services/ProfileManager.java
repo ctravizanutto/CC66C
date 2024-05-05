@@ -2,7 +2,7 @@ package utfpr.cc66c.server.services;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import utfpr.cc66c.core.serializers.JsonFields;
-import utfpr.cc66c.core.validators.JWTValidator;
+import utfpr.cc66c.core.validators.JWTController;
 import utfpr.cc66c.server.controllers.ServerController;
 import utfpr.cc66c.server.controllers.auth.AuthController;
 import utfpr.cc66c.server.services.db.DatabaseDriver;
@@ -22,7 +22,7 @@ public class ProfileManager {
         var token = fields.get("token");
         var data = (ObjectNode) json.get("data");
 
-        var id = JWTValidator.getIdClaim(token);
+        var id = JWTController.getIdClaim(token);
 
 
         if (operation.equals("LOOKUP_ACCOUNT_CANDIDATE")) {
@@ -82,7 +82,7 @@ public class ProfileManager {
         var operation = fields.get("operation");
         var token = fields.get("token");
 
-        var id = JWTValidator.getIdClaim(token);
+        var id = JWTController.getIdClaim(token);
 
         boolean status = false;
         if (operation.equals("UPDATE_ACCOUNT_CANDIDATE")) {
@@ -118,7 +118,7 @@ public class ProfileManager {
         var operation = fields.get("operation");
         var token = fields.get("token");
 
-        var id = JWTValidator.getIdClaim(token);
+        var id = JWTController.getIdClaim(token);
 
         if (operation.equals("DELETE_ACCOUNT_CANDIDATE")) {
             deleteCandidate(id);

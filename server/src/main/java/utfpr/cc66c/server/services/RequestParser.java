@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import utfpr.cc66c.server.controllers.auth.AuthController;
+import utfpr.cc66c.server.controllers.auth.LoginCandidateController;
 
 public class RequestParser {
     private static final ObjectMapper mapper = new ObjectMapper();
@@ -20,14 +21,14 @@ public class RequestParser {
         var operation = json.get("operation").asText();
         switch (operation) {
             // Auth
-            case "LOGIN_CANDIDATE", "LOGIN_RECRUITER" -> {
-                return AuthController.login(json);
+            case "LOGIN_CANDIDATE" -> {
+                return LoginCandidateController.loginCandidate(json);
+            }
+            case "LOGOUT_CANDIDATE" -> {
+                return LoginCandidateController.logoutCandidate(json);
             }
             case "SIGNUP_CANDIDATE", "SIGNUP_RECRUITER" -> {
                 return AuthController.signup(json);
-            }
-            case "LOGOUT_CANDIDATE", "LOGOUT_RECRUITER" -> {
-                return AuthController.logout(json);
             }
             // Lookup
             case "LOOKUP_ACCOUNT_CANDIDATE", "LOOKUP_ACCOUNT_RECRUITER" -> {
