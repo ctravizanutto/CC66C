@@ -73,6 +73,6 @@ public class AuthRequestHandler {
     }
 
     public static void sendUpdateCandidateRequest(String request) {
-        ClientConnectionController.requestResponse(request);
+        System.out.println(ClientConnectionController.requestResponse(request));
     }
 }

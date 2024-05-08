@@ -72,7 +72,6 @@ public class ProfileCandidateViewController implements Initializable {
         var response = ClientConnectionController.requestResponse(json.toString());
         System.out.println(response);
 
-        ClientConnectionController.shutdown();
         ApplicationViewController.logout();
     }
 }
