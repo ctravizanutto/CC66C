@@ -17,8 +17,12 @@ module utfpr.cc66c.server {
     exports utfpr.cc66c.server.controllers.views;
     exports utfpr.cc66c.server.services.db;
     opens utfpr.cc66c.server.services.db to javafx.fxml;
-    exports utfpr.cc66c.server.controllers.auth;
-    opens utfpr.cc66c.server.controllers.auth to javafx.fxml;
+    exports utfpr.cc66c.server.controllers.candidate.auth;
+    opens utfpr.cc66c.server.controllers.candidate.auth to javafx.fxml;
+    exports utfpr.cc66c.server.services.candidate.auth;
+    opens utfpr.cc66c.server.services.candidate.auth to javafx.fxml;
+    exports utfpr.cc66c.server.services.candidate.profile;
+    opens utfpr.cc66c.server.services.candidate.profile to javafx.fxml;
 
     requires org.slf4j;
     requires ch.qos.logback.classic;

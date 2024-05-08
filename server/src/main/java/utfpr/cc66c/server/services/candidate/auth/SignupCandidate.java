@@ -1,4 +1,4 @@
-package utfpr.cc66c.server.services;
+package utfpr.cc66c.server.services.candidate.auth;
 
 import utfpr.cc66c.server.services.db.DatabaseDriver;
 

@@ -1,10 +1,10 @@
-package utfpr.cc66c.server.controllers.auth;
+package utfpr.cc66c.server.controllers.candidate.auth;
 
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import utfpr.cc66c.core.serializers.JsonFields;
-import utfpr.cc66c.server.services.LoginCandidate;
-import utfpr.cc66c.server.services.SignupCandidate;
+import utfpr.cc66c.server.services.candidate.auth.LoginCandidate;
+import utfpr.cc66c.server.services.candidate.auth.SignupCandidate;
 
 import java.util.Map;
 

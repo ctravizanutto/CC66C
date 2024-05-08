@@ -1,11 +1,12 @@
-package utfpr.cc66c.server.controllers.auth;
+package utfpr.cc66c.server.controllers.candidate.auth;
 
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import utfpr.cc66c.core.serializers.JsonFields;
 import utfpr.cc66c.core.validators.JWTController;
 import utfpr.cc66c.server.controllers.ServerController;
-import utfpr.cc66c.server.services.LoginCandidate;
+import utfpr.cc66c.server.services.candidate.auth.LoginCandidate;
+import utfpr.cc66c.server.validators.AuthValidator;
 
 import java.util.Map;
 
@@ -31,6 +32,9 @@ public class LoginCandidateController {
 
     public static String logoutCandidate(ObjectNode request) {
         var fields = JsonFields.getStringFields(request);
+        if (!AuthValidator.validateTokenOnRequest(request)) {
+            return request.toString();
+        }
         var token = fields.get("token");
         ServerController.removeSession(token);
 

@@ -4,8 +4,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import utfpr.cc66c.server.controllers.auth.LoginCandidateController;
-import utfpr.cc66c.server.controllers.auth.SignupCandidateController;
+import utfpr.cc66c.server.controllers.candidate.auth.LoginCandidateController;
+import utfpr.cc66c.server.controllers.candidate.auth.SignupCandidateController;
+import utfpr.cc66c.server.controllers.candidate.profile.DeleteCandidateController;
+import utfpr.cc66c.server.controllers.candidate.profile.LookupCandidateController;
+import utfpr.cc66c.server.controllers.candidate.profile.UpdateCandidateController;
 
 public class RequestParser {
     private static final ObjectMapper mapper = new ObjectMapper();
@@ -31,21 +34,22 @@ public class RequestParser {
                 return SignupCandidateController.signupCandidate(json);
             }
             // Lookup
-            case "LOOKUP_ACCOUNT_CANDIDATE", "LOOKUP_ACCOUNT_RECRUITER" -> {
-                return ProfileManager.lookup(json);
+            case "LOOKUP_ACCOUNT_CANDIDATE" -> {
+                return LookupCandidateController.lookupCandidate(json);
             }
             // Delete
-            case "DELETE_ACCOUNT_CANDIDATE", "DELETE_ACCOUNT_RECRUITER" -> {
-                return ProfileManager.delete(json);
+            case "DELETE_ACCOUNT_CANDIDATE" -> {
+                return DeleteCandidateController.deleteCandidate(json);
             }
             // Update
-            case "UPDATE_ACCOUNT_CANDIDATE", "UPDATE_ACCOUNT_RECRUITER" -> {
-                return ProfileManager.update(json);
+            case "UPDATE_ACCOUNT_CANDIDATE" -> {
+                return UpdateCandidateController.updateCandidate(json);
             }
             default -> {
                 System.out.println("[ERROR] Invalid operation: " + operation);
                 json.put("status", "INVALID_OPERATION");
                 json.set("data", JsonNodeFactory.instance.objectNode());
+                json.remove("token");
 
                 return json.toString();
             }
