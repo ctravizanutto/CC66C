@@ -21,39 +21,48 @@ public class RequestParser {
             throw new RuntimeException(e);
         }
 
-        var operation = json.get("operation").asText();
-        switch (operation) {
-            // Auth
-            case "LOGIN_CANDIDATE" -> {
-                return LoginCandidateController.loginCandidate(json);
-            }
-            case "LOGOUT_CANDIDATE" -> {
-                return LoginCandidateController.logoutCandidate(json);
-            }
-            case "SIGNUP_CANDIDATE" -> {
-                return SignupCandidateController.signupCandidate(json);
-            }
-            // Lookup
-            case "LOOKUP_ACCOUNT_CANDIDATE" -> {
-                return LookupCandidateController.lookupCandidate(json);
-            }
-            // Delete
-            case "DELETE_ACCOUNT_CANDIDATE" -> {
-                return DeleteCandidateController.deleteCandidate(json);
-            }
-            // Update
-            case "UPDATE_ACCOUNT_CANDIDATE" -> {
-                return UpdateCandidateController.updateCandidate(json);
-            }
-            default -> {
-                System.out.println("[ERROR] Invalid operation: " + operation);
-                json.put("status", "INVALID_OPERATION");
-                json.set("data", JsonNodeFactory.instance.objectNode());
-                json.remove("token");
-
-                return json.toString();
+        var operation = json.get("operation");
+        if (operation != null) {
+            var operationString = operation.asText();
+            switch (operationString) {
+                // Auth
+                case "LOGIN_CANDIDATE" -> {
+                    return LoginCandidateController.loginCandidate(json);
+                }
+                case "LOGOUT_CANDIDATE" -> {
+                    return LoginCandidateController.logoutCandidate(json);
+                }
+                case "SIGNUP_CANDIDATE" -> {
+                    return SignupCandidateController.signupCandidate(json);
+                }
+                // Lookup
+                case "LOOKUP_ACCOUNT_CANDIDATE" -> {
+                    return LookupCandidateController.lookupCandidate(json);
+                }
+                // Delete
+                case "DELETE_ACCOUNT_CANDIDATE" -> {
+                    return DeleteCandidateController.deleteCandidate(json);
+                }
+                // Update
+                case "UPDATE_ACCOUNT_CANDIDATE" -> {
+                    return UpdateCandidateController.updateCandidate(json);
+                }
+                default -> {
+                    return errorInvalidOperation(operationString);
+                }
             }
         }
+        return errorInvalidOperation(null);
     }
 
+    private static String errorInvalidOperation(String operation) {
+        var json = JsonNodeFactory.instance.objectNode();
+        var responseOperation = operation == null ? "null" : operation;
+
+        json.put("operation", responseOperation);
+        json.put("status", "INVALID_OPERATION");
+        json.set("data", JsonNodeFactory.instance.objectNode());
+
+        return json.toString();
+    }
 }
