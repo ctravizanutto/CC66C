@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/client/cc66c.client.iml" filepath="$PROJECT_DIR$/.idea/modules/client/cc66c.client.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/cc66c.core.iml" filepath="$PROJECT_DIR$/.idea/modules/core/cc66c.core.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/server/cc66c.server.iml" filepath="$PROJECT_DIR$/.idea/modules/server/cc66c.server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/server/cc66c.server.test.iml" filepath="$PROJECT_DIR$/.idea/modules/server/cc66c.server.test.iml" />
     </modules>
   </component>
 </project>
