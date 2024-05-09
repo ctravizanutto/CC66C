@@ -70,7 +70,7 @@ public class ProfileCandidateViewController implements Initializable {
 
         json.set("data", mapper.createObjectNode());
         var response = ClientConnectionController.requestResponse(json.toString());
-        System.out.println(response);
+        System.out.println("[INFO] Delete response: " + response);
 
         ApplicationViewController.logout();
     }
