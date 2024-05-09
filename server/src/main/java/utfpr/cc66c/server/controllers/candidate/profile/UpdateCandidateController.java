@@ -44,7 +44,7 @@ public class UpdateCandidateController {
 
     private static boolean assertUserDontExist(String email, String id) {
         if (LoginCandidate.getCandidatePasswordByEmail(email) != null) {
-            return !Objects.equals(id, LoginCandidate.getCandidatePasswordByEmail(email));
+            return Objects.equals(id, LoginCandidate.getCandidateIdByEmail(email));
         }
         return true;
     }
