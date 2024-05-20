@@ -19,8 +19,10 @@ public class IpSelectionViewController implements Initializable {
 
     public void onEnterIP(ActionEvent ignoredE) {
         var addr = ipTextField.getText();
-        if (addr == null || addr.isBlank())
-            throw new RuntimeException("[ERROR] Invalid ip address.");
+        if (addr == null || addr.isBlank()) {
+            System.out.println("[ERROR] Invalid ip address.");
+            return;
+        }
         ApplicationViewController.toLogin(ipTextField.getText());
     }
 }
