@@ -9,6 +9,11 @@ import utfpr.cc66c.server.controllers.candidate.auth.SignupCandidateController;
 import utfpr.cc66c.server.controllers.candidate.profile.DeleteCandidateController;
 import utfpr.cc66c.server.controllers.candidate.profile.LookupCandidateController;
 import utfpr.cc66c.server.controllers.candidate.profile.UpdateCandidateController;
+import utfpr.cc66c.server.controllers.recruiter.auth.LoginRecruiterController;
+import utfpr.cc66c.server.controllers.recruiter.auth.SignupRecruiterController;
+import utfpr.cc66c.server.controllers.recruiter.profile.DeleteRecruiterController;
+import utfpr.cc66c.server.controllers.recruiter.profile.LookupRecruiterController;
+import utfpr.cc66c.server.controllers.recruiter.profile.UpdateRecruiterController;
 
 public class RequestParser {
     private static final ObjectMapper mapper = new ObjectMapper();
@@ -29,23 +34,41 @@ public class RequestParser {
                 case "LOGIN_CANDIDATE" -> {
                     return LoginCandidateController.loginCandidate(json);
                 }
+                case "LOGIN_RECRUITER" -> {
+                    return LoginRecruiterController.loginRecruiter(json);
+                }
                 case "LOGOUT_CANDIDATE" -> {
                     return LoginCandidateController.logoutCandidate(json);
                 }
+                case "LOGOUT_RECRUITER" -> {
+                    return LoginRecruiterController.logoutRecruiter(json);
+                }
                 case "SIGNUP_CANDIDATE" -> {
                     return SignupCandidateController.signupCandidate(json);
+                }
+                case "SIGNUP_RECRUITER" -> {
+                    return SignupRecruiterController.signupRecruiter(json);
                 }
                 // Lookup
                 case "LOOKUP_ACCOUNT_CANDIDATE" -> {
                     return LookupCandidateController.lookupCandidate(json);
                 }
+                case "LOOKUP_ACCOUNT_RECRUITER" -> {
+                    return LookupRecruiterController.lookupRecruiter(json);
+                }
                 // Delete
                 case "DELETE_ACCOUNT_CANDIDATE" -> {
                     return DeleteCandidateController.deleteCandidate(json);
                 }
+                case "DELETE_ACCOUNT_RECRUITER" -> {
+                    return DeleteRecruiterController.deleteRecruiter(json);
+                }
                 // Update
                 case "UPDATE_ACCOUNT_CANDIDATE" -> {
                     return UpdateCandidateController.updateCandidate(json);
+                }
+                case "UPDATE_ACCOUNT_RECRUITER" -> {
+                    return UpdateRecruiterController.updateRecruiter(json);
                 }
                 default -> {
                     return errorInvalidOperation(operationString);
