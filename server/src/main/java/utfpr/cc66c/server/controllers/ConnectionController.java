@@ -61,7 +61,7 @@ public class ConnectionController extends Thread {
                 sendJson(RequestParser.parseJson(request));
             } catch (IOException e) {
                 this.shutdown();
-                throw new RuntimeException("[ERROR]" + e.getMessage());
+                System.out.println("[ERROR] " + e.getMessage());
             }
         }
     }

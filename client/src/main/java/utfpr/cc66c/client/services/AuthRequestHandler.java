@@ -30,12 +30,14 @@ public class AuthRequestHandler {
         try {
             json = (ObjectNode) mapper.readTree(response);
         } catch (JsonProcessingException e) {
-            throw new RuntimeException("[ERROR] Invalid json login response.");
+            System.out.println("[ERROR] Invalid json login response.");
+            return;
         }
         var fields = JsonFields.getStringFields(json);
         var token = fields.get("token");
         if (token == null) {
-            throw new RuntimeException("[ERROR] Invalid token in login response.");
+            System.out.println("[ERROR] Invalid token in login response.");
+            return;
         }
         SessionController.setToken(token);
         System.out.printf("[INFO] Login response: %s\n", json);
@@ -57,7 +59,8 @@ public class AuthRequestHandler {
         try {
             json = (ObjectNode) mapper.readTree(response);
         } catch (JsonProcessingException e) {
-            throw new RuntimeException("[ERROR] Invalid json signup response.");
+            System.out.println("[ERROR] Invalid json signup response.");
+            return;
         }
         var fields = JsonFields.getStringFields(json);
         System.out.printf("[INFO] Signup response: %s\n", fields);
