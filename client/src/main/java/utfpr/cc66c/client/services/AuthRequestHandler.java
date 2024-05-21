@@ -31,6 +31,7 @@ public class AuthRequestHandler {
         ObjectNode json;
         try {
             json = (ObjectNode) mapper.readTree(response);
+            System.out.printf("[INFO] Login response: %s\n", json);
         } catch (JsonProcessingException e) {
             System.out.println("[ERROR] Invalid json login response.");
             return;
@@ -42,7 +43,6 @@ public class AuthRequestHandler {
             return;
         }
         SessionController.setToken(token);
-        System.out.printf("[INFO] Login response: %s\n", json);
         if (Objects.equals(fields.get("status"), "SUCCESS")) {
             if (Objects.equals(fields.get("operation"), "LOGIN_CANDIDATE")) {
                 ApplicationViewController.toCandidateDashboard();
