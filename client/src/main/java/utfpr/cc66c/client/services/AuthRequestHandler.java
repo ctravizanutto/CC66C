@@ -7,9 +7,11 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import utfpr.cc66c.client.controllers.connection.ClientConnectionController;
 import utfpr.cc66c.client.controllers.connection.SessionController;
 import utfpr.cc66c.client.controllers.views.ApplicationViewController;
+import utfpr.cc66c.client.controllers.views.LoginViewController;
 import utfpr.cc66c.core.models.LoginModel;
 import utfpr.cc66c.core.models.SignupModel;
 import utfpr.cc66c.core.serializers.JsonFields;
+import utfpr.cc66c.core.types.UserType;
 
 import java.util.Objects;
 
@@ -42,7 +44,12 @@ public class AuthRequestHandler {
         SessionController.setToken(token);
         System.out.printf("[INFO] Login response: %s\n", json);
         if (Objects.equals(fields.get("status"), "SUCCESS")) {
-            ApplicationViewController.toCandidateDashboard();
+            if (Objects.equals(fields.get("operation"), "LOGIN_CANDIDATE")) {
+                ApplicationViewController.toCandidateDashboard();
+            } else {
+                ApplicationViewController.toRecruiterDashboard();
+            }
+
         }
     }
 
@@ -66,16 +73,20 @@ public class AuthRequestHandler {
         System.out.printf("[INFO] Signup response: %s\n", fields);
     }
 
-    public static String sendLookupCandidateRequest() {
+    public static String sendLookupRequest() {
         var json = JsonNodeFactory.instance.objectNode();
         json.set("data", JsonNodeFactory.instance.objectNode());
-        json.put("operation", "LOOKUP_ACCOUNT_CANDIDATE");
+        if (LoginViewController.getInstance().toggleSwitchToUserType() == UserType.CANDIDATE) {
+            json.put("operation", "LOOKUP_ACCOUNT_CANDIDATE");
+        } else {
+            json.put("operation", "LOOKUP_ACCOUNT_RECRUITER");
+        }
         json.put("token", SessionController.getToken());
 
         return ClientConnectionController.requestResponse(json.toString());
     }
 
-    public static void sendUpdateCandidateRequest(String request) {
+    public static void sendUpdateRequest(String request) {
         System.out.println("[INFO] Update response: " + ClientConnectionController.requestResponse(request));
     }
 }

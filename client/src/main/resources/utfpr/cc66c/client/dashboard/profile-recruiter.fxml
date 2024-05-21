@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity"
+            prefHeight="720.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21"
+            fx:controller="utfpr.cc66c.client.controllers.views.ProfileRecruiterViewController">
+    <TextField fx:id="emailTextField" layoutX="60.0" layoutY="67.0"/>
+    <TextField fx:id="passwordTextField" layoutX="60.0" layoutY="112.0"/>
+    <TextField fx:id="nameTextField" layoutX="60.0" layoutY="157.0"/>
+    <Text layoutX="60.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email"/>
+    <Text layoutX="60.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password"/>
+    <Text layoutX="60.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name"/>
+    <Button fx:id="saveButton" layoutX="530.0" layoutY="658.0" mnemonicParsing="false" onAction="#saveButtonAction"
+            text="Save"/>
+    <Button fx:id="deleteButton" layoutX="59.0" layoutY="246.0" mnemonicParsing="false" onAction="#deleteButtonAction"
+            text="Delete"/>
+    <TextField fx:id="industryTextField" layoutX="60.0" layoutY="206.0"/>
+    <Text layoutX="60.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Industry"/>
+    <TextArea fx:id="descriptionTextArea" layoutX="234.0" layoutY="66.0" prefHeight="165.0" prefWidth="297.0"/>
+    <Text layoutX="234.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description"/>
+</AnchorPane>

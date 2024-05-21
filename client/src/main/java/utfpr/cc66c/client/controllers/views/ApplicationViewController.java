@@ -5,6 +5,7 @@ import utfpr.cc66c.client.controllers.connection.ClientConnectionController;
 import utfpr.cc66c.client.views.CandidateDashboardFactory;
 import utfpr.cc66c.client.views.IpViewFactory;
 import utfpr.cc66c.client.views.LoginViewFactory;
+import utfpr.cc66c.client.views.RecruiterDashboardFactory;
 
 public class ApplicationViewController {
     private static Stage stage;
@@ -32,6 +33,10 @@ public class ApplicationViewController {
 
     public static void toCandidateDashboard() {
         stage.setScene(CandidateDashboardFactory.getScene());
+    }
+
+    public static void toRecruiterDashboard() {
+        stage.setScene(RecruiterDashboardFactory.getScene());
     }
 
     public void shutdown() {

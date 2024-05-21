@@ -4,13 +4,11 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import utfpr.cc66c.client.controllers.views.ApplicationViewController;
 
-import java.io.IOException;
-
 public class ClientApplication extends Application {
     private static ApplicationViewController controller;
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) {
         controller = new ApplicationViewController(stage);
     }
 

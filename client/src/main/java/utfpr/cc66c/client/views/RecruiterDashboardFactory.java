@@ -7,20 +7,20 @@ import utfpr.cc66c.client.controllers.views.DashboardController;
 
 import java.io.IOException;
 
-public class CandidateDashboardFactory {
+public class RecruiterDashboardFactory {
     private static Node sidebar;
     private static Node profile;
 
     public static Scene getScene() {
         var scene = DashboardController.getScene();
-        DashboardController.getInstance().setRight(getCandidateProfileNode());
-        DashboardController.getInstance().setLeft(getCandidateSidebarNode());
+        DashboardController.getInstance().setRight(getRecruiterProfileNode());
+        DashboardController.getInstance().setLeft(getRecruiterSidebarNode());
         return scene;
     }
 
-    private static Node getCandidateProfileNode() {
+    private static Node getRecruiterProfileNode() {
         if (profile == null) {
-            var fxmlLoader = new FXMLLoader(CandidateDashboardFactory.class.getResource("/utfpr/cc66c/client/dashboard/profile-candidate.fxml"));
+            var fxmlLoader = new FXMLLoader(RecruiterDashboardFactory.class.getResource("/utfpr/cc66c/client/dashboard/profile-recruiter.fxml"));
             try {
                 profile = fxmlLoader.load();
             } catch (IOException e) {
@@ -30,9 +30,9 @@ public class CandidateDashboardFactory {
         return profile;
     }
 
-    private static Node getCandidateSidebarNode() {
+    private static Node getRecruiterSidebarNode() {
         if (sidebar == null) {
-            var fxmlLoader = new FXMLLoader(CandidateDashboardFactory.class.getResource("/utfpr/cc66c/client/dashboard/sidebar-candidate.fxml"));
+            var fxmlLoader = new FXMLLoader(RecruiterDashboardFactory.class.getResource("/utfpr/cc66c/client/dashboard/sidebar-recruiter.fxml"));
             try {
                 sidebar = fxmlLoader.load();
             } catch (IOException e) {
