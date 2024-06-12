@@ -14,6 +14,7 @@ import utfpr.cc66c.server.controllers.recruiter.auth.SignupRecruiterController;
 import utfpr.cc66c.server.controllers.recruiter.profile.DeleteRecruiterController;
 import utfpr.cc66c.server.controllers.recruiter.profile.LookupRecruiterController;
 import utfpr.cc66c.server.controllers.recruiter.profile.UpdateRecruiterController;
+import utfpr.cc66c.server.controllers.skill.*;
 
 public class RequestParser {
     private static final ObjectMapper mapper = new ObjectMapper();
@@ -30,7 +31,7 @@ public class RequestParser {
         if (operation != null) {
             var operationString = operation.asText();
             switch (operationString) {
-                // Auth
+                // Account Auth
                 case "LOGIN_CANDIDATE" -> {
                     return LoginCandidateController.loginCandidate(json);
                 }
@@ -49,26 +50,61 @@ public class RequestParser {
                 case "SIGNUP_RECRUITER" -> {
                     return SignupRecruiterController.signupRecruiter(json);
                 }
-                // Lookup
+                // Account Lookup
                 case "LOOKUP_ACCOUNT_CANDIDATE" -> {
                     return LookupCandidateController.lookupCandidate(json);
                 }
                 case "LOOKUP_ACCOUNT_RECRUITER" -> {
                     return LookupRecruiterController.lookupRecruiter(json);
                 }
-                // Delete
+                // Account Delete
                 case "DELETE_ACCOUNT_CANDIDATE" -> {
                     return DeleteCandidateController.deleteCandidate(json);
                 }
                 case "DELETE_ACCOUNT_RECRUITER" -> {
                     return DeleteRecruiterController.deleteRecruiter(json);
                 }
-                // Update
+                // Account Update
                 case "UPDATE_ACCOUNT_CANDIDATE" -> {
                     return UpdateCandidateController.updateCandidate(json);
                 }
                 case "UPDATE_ACCOUNT_RECRUITER" -> {
                     return UpdateRecruiterController.updateRecruiter(json);
+                }
+                // Skill
+                case "INCLUDE_SKILL" -> {
+                    return IncludeSkillController.includeSkill(json);
+                }
+                case "LOOKUP_SKILL" -> {
+                    return LookupSkillController.lookupSkill(json);
+                }
+                case "LOOKUP_SKILLSET" -> {
+                    return LookupSkillsetController.lookupSkillset(json);
+                }
+                case "DELETE_SKILL" -> {
+                    return DeleteSkillController.deleteSkill(json);
+                }
+                case "UPDATE_SKILL" -> {
+                    return UpdateSkillController.updateSkill(json);
+                }
+                // Jobs
+                case "SEARCH_JOB" -> {
+                    return "";
+                }
+                case "INCLUDE_JOB" -> {
+                    return "";
+                }
+                case "LOOKUP_JOB" -> {
+                    return "";
+                }
+                case "LOOKUP_JOBSET" -> {
+                    return "";
+                }
+                case "DELETE_JOB" -> {
+                    return "";
+                }
+                case "UPDATE_JOB" -> {
+                    return "";
                 }
                 default -> {
                     return errorInvalidOperation(operationString);
@@ -80,7 +116,7 @@ public class RequestParser {
 
     private static String errorInvalidOperation(String operation) {
         var json = JsonNodeFactory.instance.objectNode();
-        var responseOperation = operation == null ? "null" : operation;
+        var responseOperation = (operation == null) ? "null" : operation;
 
         json.put("operation", responseOperation);
         json.put("status", "INVALID_OPERATION");

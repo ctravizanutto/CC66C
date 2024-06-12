@@ -9,6 +9,7 @@ import java.io.IOException;
 
 public class CandidateDashboardFactory {
     private static Node sidebar;
+    private static Node blank;
     private static Node profile;
 
     public static Scene getScene() {
@@ -28,6 +29,18 @@ public class CandidateDashboardFactory {
             }
         }
         return profile;
+    }
+
+    private static Node getBlankPane() {
+        if (blank == null) {
+            var fxmlLoader = new FXMLLoader(CandidateDashboardFactory.class.getResource("/utfpr/cc66c/client/dashboard/blank.fxml"));
+            try {
+                blank = fxmlLoader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return blank;
     }
 
     private static Node getCandidateSidebarNode() {

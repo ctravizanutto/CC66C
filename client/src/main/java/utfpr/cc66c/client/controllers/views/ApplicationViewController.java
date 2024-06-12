@@ -32,7 +32,8 @@ public class ApplicationViewController {
     }
 
     public static void toCandidateDashboard() {
-        stage.setScene(CandidateDashboardFactory.getScene());
+        var scene = CandidateDashboardFactory.getScene();
+        stage.setScene(scene);
     }
 
     public static void toRecruiterDashboard() {
