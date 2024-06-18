@@ -9,6 +9,7 @@ import utfpr.cc66c.server.controllers.candidate.auth.SignupCandidateController;
 import utfpr.cc66c.server.controllers.candidate.profile.DeleteCandidateController;
 import utfpr.cc66c.server.controllers.candidate.profile.LookupCandidateController;
 import utfpr.cc66c.server.controllers.candidate.profile.UpdateCandidateController;
+import utfpr.cc66c.server.controllers.job.*;
 import utfpr.cc66c.server.controllers.recruiter.auth.LoginRecruiterController;
 import utfpr.cc66c.server.controllers.recruiter.auth.SignupRecruiterController;
 import utfpr.cc66c.server.controllers.recruiter.profile.DeleteRecruiterController;
@@ -89,22 +90,22 @@ public class RequestParser {
                 }
                 // Jobs
                 case "SEARCH_JOB" -> {
-                    return "";
+                    return SearchJobController.searchJob(json);
                 }
                 case "INCLUDE_JOB" -> {
-                    return "";
+                    return IncludeJobController.includeJob(json);
                 }
                 case "LOOKUP_JOB" -> {
-                    return "";
+                    return LookupJobController.lookupJob(json);
                 }
                 case "LOOKUP_JOBSET" -> {
-                    return "";
+                    return LookupJobsetController.lookupJobset(json);
                 }
                 case "DELETE_JOB" -> {
-                    return "";
+                    return DeleteJobController.deleteJob(json);
                 }
                 case "UPDATE_JOB" -> {
-                    return "";
+                    return UpdateJobController.updateJob(json);
                 }
                 default -> {
                     return errorInvalidOperation(operationString);

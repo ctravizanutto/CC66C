@@ -4,9 +4,9 @@ import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import utfpr.cc66c.core.serializers.JsonFields;
 import utfpr.cc66c.core.validators.JWTController;
+import utfpr.cc66c.core.validators.SkillDataset;
 import utfpr.cc66c.server.services.skill.LookupSkill;
 import utfpr.cc66c.server.validators.AuthValidator;
-import utfpr.cc66c.server.validators.SkillDataset;
 
 import java.util.Arrays;
 import java.util.Map;

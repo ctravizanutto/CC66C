@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class LookupSkillset {
     public static ObjectNode lookupSkillset(String id) {
         var skillset = JsonNodeFactory.instance.objectNode();
-        var sql = String.format("SELECT skill FROM skillsets WHERE candidate_id = '%s'", id);
+        var sql = String.format("SELECT skill, experience FROM skillsets WHERE candidate_id = '%s'", id);
 
         var resultSet = DatabaseDriver.query(sql);
 

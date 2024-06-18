@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="720.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21"
-            fx:controller="utfpr.cc66c.client.controllers.views.ProfileCandidateViewController"/>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="720.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21"/>

@@ -17,6 +17,7 @@ public class ApplicationViewController {
         stage.setResizable(false);
         stage.show();
 
+        // display ip scene
         stage.setScene(IpViewFactory.getScene());
     }
 
@@ -32,8 +33,16 @@ public class ApplicationViewController {
     }
 
     public static void toCandidateDashboard() {
-        var scene = CandidateDashboardFactory.getScene();
+        var scene = CandidateDashboardFactory.getBlankScene();
         stage.setScene(scene);
+    }
+
+    public static void toCandidateProfile() {
+        stage.setScene(CandidateDashboardFactory.getProfileScene());
+    }
+
+    public static void toCandidateSkillset() {
+        stage.setScene(CandidateDashboardFactory.getSkillsetScene());
     }
 
     public static void toRecruiterDashboard() {

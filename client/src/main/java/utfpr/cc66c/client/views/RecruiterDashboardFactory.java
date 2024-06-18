@@ -20,7 +20,7 @@ public class RecruiterDashboardFactory {
 
     private static Node getRecruiterProfileNode() {
         if (profile == null) {
-            var fxmlLoader = new FXMLLoader(RecruiterDashboardFactory.class.getResource("/utfpr/cc66c/client/dashboard/profile-recruiter.fxml"));
+            var fxmlLoader = new FXMLLoader(RecruiterDashboardFactory.class.getResource("/utfpr/cc66c/client/dashboard/recruiter/profile-recruiter.fxml"));
             try {
                 profile = fxmlLoader.load();
             } catch (IOException e) {
@@ -32,7 +32,7 @@ public class RecruiterDashboardFactory {
 
     private static Node getRecruiterSidebarNode() {
         if (sidebar == null) {
-            var fxmlLoader = new FXMLLoader(RecruiterDashboardFactory.class.getResource("/utfpr/cc66c/client/dashboard/sidebar-recruiter.fxml"));
+            var fxmlLoader = new FXMLLoader(RecruiterDashboardFactory.class.getResource("/utfpr/cc66c/client/dashboard/recruiter/sidebar-recruiter.fxml"));
             try {
                 sidebar = fxmlLoader.load();
             } catch (IOException e) {

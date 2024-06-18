@@ -2,7 +2,9 @@ package utfpr.cc66c.client.controllers.views;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -24,6 +26,7 @@ public class ProfileRecruiterViewController implements Initializable {
     public Button deleteButton;
     public TextField industryTextField;
     public TextArea descriptionTextArea;
+    public TextField tokenField;
 
     public void loadRecruiterInfo(String response) {
         ObjectNode json;
@@ -82,5 +85,36 @@ public class ProfileRecruiterViewController implements Initializable {
         System.out.println("[INFO] Delete response: " + response);
 
         ApplicationViewController.logout();
+    }
+
+    public void testButtonAction(ActionEvent actionEvent) {
+        var request = JsonNodeFactory.instance.objectNode();
+        var data = JsonNodeFactory.instance.objectNode();
+
+        data.put("skill", "C");
+        data.put("experience", "10");
+        data.put("id", "45");
+        data.put("filter", "E");
+
+        request.set("data", data);
+        request.put("token", tokenField.getText());
+
+        request.put("operation", "INCLUDE_JOB");
+        System.out.println(ClientConnectionController.requestResponse(request.toString()));
+
+        request.put("operation", "LOOKUP_JOB");
+        System.out.println(ClientConnectionController.requestResponse(request.toString()));
+
+        request.put("operation", "LOOKUP_JOBSET");
+        System.out.println(ClientConnectionController.requestResponse(request.toString()));
+
+        request.put("operation", "DELETE_JOB");
+        System.out.println(ClientConnectionController.requestResponse(request.toString()));
+
+        request.put("operation", "UPDATE_JOB");
+        System.out.println(ClientConnectionController.requestResponse(request.toString()));
+
+        request.put("operation", "SEARCH_JOB");
+        System.out.println(ClientConnectionController.requestResponse(request.toString()));
     }
 }

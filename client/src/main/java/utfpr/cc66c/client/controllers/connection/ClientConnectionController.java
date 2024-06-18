@@ -18,7 +18,7 @@ public class ClientConnectionController {
                 in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 out = new PrintWriter(clientSocket.getOutputStream(), true);
             } catch (IOException e) {
-                System.out.println("[ERROR] Invalid ip address.");
+                throw new RuntimeException("[ERROR] Invalid ip address.");
             }
         }
     }

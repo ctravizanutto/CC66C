@@ -16,4 +16,5 @@ module utfpr.cc66c.client {
 
     requires com.fasterxml.jackson.databind;
     requires java.naming;
+    requires net.bytebuddy;
 }
