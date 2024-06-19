@@ -14,7 +14,6 @@ public class DeleteSkillController {
             return request.toString();
         }
 
-
         var token = fields.get("token");
         var id = JWTController.getIdClaim(token);
         var skill = fields.get("skill");

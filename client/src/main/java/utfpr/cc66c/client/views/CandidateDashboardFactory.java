@@ -43,6 +43,7 @@ public class CandidateDashboardFactory {
         skillController.deleteButton.setDisable(true);
         skillController.skillChoiceBox.setValue(null);
         skillController.experienceTextField.setText(null);
+        skillController.experienceTextField.setDisable(false);
         return scene;
     }
 
