@@ -12,7 +12,7 @@ public class SkillsetCandidateHboxController implements Initializable {
     public Text expText;
 
     public void onMouseClicked(MouseEvent mouseEvent) {
-        throw new RuntimeException("TODO");
+        ApplicationViewController.toCandidateEditSkill(expText.getText(), skillText.getText());
     }
 
     @Override

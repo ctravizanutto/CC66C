@@ -45,6 +45,16 @@ public class ApplicationViewController {
         stage.setScene(CandidateDashboardFactory.getSkillsetScene());
     }
 
+    public static void toCandidateAddSkill() {
+        var scene = CandidateDashboardFactory.getSkillAddScene();
+        stage.setScene(scene);
+    }
+
+    public static void toCandidateEditSkill(String experience, String skill) {
+        var scene = CandidateDashboardFactory.getSkillEditScene(experience, skill);
+        stage.setScene(scene);
+    }
+
     public static void toRecruiterDashboard() {
         stage.setScene(RecruiterDashboardFactory.getScene());
     }

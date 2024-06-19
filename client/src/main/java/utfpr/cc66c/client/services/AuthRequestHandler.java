@@ -26,7 +26,6 @@ public class AuthRequestHandler {
         parseLoginResponse(response);
     }
 
-
     private static void parseLoginResponse(String response) {
         ObjectNode json;
         try {

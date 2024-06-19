@@ -3,7 +3,9 @@ package utfpr.cc66c.client.views;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import utfpr.cc66c.client.controllers.views.CandidateSkillController;
 import utfpr.cc66c.client.controllers.views.DashboardController;
+import utfpr.cc66c.client.controllers.views.SkillsetCandidateViewController;
 
 import java.io.IOException;
 
@@ -12,6 +14,9 @@ public class CandidateDashboardFactory {
     private static Node blank;
     private static Node profile;
     private static Node skillset;
+    private static Node skill;
+    private static CandidateSkillController skillController;
+    private static SkillsetCandidateViewController viewSkillsetController;
 
     public static Scene getBlankScene() {
         var scene = DashboardController.getScene();
@@ -30,6 +35,29 @@ public class CandidateDashboardFactory {
         var scene = DashboardController.getScene();
         DashboardController.getInstance().setRight(getCandidateSkillsetNode());
         return scene;
+    }
+
+    public static Scene getSkillAddScene() {
+        var scene = DashboardController.getScene();
+        DashboardController.getInstance().setRight(getCandidateSkillAdd());
+        skillController.deleteButton.setDisable(true);
+        skillController.skillChoiceBox.setValue(null);
+        skillController.experienceTextField.setText(null);
+        return scene;
+    }
+
+    public static Scene getSkillEditScene(String experience, String oldSkill) {
+        var scene = DashboardController.getScene();
+        DashboardController.getInstance().setRight(getCandidateSkillAdd());
+        skillController.deleteButton.setDisable(false);
+        skillController.skillChoiceBox.setValue(oldSkill);
+        skillController.experienceTextField.setText(experience);
+        skillController.oldSkill = oldSkill;
+        return scene;
+    }
+
+    public static void updateSkillsetView() {
+        viewSkillsetController.updateList();
     }
 
     private static Node getCandidateProfileNode() {
@@ -73,11 +101,25 @@ public class CandidateDashboardFactory {
             var fxmlLoader = new FXMLLoader(CandidateDashboardFactory.class.getResource("/utfpr/cc66c/client/dashboard/client/skillset-candidate.fxml"));
             try {
                 skillset = fxmlLoader.load();
+                viewSkillsetController = fxmlLoader.getController();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
         return skillset;
+    }
+
+    private static Node getCandidateSkillAdd() {
+        if (skill == null) {
+            var fxmlLoader = new FXMLLoader(CandidateDashboardFactory.class.getResource("/utfpr/cc66c/client/dashboard/client/skill-candidate.fxml"));
+            try {
+                skill = fxmlLoader.load();
+                skillController = fxmlLoader.getController();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return skill;
     }
 
 }

@@ -1,15 +1,47 @@
 package utfpr.cc66c.client.controllers.views;
 
-import javafx.scene.input.MouseEvent;
+import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
+import utfpr.cc66c.client.services.ParseSkillset;
+import utfpr.cc66c.client.services.SkillsetConnectionHandler;
+import utfpr.cc66c.client.views.CandidateSkillHboxFactory;
 
-public class SkillsetCandidateViewController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class SkillsetCandidateViewController implements Initializable {
     public VBox vbox;
-    public Text skillText;
-    public Text expText;
 
-    public void onMouseClicked(MouseEvent mouseEvent) {
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        var response = SkillsetConnectionHandler.sendSkillsetLookup();
+        var skillsetSize = SkillsetConnectionHandler.parseSkillsetLookup(response);
+        if (skillsetSize > 0) {
+            generateSkillsetList(skillsetSize, response);
+        }
     }
-    //TODO
+
+    public void updateList() {
+        vbox.getChildren().subList(1, vbox.getChildren().size()).clear();
+        var response = SkillsetConnectionHandler.sendSkillsetLookup();
+        var skillsetSize = SkillsetConnectionHandler.parseSkillsetLookup(response);
+        if (skillsetSize > 0) {
+            generateSkillsetList(skillsetSize, response);
+        }
+    }
+
+    public void generateSkillsetList(int skillsetSize, String response) {
+        System.out.println("TODO");
+        var skillset = ParseSkillset.parseSkillset(response);
+        for (var skill : skillset) {
+            var hbox = CandidateSkillHboxFactory.createCandidateSkillHbox(skill.getName(), skill.getExperience(), skillsetSize--);
+            vbox.getChildren().add(hbox);
+        }
+    }
+
+    public void onAddButtonAction(ActionEvent actionEvent) {
+        ApplicationViewController.toCandidateAddSkill();
+    }
 }

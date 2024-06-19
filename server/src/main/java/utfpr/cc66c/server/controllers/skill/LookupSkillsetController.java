@@ -1,5 +1,6 @@
 package utfpr.cc66c.server.controllers.skill;
 
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import utfpr.cc66c.core.serializers.JsonFields;
@@ -14,7 +15,6 @@ public class LookupSkillsetController {
             return request.toString();
         }
 
-
         var token = fields.get("token");
         var id = JWTController.getIdClaim(token);
         var skillset = LookupSkillset.lookupSkillset(id);
@@ -22,7 +22,7 @@ public class LookupSkillsetController {
         return successResponse(skillset);
     }
 
-    private static String successResponse(ObjectNode skillset) {
+    private static String successResponse(ArrayNode skillset) {
         var json = JsonNodeFactory.instance.objectNode();
         var data = JsonNodeFactory.instance.objectNode();
 

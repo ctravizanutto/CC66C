@@ -8,9 +8,7 @@ import java.io.IOException;
 
 public class CandidateSkillHboxFactory {
     public static HBox createCandidateSkillHbox(String skill, String experience, int order) {
-        var loader = new FXMLLoader(CandidateSkillHboxFactory.class.getResource("utfpr/cc66c/client/dashboard/client/hbox-skillset.fxml"));
-        SkillsetCandidateHboxController controller = loader.getController();
-        controller.setText(skill, experience);
+        var loader = new FXMLLoader(CandidateSkillHboxFactory.class.getResource("/utfpr/cc66c/client/dashboard/client/hbox-skillset.fxml"));
 
         HBox hbox;
         try {
@@ -18,6 +16,8 @@ public class CandidateSkillHboxFactory {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        SkillsetCandidateHboxController controller = loader.getController();
+        controller.setText(skill, experience);
         var color = (order % 2 == 0) ? "#76adea" : "#7076fc";
         hbox.setStyle("-fx-background-color: " + color + ";");
 
