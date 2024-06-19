@@ -24,7 +24,7 @@ public class DeleteJobController {
         if (LookupJob.lookupJob(recruiter_id, job_id) == null) {
             return notFound();
         }
-        DeleteJob.deleteJob(job_id, recruiter_id);
+        DeleteJob.deleteJob(recruiter_id, job_id);
         return success();
     }
 

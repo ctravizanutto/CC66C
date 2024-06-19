@@ -28,7 +28,7 @@ public class SearchJob {
         var jobset = JsonNodeFactory.instance.arrayNode();
         StringBuilder sql = new StringBuilder("SELECT skill, experience, job_id FROM jobs WHERE ");
         for (var skill : skillset) {
-            sql.append("skill=").append(String.format("'%s' OR", skill));
+            sql.append("skill=").append(String.format("'%s' OR ", skill));
         }
         sql.append("skill=").append("''");
 
@@ -37,7 +37,7 @@ public class SearchJob {
         try {
             while (resultSet.next()) {
                 var job = JsonNodeFactory.instance.objectNode();
-                job.put("id", resultSet.getString("id"));
+                job.put("id", resultSet.getString("job_id"));
                 job.put("skill", resultSet.getString("skill"));
                 job.put("experience", resultSet.getString("experience"));
                 jobset.add(job);
@@ -57,7 +57,7 @@ public class SearchJob {
         try {
             while (resultSet.next()) {
                 var job = JsonNodeFactory.instance.objectNode();
-                job.put("id", resultSet.getString("id"));
+                job.put("id", resultSet.getString("job_id"));
                 job.put("skill", resultSet.getString("skill"));
                 job.put("experience", resultSet.getString("experience"));
                 jobset.add(job);
@@ -83,7 +83,7 @@ public class SearchJob {
         try {
             while (resultSet.next()) {
                 var job = JsonNodeFactory.instance.objectNode();
-                job.put("id", resultSet.getString("id"));
+                job.put("id", resultSet.getString("job_id"));
                 job.put("skill", resultSet.getString("skill"));
                 job.put("experience", resultSet.getString("experience"));
                 jobset.add(job);

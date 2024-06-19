@@ -28,11 +28,11 @@ public class LookupSkillController {
             return skillInvalidErrorResponse();
         }
 
-        var experience = LookupSkill.lookupSkill(id, skill);
-        if (experience == null) {
+        var skillArray = LookupSkill.lookupSkill(id, skill);
+        if (skillArray == null) {
             return skillInvalidErrorResponse();
         }
-        return successResponse(experience);
+        return successResponse(skillArray);
     }
 
     private static boolean assertRequestFields(Map<String, String> fields) {
@@ -66,11 +66,12 @@ public class LookupSkillController {
         return json.toString();
     }
 
-    private static String successResponse(String experience) {
+    private static String successResponse(String[] skillArray) {
         var json = JsonNodeFactory.instance.objectNode();
         var data = JsonNodeFactory.instance.objectNode();
 
-        data.put("experience", experience);
+        data.put("skill", skillArray[0]);
+        data.put("experience", skillArray[1]);
         json.put("operation", "INCLUDE_SKILL");
         json.put("status", "SUCCESS");
         json.set("data", data);

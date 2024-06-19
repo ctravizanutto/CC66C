@@ -18,7 +18,7 @@ public class UpdateJobController {
         if (!AuthValidator.validateTokenOnRequest(request)) {
             return request.toString();
         }
-        if (assertFields(fields)) {
+        if (!assertFields(fields)) {
             return invalidField();
         }
         var token = fields.get("token");
@@ -32,7 +32,7 @@ public class UpdateJobController {
         if (LookupJob.lookupJob(recruiter_id, job_id) == null) {
             return notFound();
         }
-        UpdateJob.updateJob(recruiter_id, skill, experience, job_id);
+        UpdateJob.updateJob(recruiter_id, job_id, skill, experience);
         return success();
     }
 

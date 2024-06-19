@@ -4,24 +4,29 @@ import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import utfpr.cc66c.core.serializers.JsonFields;
 import utfpr.cc66c.server.services.jobs.SearchJob;
+import utfpr.cc66c.server.validators.AuthValidator;
 
 import java.util.Map;
 
 public class SearchJobController {
     public static String searchJob(ObjectNode request) {
         var fields = JsonFields.getStringFields(request);
-//        if (!AuthValidator.validateTokenOnRequest(request)) {
-//            return request.toString();
-//        }
-        if (assertFields(fields)) {
+        var dataRequest = request.get("data");
+        if (!AuthValidator.validateTokenOnRequest(request)) {
+            return request.toString();
+        }
+        if (!assertFields(fields)) {
             return invalidField();
         }
         var experience = fields.get("experience");
         var filter = fields.get("filter");
-        var skills = request.get("data").get("skill");
-        String[] skillset = new String[skills.size()];
-        for (int i = 0; i < skills.size(); i++) {
-            skillset[i] = skills.get(i).asText();
+        var skills = dataRequest.get("skill");
+        String[] skillset = null;
+        if (skills != null) {
+            skillset = new String[skills.size()];
+            for (int i = 0; i < skills.size(); i++) {
+                skillset[i] = skills.get(i).asText();
+            }
         }
 
 

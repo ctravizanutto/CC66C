@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity"
+            prefHeight="720.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            fx:controller="utfpr.cc66c.client.controllers.views.RecruiterJobController">
+    <TextField fx:id="experienceTextField" layoutX="60.0" layoutY="112.0"/>
+    <Text layoutX="60.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Skill"/>
+    <Text layoutX="60.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Experience"/>
+    <Button layoutX="530.0" layoutY="658.0" mnemonicParsing="false" onAction="#saveButtonAction" text="Save"/>
+    <Button fx:id="deleteButton" layoutX="64.0" layoutY="196.0" mnemonicParsing="false" onAction="#deleteButtonAction"
+            text="Delete"/>
+    <ChoiceBox fx:id="skillChoiceBox" layoutX="60.0" layoutY="67.0" prefWidth="150.0"/>
+</AnchorPane>

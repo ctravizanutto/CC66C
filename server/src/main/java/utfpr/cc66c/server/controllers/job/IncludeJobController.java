@@ -17,7 +17,7 @@ public class IncludeJobController {
         if (!AuthValidator.validateTokenOnRequest(request)) {
             return request.toString();
         }
-        if (assertFields(fields)) {
+        if (!assertFields(fields)) {
             return invalidField();
         }
         var token = fields.get("token");

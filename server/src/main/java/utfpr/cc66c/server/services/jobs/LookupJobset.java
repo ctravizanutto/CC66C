@@ -17,7 +17,7 @@ public class LookupJobset {
         try {
             while (resultSet.next()) {
                 var job = JsonNodeFactory.instance.objectNode();
-                job.put("id", resultSet.getString("id"));
+                job.put("id", resultSet.getString("job_id"));
                 job.put("skill", resultSet.getString("skill"));
                 job.put("experience", resultSet.getString("experience"));
                 jobset.add(job);

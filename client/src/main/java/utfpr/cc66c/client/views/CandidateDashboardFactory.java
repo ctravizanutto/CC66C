@@ -64,7 +64,7 @@ public class CandidateDashboardFactory {
 
     private static Node getCandidateProfileNode() {
         if (profile == null) {
-            var fxmlLoader = new FXMLLoader(CandidateDashboardFactory.class.getResource("/utfpr/cc66c/client/dashboard/client/profile-candidate.fxml"));
+            var fxmlLoader = new FXMLLoader(CandidateDashboardFactory.class.getResource("/utfpr/cc66c/client/dashboard/candidate/profile-candidate.fxml"));
             try {
                 profile = fxmlLoader.load();
             } catch (IOException e) {
@@ -88,7 +88,7 @@ public class CandidateDashboardFactory {
 
     private static Node getCandidateSidebarNode() {
         if (sidebar == null) {
-            var fxmlLoader = new FXMLLoader(CandidateDashboardFactory.class.getResource("/utfpr/cc66c/client/dashboard/client/sidebar-candidate.fxml"));
+            var fxmlLoader = new FXMLLoader(CandidateDashboardFactory.class.getResource("/utfpr/cc66c/client/dashboard/candidate/sidebar-candidate.fxml"));
             try {
                 sidebar = fxmlLoader.load();
             } catch (IOException e) {
@@ -100,7 +100,7 @@ public class CandidateDashboardFactory {
 
     private static Node getCandidateSkillsetNode() {
         if (skillset == null) {
-            var fxmlLoader = new FXMLLoader(CandidateDashboardFactory.class.getResource("/utfpr/cc66c/client/dashboard/client/skillset-candidate.fxml"));
+            var fxmlLoader = new FXMLLoader(CandidateDashboardFactory.class.getResource("/utfpr/cc66c/client/dashboard/candidate/skillset-candidate.fxml"));
             try {
                 skillset = fxmlLoader.load();
                 viewSkillsetController = fxmlLoader.getController();
@@ -113,7 +113,7 @@ public class CandidateDashboardFactory {
 
     private static Node getCandidateSkillAdd() {
         if (skill == null) {
-            var fxmlLoader = new FXMLLoader(CandidateDashboardFactory.class.getResource("/utfpr/cc66c/client/dashboard/client/skill-candidate.fxml"));
+            var fxmlLoader = new FXMLLoader(CandidateDashboardFactory.class.getResource("/utfpr/cc66c/client/dashboard/candidate/skill-candidate.fxml"));
             try {
                 skill = fxmlLoader.load();
                 skillController = fxmlLoader.getController();

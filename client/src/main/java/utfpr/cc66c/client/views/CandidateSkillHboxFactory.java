@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class CandidateSkillHboxFactory {
     public static HBox createCandidateSkillHbox(String skill, String experience, int order) {
-        var loader = new FXMLLoader(CandidateSkillHboxFactory.class.getResource("/utfpr/cc66c/client/dashboard/client/hbox-skillset.fxml"));
+        var loader = new FXMLLoader(CandidateSkillHboxFactory.class.getResource("/utfpr/cc66c/client/dashboard/candidate/hbox-skillset.fxml"));
 
         HBox hbox;
         try {

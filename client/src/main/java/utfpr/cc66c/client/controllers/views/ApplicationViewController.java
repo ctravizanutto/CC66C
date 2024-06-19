@@ -55,8 +55,24 @@ public class ApplicationViewController {
         stage.setScene(scene);
     }
 
+    public static void toRecruiterEditJob(String id) {
+        stage.setScene(RecruiterDashboardFactory.getJobEditScene(id));
+    }
+
+    public static void toRecruiterAddJob() {
+        stage.setScene(RecruiterDashboardFactory.getJobAddScene());
+    }
+
+    public static void toRecruiterJobset() {
+        stage.setScene(RecruiterDashboardFactory.getJobsetScene());
+    }
+
     public static void toRecruiterDashboard() {
-        stage.setScene(RecruiterDashboardFactory.getScene());
+        stage.setScene(RecruiterDashboardFactory.getBlankScene());
+    }
+
+    public static void toRecruiterProfile() {
+        stage.setScene(RecruiterDashboardFactory.getProfileScene());
     }
 
     public void shutdown() {

@@ -17,17 +17,17 @@ public class LookupJobsetController {
 
         var token = fields.get("token");
         var id = JWTController.getIdClaim(token);
-        var skillset = LookupJobset.lookupJobset(id);
+        var jobset = LookupJobset.lookupJobset(id);
 
-        return successResponse(skillset);
+        return successResponse(jobset);
     }
 
-    private static String successResponse(ArrayNode skillset) {
+    private static String successResponse(ArrayNode jobset) {
         var json = JsonNodeFactory.instance.objectNode();
         var data = JsonNodeFactory.instance.objectNode();
 
-        data.set("skillset", skillset);
-        data.put("skillset_size", skillset.size());
+        data.set("jobset", jobset);
+        data.put("jobset_size", jobset.size());
 
         json.put("operation", "LOOKUP_JOBSET");
         json.put("status", "SUCCESS");

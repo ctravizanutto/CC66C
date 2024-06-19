@@ -10,9 +10,11 @@ public class SidebarRecruiterViewController {
     }
 
     public void onJobsButtonAction() {
+        ApplicationViewController.toRecruiterJobset();
     }
 
     public void onProfileButtonClicked() {
+        ApplicationViewController.toRecruiterProfile();
     }
 
     public void onLogoutAction() {
