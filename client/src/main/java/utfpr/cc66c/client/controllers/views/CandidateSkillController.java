@@ -26,7 +26,7 @@ public class CandidateSkillController implements Initializable {
     }
 
     public void deleteButtonAction(ActionEvent actionEvent) {
-
+        SkillsetConnectionHandler.sendSkillDelete(skillChoiceBox.getValue());
         CandidateDashboardFactory.updateSkillsetView();
     }
 

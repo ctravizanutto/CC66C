@@ -52,6 +52,7 @@ public class CandidateDashboardFactory {
         skillController.deleteButton.setDisable(false);
         skillController.skillChoiceBox.setValue(oldSkill);
         skillController.experienceTextField.setText(experience);
+        skillController.experienceTextField.setDisable(true);
         skillController.oldSkill = oldSkill;
         return scene;
     }

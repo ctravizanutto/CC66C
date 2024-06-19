@@ -1,6 +1,5 @@
 package utfpr.cc66c.client.controllers.views;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
 import utfpr.cc66c.client.services.ParseSkillset;
@@ -33,7 +32,6 @@ public class SkillsetCandidateViewController implements Initializable {
     }
 
     public void generateSkillsetList(int skillsetSize, String response) {
-        System.out.println("TODO");
         var skillset = ParseSkillset.parseSkillset(response);
         for (var skill : skillset) {
             var hbox = CandidateSkillHboxFactory.createCandidateSkillHbox(skill.getName(), skill.getExperience(), skillsetSize--);
@@ -41,7 +39,7 @@ public class SkillsetCandidateViewController implements Initializable {
         }
     }
 
-    public void onAddButtonAction(ActionEvent actionEvent) {
+    public void onAddButtonAction() {
         ApplicationViewController.toCandidateAddSkill();
     }
 }

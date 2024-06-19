@@ -11,6 +11,19 @@ import utfpr.cc66c.core.serializers.JsonFields;
 public class SkillsetConnectionHandler {
     private static final ObjectMapper mapper = new ObjectMapper();
 
+    public static void sendSkillDelete(String skill) {
+        var json = JsonNodeFactory.instance.objectNode();
+        var data = JsonNodeFactory.instance.objectNode();
+
+        data.put("skill", skill);
+
+        json.set("data", data);
+        json.put("token", SessionController.getToken());
+        json.put("operation", "DELETE_SKILL");
+
+        ClientConnectionController.requestResponse(json.toString());
+    }
+
     public static String sendSkillsetLookup() {
         var json = JsonNodeFactory.instance.objectNode();
         var data = JsonNodeFactory.instance.objectNode();
@@ -35,7 +48,7 @@ public class SkillsetConnectionHandler {
         return Integer.parseInt(fields.get("skillset_size"));
     }
 
-    public static String sendSkillInclude(String skill, String experience) {
+    public static void sendSkillInclude(String skill, String experience) {
         var json = JsonNodeFactory.instance.objectNode();
         var data = JsonNodeFactory.instance.objectNode();
 
@@ -46,10 +59,10 @@ public class SkillsetConnectionHandler {
         json.put("operation", "INCLUDE_SKILL");
         json.put("token", SessionController.getToken());
 
-        return ClientConnectionController.requestResponse(json.toString());
+        ClientConnectionController.requestResponse(json.toString());
     }
 
-    public static String sendUpdateSkill(String oldSkill, String newSkill, String experience) {
+    public static void sendUpdateSkill(String oldSkill, String newSkill, String experience) {
         var json = JsonNodeFactory.instance.objectNode();
         var data = JsonNodeFactory.instance.objectNode();
 
@@ -61,6 +74,6 @@ public class SkillsetConnectionHandler {
         json.put("operation", "UPDATE_SKILL");
         json.put("token", SessionController.getToken());
 
-        return ClientConnectionController.requestResponse(json.toString());
+        ClientConnectionController.requestResponse(json.toString());
     }
 }
