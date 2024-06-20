@@ -6,21 +6,19 @@ import utfpr.cc66c.core.serializers.JsonFields;
 import utfpr.cc66c.server.services.jobs.SearchJob;
 import utfpr.cc66c.server.validators.AuthValidator;
 
-import java.util.Map;
-
 public class SearchJobController {
     public static String searchJob(ObjectNode request) {
         var fields = JsonFields.getStringFields(request);
-        var dataRequest = request.get("data");
+        var data = (ObjectNode) request.get("data");
         if (!AuthValidator.validateTokenOnRequest(request)) {
             return request.toString();
         }
-        if (!assertFields(fields)) {
+        if (!assertFields(data)) {
             return invalidField();
         }
         var experience = fields.get("experience");
         var filter = fields.get("filter");
-        var skills = dataRequest.get("skill");
+        var skills = data.get("skill");
         String[] skillset = null;
         if (skills != null) {
             skillset = new String[skills.size()];
@@ -29,20 +27,15 @@ public class SearchJobController {
             }
         }
 
-
-        var data = SearchJob.searchJob(skillset, experience, filter);
+        data = SearchJob.searchJob(skillset, experience, filter);
         return success(data);
     }
 
-    private static boolean assertFields(Map<String, String> fields) {
-        var skill = fields.get("skill");
-        var experience = fields.get("experience");
-        if (skill != null) {
-            return !skill.isEmpty();
-        } else if (experience != null) {
-            return !experience.isEmpty();
-        }
-        return false;
+    private static boolean assertFields(ObjectNode request) {
+        var skill = request.get("skill");
+        var experience = request.get("experience");
+
+        return (skill != null && experience != null) && (skill.isEmpty() || experience.isEmpty());
     }
 
     private static String invalidField() {

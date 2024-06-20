@@ -1,5 +1,6 @@
 package utfpr.cc66c.core.serializers;
 
+import com.fasterxml.jackson.databind.node.NullNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.util.HashMap;
@@ -14,13 +15,12 @@ public class JsonFields {
             var field = fields.next();
             var key = field.getKey();
             var value = field.getValue();
+            if (value instanceof NullNode) {
+                throw new RuntimeException("[ERROR] NULL VALUE OF " + key);
+            }
             if (Objects.equals(key, "data")) {
                 var nestedFields = getStringFields((ObjectNode) value);
-                for (var nestedField : nestedFields.entrySet()) {
-                    var nestedKey = nestedField.getKey();
-                    var nestedValue = nestedField.getValue();
-                    jsonFields.put(nestedKey, nestedValue);
-                }
+                jsonFields.putAll(nestedFields);
             } else {
                 jsonFields.put(key, value.asText());
             }
