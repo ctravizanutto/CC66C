@@ -55,8 +55,8 @@ public class ApplicationViewController {
         stage.setScene(scene);
     }
 
-    public static void toRecruiterEditJob(String id) {
-        stage.setScene(RecruiterDashboardFactory.getJobEditScene(id));
+    public static void toRecruiterEditJob(String skill, String experience, String id, boolean available, boolean searchable) {
+        stage.setScene(RecruiterDashboardFactory.getJobEditScene(skill, experience, id, available, searchable));
     }
 
     public static void toRecruiterAddJob() {

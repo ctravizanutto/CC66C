@@ -107,6 +107,12 @@ public class RequestParser {
                 case "UPDATE_JOB" -> {
                     return UpdateJobController.updateJob(json);
                 }
+                case "SET_JOB_AVAILABLE" -> {
+                    return JobAvailableController.setJobAvailable(json);
+                }
+                case "SET_JOB_SEARCHABLE" -> {
+                    return JobSearchableController.setJobSearchable(json);
+                }
                 default -> {
                     return errorInvalidOperation(operationString);
                 }

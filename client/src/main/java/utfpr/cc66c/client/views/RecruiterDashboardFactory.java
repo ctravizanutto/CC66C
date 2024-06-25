@@ -47,11 +47,15 @@ public class RecruiterDashboardFactory {
         return scene;
     }
 
-    public static Scene getJobEditScene(String id) {
+    public static Scene getJobEditScene(String skill, String experience, String id, boolean available, boolean searchable) {
         var scene = DashboardController.getScene();
         DashboardController.getInstance().setRight(getRecruiterJobNode());
         recruiterJobController.deleteButton.setDisable(false);
         recruiterJobController.id = id;
+        recruiterJobController.availableCheckBox.setSelected(available);
+        recruiterJobController.searchableCheckBox.setSelected(searchable);
+        recruiterJobController.skillChoiceBox.setValue(skill);
+        recruiterJobController.experienceTextField.setText(experience);
         return scene;
     }
 

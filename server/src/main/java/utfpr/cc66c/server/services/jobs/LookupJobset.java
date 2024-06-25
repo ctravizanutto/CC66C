@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class LookupJobset {
     public static ArrayNode lookupJobset(String recruiter_id) {
         var jobset = JsonNodeFactory.instance.arrayNode();
-        var sql = String.format("SELECT job_id, skill, experience FROM jobs WHERE recruiter_id = '%s'", recruiter_id);
+        var sql = String.format("SELECT job_id, skill, experience, available, searchable FROM jobs WHERE recruiter_id = '%s'", recruiter_id);
 
         var resultSet = DatabaseDriver.query(sql);
 
@@ -20,6 +20,8 @@ public class LookupJobset {
                 job.put("id", resultSet.getString("job_id"));
                 job.put("skill", resultSet.getString("skill"));
                 job.put("experience", resultSet.getString("experience"));
+                job.put("available", resultSet.getString("available"));
+                job.put("searchable", resultSet.getString("searchable"));
                 jobset.add(job);
             }
         } catch (SQLException e) {

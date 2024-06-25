@@ -10,9 +10,11 @@ public class JobsetRecruiterHboxController implements Initializable {
     public Text skillText;
     public Text expText;
     private String id;
+    private boolean available;
+    private boolean searchable;
 
     public void onMouseClicked() {
-        ApplicationViewController.toRecruiterEditJob(id);
+        ApplicationViewController.toRecruiterEditJob(skillText.getText(), expText.getText(), id, available, searchable);
     }
 
     @Override
@@ -21,9 +23,11 @@ public class JobsetRecruiterHboxController implements Initializable {
         expText.setText("NOT_LOADED");
     }
 
-    public void setText(String skillset, String experience, String id) {
+    public void setText(String skillset, String experience, String id, boolean available, boolean searchable) {
         skillText.setText(skillset);
         expText.setText(experience);
         this.id = id;
+        this.available = available;
+        this.searchable = searchable;
     }
 }

@@ -26,7 +26,7 @@ public class SearchJob {
 
     private static ArrayNode searchJobSkillset(String[] skillset) {
         var jobset = JsonNodeFactory.instance.arrayNode();
-        StringBuilder sql = new StringBuilder("SELECT skill, experience, job_id FROM jobs WHERE ");
+        StringBuilder sql = new StringBuilder("SELECT skill, experience, job_id FROM jobs WHERE searchable='YES' AND ");
         for (var skill : skillset) {
             sql.append("skill=").append(String.format("'%s' OR ", skill));
         }
@@ -51,7 +51,7 @@ public class SearchJob {
 
     private static ArrayNode searchJobExperience(String experience) {
         var jobset = JsonNodeFactory.instance.arrayNode();
-        var sql = String.format("SELECT skill, experience, job_id FROM jobs WHERE experience<='%s'", experience);
+        var sql = String.format("SELECT skill, experience, job_id FROM jobs WHERE searchable='YES' AND experience<='%s'", experience);
         var resultSet = DatabaseDriver.query(sql);
         assert resultSet != null;
         try {
@@ -71,7 +71,7 @@ public class SearchJob {
 
     private static ArrayNode searchJobSkillExperience(String[] skillset, String experience, String filter) {
         var jobset = JsonNodeFactory.instance.arrayNode();
-        StringBuilder sql = new StringBuilder("SELECT skill, experience, job_id FROM jobs WHERE (");
+        StringBuilder sql = new StringBuilder("SELECT skill, experience, job_id FROM jobs WHERE searchable='YES' AND (");
         for (var skill : skillset) {
             sql.append("skill=").append(String.format("'%s' OR ", skill));
         }
@@ -94,4 +94,6 @@ public class SearchJob {
 
         return jobset;
     }
+
+
 }

@@ -35,12 +35,14 @@ public class JobsetConnectionHandler {
         return Integer.parseInt(fields.get("jobset_size"));
     }
 
-    public static void sendJobInclude(String skill, String experience) {
+    public static void sendJobInclude(String skill, String experience, boolean available, boolean searchable) {
         var json = JsonNodeFactory.instance.objectNode();
         var data = JsonNodeFactory.instance.objectNode();
 
         data.put("skill", skill);
         data.put("experience", experience);
+        data.put("available", available ? "YES" : "NO");
+        data.put("searchable", searchable ? "YES" : "NO");
 
         json.set("data", data);
         json.put("operation", "INCLUDE_JOB");
@@ -71,6 +73,32 @@ public class JobsetConnectionHandler {
         json.set("data", data);
         json.put("operation", "DELETE_JOB");
         json.put("token", SessionController.getToken());
+        System.out.println(ClientConnectionController.requestResponse(json.toString()));
+    }
+
+    public static void sendJobAvailable(String id, boolean available) {
+        var json = JsonNodeFactory.instance.objectNode();
+        var data = JsonNodeFactory.instance.objectNode();
+        data.put("id", id);
+        data.put("available", available ? "YES" : "NO");
+
+        json.put("token", SessionController.getToken());
+        json.put("operation", "SET_JOB_AVAILABLE");
+        json.set("data", data);
+
+        System.out.println(ClientConnectionController.requestResponse(json.toString()));
+    }
+
+    public static void sendJobSearchable(String id, boolean searchable) {
+        var json = JsonNodeFactory.instance.objectNode();
+        var data = JsonNodeFactory.instance.objectNode();
+        data.put("id", id);
+        data.put("searchable", searchable ? "YES" : "NO");
+
+        json.put("token", SessionController.getToken());
+        json.put("operation", "SET_JOB_SEARCHABLE");
+        json.set("data", data);
+
         System.out.println(ClientConnectionController.requestResponse(json.toString()));
     }
 }

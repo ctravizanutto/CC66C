@@ -7,7 +7,7 @@ import utfpr.cc66c.client.controllers.views.JobsetRecruiterHboxController;
 import java.io.IOException;
 
 public class RecruiterJobHboxFactory {
-    public static HBox createRecruiterJobHbox(String id, String skill, String experience, int order) {
+    public static HBox createRecruiterJobHbox(String id, String skill, String experience, int order, boolean available, boolean searchable) {
         var loader = new FXMLLoader(RecruiterJobHboxFactory.class.getResource("/utfpr/cc66c/client/dashboard/recruiter/hbox-jobset.fxml"));
 
         HBox hbox;
@@ -17,7 +17,7 @@ public class RecruiterJobHboxFactory {
             throw new RuntimeException(e);
         }
         JobsetRecruiterHboxController controller = loader.getController();
-        controller.setText(skill, experience, id);
+        controller.setText(skill, experience, id, available, searchable);
         var color = (order % 2 == 0) ? "#76adea" : "#7076fc";
         hbox.setStyle("-fx-background-color: " + color + ";");
 

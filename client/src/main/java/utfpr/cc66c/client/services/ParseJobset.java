@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ParseJobset {
 
@@ -29,8 +30,10 @@ public class ParseJobset {
             String jobName = jobNode.get("skill").asText();
             var experience = jobNode.get("experience").asText();
             var id = jobNode.get("id").asText();
+            var available = Objects.equals(jobNode.get("available").asText(), "YES");
+            var searchable = Objects.equals(jobNode.get("searchable").asText(), "YES");
 
-            jobs.add(new Job(jobName, experience, id));
+            jobs.add(new Job(jobName, experience, id, available, searchable));
         }
 
         // Return the list of parsed jobs as an iterable
@@ -41,11 +44,15 @@ public class ParseJobset {
         private final String name;
         private final String experience;
         private final String id;
+        private final boolean searchable;
+        private final boolean available;
 
-        public Job(String name, String experience, String id) {
+        public Job(String name, String experience, String id, boolean available, boolean searchable) {
             this.name = name;
             this.experience = experience;
             this.id = id;
+            this.available = available;
+            this.searchable = searchable;
         }
 
         public String getName() {
@@ -58,6 +65,14 @@ public class ParseJobset {
 
         public String getId() {
             return id;
+        }
+
+        public boolean getAvailable() {
+            return available;
+        }
+
+        public boolean getSearchable() {
+            return searchable;
         }
     }
 }

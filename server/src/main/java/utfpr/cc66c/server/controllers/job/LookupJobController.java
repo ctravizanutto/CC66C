@@ -25,7 +25,7 @@ public class LookupJobController {
         if (job == null) {
             return notFound();
         }
-        return success(job_id, job[0], job[1]);
+        return success(job_id, job);
     }
 
     private static String notFound() {
@@ -40,15 +40,17 @@ public class LookupJobController {
 
     }
 
-    private static String success(String job_id, String skill, String experience) {
+    private static String success(String job_id, String[] job_data) {
         var json = JsonNodeFactory.instance.objectNode();
         var data = JsonNodeFactory.instance.objectNode();
 
         json.put("operation", "LOOKUP_JOB");
         json.put("status", "SUCCESS");
         data.put("id", job_id);
-        data.put("skill", skill);
-        data.put("experience", experience);
+        data.put("skill", job_data[0]);
+        data.put("experience", job_data[1]);
+        data.put("available", job_data[2]);
+        data.put("search", job_data[3]);
         json.set("data", data);
 
         return json.toString();

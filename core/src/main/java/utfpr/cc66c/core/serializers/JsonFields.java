@@ -15,9 +15,7 @@ public class JsonFields {
             var field = fields.next();
             var key = field.getKey();
             var value = field.getValue();
-            if (value instanceof NullNode) {
-                throw new RuntimeException("[ERROR] NULL VALUE OF " + key);
-            }
+            if (value instanceof NullNode) throw new AssertionError("[ERROR] NULL VALUE OF " + key);
             if (Objects.equals(key, "data")) {
                 var nestedFields = getStringFields((ObjectNode) value);
                 jsonFields.putAll(nestedFields);
