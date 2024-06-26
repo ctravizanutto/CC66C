@@ -1,8 +1,8 @@
-package utfpr.cc66c.client.controllers.views;
+package utfpr.cc66c.client.controllers.views.candidate;
 
 import javafx.fxml.Initializable;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import utfpr.cc66c.client.controllers.views.ApplicationViewController;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -11,7 +11,7 @@ public class SkillsetCandidateHboxController implements Initializable {
     public Text skillText;
     public Text expText;
 
-    public void onMouseClicked(MouseEvent mouseEvent) {
+    public void onMouseClicked() {
         ApplicationViewController.toCandidateEditSkill(expText.getText(), skillText.getText());
     }
 

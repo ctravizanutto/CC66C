@@ -2,7 +2,7 @@ package utfpr.cc66c.client.views;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.HBox;
-import utfpr.cc66c.client.controllers.views.SkillsetCandidateHboxController;
+import utfpr.cc66c.client.controllers.views.candidate.SkillsetCandidateHboxController;
 
 import java.io.IOException;
 

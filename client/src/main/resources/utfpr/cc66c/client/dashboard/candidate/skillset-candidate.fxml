@@ -7,7 +7,7 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
             minWidth="-Infinity"
             prefHeight="720.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
-            fx:controller="utfpr.cc66c.client.controllers.views.SkillsetCandidateViewController">
+            fx:controller="utfpr.cc66c.client.controllers.views.candidate.SkillsetCandidateViewController">
     <ScrollPane prefHeight="720.0" prefWidth="1100.0">
         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="720.0"
                     prefWidth="1100.0">

@@ -1,7 +1,8 @@
-package utfpr.cc66c.client.controllers.views;
+package utfpr.cc66c.client.controllers.views.candidate;
 
 import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
+import utfpr.cc66c.client.controllers.views.ApplicationViewController;
 import utfpr.cc66c.client.services.ParseSkillset;
 import utfpr.cc66c.client.services.SkillsetConnectionHandler;
 import utfpr.cc66c.client.views.CandidateSkillHboxFactory;

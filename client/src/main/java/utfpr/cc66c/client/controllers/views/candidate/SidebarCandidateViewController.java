@@ -1,4 +1,4 @@
-package utfpr.cc66c.client.controllers.views;
+package utfpr.cc66c.client.controllers.views.candidate;
 
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import javafx.scene.control.Button;
@@ -6,6 +6,7 @@ import javafx.scene.layout.AnchorPane;
 import org.controlsfx.control.ToggleSwitch;
 import utfpr.cc66c.client.controllers.connection.ClientConnectionController;
 import utfpr.cc66c.client.controllers.connection.SessionController;
+import utfpr.cc66c.client.controllers.views.ApplicationViewController;
 import utfpr.cc66c.client.services.LogoutHandler;
 import utfpr.cc66c.client.services.ParseSkillset;
 import utfpr.cc66c.client.services.SkillsetConnectionHandler;

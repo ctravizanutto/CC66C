@@ -1,7 +1,8 @@
-package utfpr.cc66c.client.controllers.views;
+package utfpr.cc66c.client.controllers.views.recruiter;
 
 import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
+import utfpr.cc66c.client.controllers.views.ApplicationViewController;
 import utfpr.cc66c.client.services.JobsetConnectionHandler;
 import utfpr.cc66c.client.services.ParseJobset;
 import utfpr.cc66c.client.views.RecruiterJobHboxFactory;

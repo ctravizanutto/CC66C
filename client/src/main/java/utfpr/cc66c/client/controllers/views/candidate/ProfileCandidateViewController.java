@@ -1,15 +1,14 @@
-package utfpr.cc66c.client.controllers.views;
+package utfpr.cc66c.client.controllers.views.candidate;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import utfpr.cc66c.client.controllers.connection.ClientConnectionController;
 import utfpr.cc66c.client.controllers.connection.SessionController;
+import utfpr.cc66c.client.controllers.views.ApplicationViewController;
 import utfpr.cc66c.client.services.AuthRequestHandler;
 import utfpr.cc66c.core.serializers.JsonFields;
 
@@ -23,7 +22,6 @@ public class ProfileCandidateViewController implements Initializable {
     public TextField nameTextField;
     public Button saveButton;
     public Button deleteButton;
-    public TextField tokenField;
 
     public void loadCandidateInfo(String response) {
         ObjectNode json;
@@ -76,35 +74,5 @@ public class ProfileCandidateViewController implements Initializable {
         System.out.println("[INFO] Delete response: " + response);
 
         ApplicationViewController.logout();
-    }
-
-    public void testButtonAction(ActionEvent actionEvent) {
-        var request = JsonNodeFactory.instance.objectNode();
-        var data = JsonNodeFactory.instance.objectNode();
-
-        data.put("skill", "C");
-        data.put("experience", "10");
-        data.put("newSkill", "CSS");
-        data.put("filter", "E");
-        request.set("data", data);
-        request.put("token", tokenField.getText());
-
-        request.put("operation", "INCLUDE_SKILL");
-        System.out.println(ClientConnectionController.requestResponse(request.toString()));
-
-        request.put("operation", "LOOKUP_SKILL");
-        System.out.println(ClientConnectionController.requestResponse(request.toString()));
-
-        request.put("operation", "LOOKUP_SKILLSET");
-        System.out.println(ClientConnectionController.requestResponse(request.toString()));
-
-        request.put("operation", "DELETE_SKILL");
-        System.out.println(ClientConnectionController.requestResponse(request.toString()));
-
-        request.put("operation", "UPDATE_SKILL");
-        System.out.println(ClientConnectionController.requestResponse(request.toString()));
-
-        request.put("operation", "SEARCH_JOB");
-        System.out.println(ClientConnectionController.requestResponse(request.toString()));
     }
 }

@@ -5,7 +5,7 @@
 <?import javafx.scene.text.Text?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
             prefHeight="720.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21"
-            fx:controller="utfpr.cc66c.client.controllers.views.RecruiterJobController">
+            fx:controller="utfpr.cc66c.client.controllers.views.recruiter.RecruiterJobController">
     <TextField fx:id="experienceTextField" layoutX="60.0" layoutY="112.0"/>
     <Text layoutX="60.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Skill"/>
     <Text layoutX="60.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Experience"/>

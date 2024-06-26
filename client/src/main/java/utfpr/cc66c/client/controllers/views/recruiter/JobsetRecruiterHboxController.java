@@ -1,7 +1,8 @@
-package utfpr.cc66c.client.controllers.views;
+package utfpr.cc66c.client.controllers.views.recruiter;
 
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
+import utfpr.cc66c.client.controllers.views.ApplicationViewController;
 
 import java.net.URL;
 import java.util.ResourceBundle;

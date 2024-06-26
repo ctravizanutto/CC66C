@@ -2,7 +2,7 @@ package utfpr.cc66c.client.views;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.HBox;
-import utfpr.cc66c.client.controllers.views.JobsetRecruiterHboxController;
+import utfpr.cc66c.client.controllers.views.recruiter.JobsetRecruiterHboxController;
 
 import java.io.IOException;
 

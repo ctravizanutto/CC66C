@@ -1,7 +1,6 @@
-package utfpr.cc66c.client.controllers.views;
+package utfpr.cc66c.client.controllers.views.candidate;
 
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -25,12 +24,12 @@ public class CandidateSkillController implements Initializable {
         skillChoiceBox.setItems(skillDataset);
     }
 
-    public void deleteButtonAction(ActionEvent actionEvent) {
+    public void deleteButtonAction() {
         SkillsetConnectionHandler.sendSkillDelete(skillChoiceBox.getValue());
         CandidateDashboardFactory.updateSkillsetView();
     }
 
-    public void saveButtonAction(ActionEvent actionEvent) {
+    public void saveButtonAction() {
         if (deleteButton.isDisable()) {
             SkillsetConnectionHandler.sendSkillInclude(skillChoiceBox.getValue(), experienceTextField.getText());
         } else {

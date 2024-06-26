@@ -3,9 +3,9 @@ package utfpr.cc66c.client.views;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import utfpr.cc66c.client.controllers.views.CandidateSkillController;
 import utfpr.cc66c.client.controllers.views.DashboardController;
-import utfpr.cc66c.client.controllers.views.SkillsetCandidateViewController;
+import utfpr.cc66c.client.controllers.views.candidate.CandidateSkillController;
+import utfpr.cc66c.client.controllers.views.candidate.SkillsetCandidateViewController;
 
 import java.io.IOException;
 

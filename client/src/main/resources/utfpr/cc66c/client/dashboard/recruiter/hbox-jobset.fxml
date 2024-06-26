@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Text?>
 <HBox xmlns:fx="http://javafx.com/fxml/1" onMouseClicked="#onMouseClicked" prefHeight="75.0" prefWidth="1100.0"
       style="-fx-background-color: #aeb1d7;"
-      fx:controller="utfpr.cc66c.client.controllers.views.JobsetRecruiterHboxController">
+      fx:controller="utfpr.cc66c.client.controllers.views.recruiter.JobsetRecruiterHboxController">
     <Text fx:id="skillText" strokeType="OUTSIDE" strokeWidth="0.0" text="CSS">
         <font>
             <Font name="JetBrains Mono Regular" size="52.0"/>

@@ -1,6 +1,7 @@
-package utfpr.cc66c.client.controllers.views;
+package utfpr.cc66c.client.controllers.views.recruiter;
 
 import javafx.scene.layout.AnchorPane;
+import utfpr.cc66c.client.controllers.views.ApplicationViewController;
 import utfpr.cc66c.client.services.LogoutHandler;
 
 public class SidebarRecruiterViewController {

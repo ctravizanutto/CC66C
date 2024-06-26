@@ -1,4 +1,4 @@
-package utfpr.cc66c.client.controllers.views;
+package utfpr.cc66c.client.controllers.views.recruiter;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.Initializable;
@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import utfpr.cc66c.client.controllers.views.ApplicationViewController;
 import utfpr.cc66c.client.services.JobsetConnectionHandler;
 import utfpr.cc66c.client.views.RecruiterDashboardFactory;
 import utfpr.cc66c.core.validators.SkillDataset;

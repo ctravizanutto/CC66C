@@ -4,8 +4,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import utfpr.cc66c.client.controllers.views.DashboardController;
-import utfpr.cc66c.client.controllers.views.JobsetRecruiterViewController;
-import utfpr.cc66c.client.controllers.views.RecruiterJobController;
+import utfpr.cc66c.client.controllers.views.recruiter.JobsetRecruiterViewController;
+import utfpr.cc66c.client.controllers.views.recruiter.RecruiterJobController;
 
 import java.io.IOException;
 
