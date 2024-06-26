@@ -16,6 +16,17 @@ public class LoginCandidate {
         }
     }
 
+    public static String getCandidateEmailByCandidateId(String candidate_id) {
+        var sql = "SELECT email FROM candidates WHERE candidate_id = " + candidate_id;
+        var resultSet = DatabaseDriver.query(sql);
+        assert resultSet != null;
+        try {
+            return resultSet.getString("email");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static String getCandidatePasswordByEmail(String email) {
         var sql = "SELECT password FROM candidates WHERE email = \"" + email + "\"";
         var resultSet = DatabaseDriver.query(sql);

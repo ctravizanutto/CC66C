@@ -4,12 +4,14 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import utfpr.cc66c.server.controllers.candidate.ChooseCandidateController;
 import utfpr.cc66c.server.controllers.candidate.auth.LoginCandidateController;
 import utfpr.cc66c.server.controllers.candidate.auth.SignupCandidateController;
 import utfpr.cc66c.server.controllers.candidate.profile.DeleteCandidateController;
 import utfpr.cc66c.server.controllers.candidate.profile.LookupCandidateController;
 import utfpr.cc66c.server.controllers.candidate.profile.UpdateCandidateController;
 import utfpr.cc66c.server.controllers.job.*;
+import utfpr.cc66c.server.controllers.recruiter.GetCompanyController;
 import utfpr.cc66c.server.controllers.recruiter.auth.LoginRecruiterController;
 import utfpr.cc66c.server.controllers.recruiter.auth.SignupRecruiterController;
 import utfpr.cc66c.server.controllers.recruiter.profile.DeleteRecruiterController;
@@ -115,13 +117,13 @@ public class RequestParser {
                 }
                 // Recruiter candidate relationship
                 case "SEARCH_CANDIDATE" -> {
-
+                    
                 }
                 case "CHOOSE_CANDIDATE" -> {
-
+                    return ChooseCandidateController.chooseCandidate(json);
                 }
                 case "GET_COMPANY" -> {
-
+                    return GetCompanyController.getCompany(json);
                 }
                 default -> {
                     return errorInvalidOperation(operationString);

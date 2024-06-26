@@ -22,6 +22,8 @@ module utfpr.cc66c.server {
     opens utfpr.cc66c.server.services.candidate.auth to javafx.fxml;
     exports utfpr.cc66c.server.services.candidate.profile;
     opens utfpr.cc66c.server.services.candidate.profile to javafx.fxml;
+    exports utfpr.cc66c.server.controllers.candidate;
+    opens utfpr.cc66c.server.controllers.candidate to javafx.fxml;
 
     requires java.sql;
 }
