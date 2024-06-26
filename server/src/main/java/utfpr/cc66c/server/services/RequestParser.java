@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import utfpr.cc66c.server.controllers.candidate.ChooseCandidateController;
+import utfpr.cc66c.server.controllers.candidate.SearchCandidateController;
 import utfpr.cc66c.server.controllers.candidate.auth.LoginCandidateController;
 import utfpr.cc66c.server.controllers.candidate.auth.SignupCandidateController;
 import utfpr.cc66c.server.controllers.candidate.profile.DeleteCandidateController;
@@ -117,7 +118,7 @@ public class RequestParser {
                 }
                 // Recruiter candidate relationship
                 case "SEARCH_CANDIDATE" -> {
-                    
+                    return SearchCandidateController.searchCandidate(json);
                 }
                 case "CHOOSE_CANDIDATE" -> {
                     return ChooseCandidateController.chooseCandidate(json);
@@ -130,14 +131,13 @@ public class RequestParser {
                 }
             }
         }
-        return errorInvalidOperation(null);
+        return errorInvalidOperation("null");
     }
 
     private static String errorInvalidOperation(String operation) {
         var json = JsonNodeFactory.instance.objectNode();
-        var responseOperation = (operation == null) ? "null" : operation;
 
-        json.put("operation", responseOperation);
+        json.put("operation", operation);
         json.put("status", "INVALID_OPERATION");
         json.set("data", JsonNodeFactory.instance.objectNode());
 
