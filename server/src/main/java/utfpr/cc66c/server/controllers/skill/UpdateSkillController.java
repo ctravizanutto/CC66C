@@ -28,7 +28,7 @@ public class UpdateSkillController {
             return skillInvalidErrorResponse();
         }
         var experience = LookupSkill.lookupSkill(id, skill);
-        if (experience == null) {
+        if (experience != null) {
             return skillInvalidErrorResponse();
         }
         var newSkill = fields.get("newSkill");

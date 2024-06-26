@@ -2,8 +2,7 @@ module utfpr.cc66c.server {
     requires javafx.controls;
     requires javafx.fxml;
 
-    requires org.controlsfx.controls;
-    requires org.kordamp.bootstrapfx.core;
+    requires javafx.graphics;
 
     requires com.fasterxml.jackson.databind;
     requires utfpr.cc66c.core;
@@ -24,8 +23,5 @@ module utfpr.cc66c.server {
     exports utfpr.cc66c.server.services.candidate.profile;
     opens utfpr.cc66c.server.services.candidate.profile to javafx.fxml;
 
-    requires org.slf4j;
-    requires ch.qos.logback.classic;
-    requires org.xerial.sqlitejdbc;
-    requires java.desktop;
+    requires java.sql;
 }

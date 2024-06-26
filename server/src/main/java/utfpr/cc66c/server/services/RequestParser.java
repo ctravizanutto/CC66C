@@ -113,6 +113,16 @@ public class RequestParser {
                 case "SET_JOB_SEARCHABLE" -> {
                     return JobSearchableController.setJobSearchable(json);
                 }
+                // Recruiter candidate relationship
+                case "SEARCH_CANDIDATE" -> {
+
+                }
+                case "CHOOSE_CANDIDATE" -> {
+
+                }
+                case "GET_COMPANY" -> {
+
+                }
                 default -> {
                     return errorInvalidOperation(operationString);
                 }

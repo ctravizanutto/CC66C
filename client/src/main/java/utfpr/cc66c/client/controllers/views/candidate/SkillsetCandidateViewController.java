@@ -32,7 +32,7 @@ public class SkillsetCandidateViewController implements Initializable {
         }
     }
 
-    public void generateSkillsetList(int skillsetSize, String response) {
+    private void generateSkillsetList(int skillsetSize, String response) {
         var skillset = ParseSkillset.parseSkillset(response);
         for (var skill : skillset) {
             var hbox = CandidateSkillHboxFactory.createCandidateSkillHbox(skill.getName(), skill.getExperience(), skillsetSize--);

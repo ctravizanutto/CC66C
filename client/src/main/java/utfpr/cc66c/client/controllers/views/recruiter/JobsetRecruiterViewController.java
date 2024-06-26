@@ -33,9 +33,9 @@ public class JobsetRecruiterViewController implements Initializable {
     }
 
     public void generateJobsetList(int jobsetSize, String response) {
-        var jobset = ParseJobset.parseJobset(response);
+        var jobset = ParseJobset.parseJobsetRecruiter(response);
         for (var job : jobset) {
-            var hbox = RecruiterJobHboxFactory.createRecruiterJobHbox(job.getId(), job.getName(), job.getExperience(), jobsetSize--, job.getAvailable(), job.getSearchable());
+            var hbox = RecruiterJobHboxFactory.createRecruiterJobHbox(job.id(), job.name(), job.experience(), jobsetSize--, job.available(), job.searchable());
             vbox.getChildren().add(hbox);
         }
     }

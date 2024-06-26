@@ -11,7 +11,7 @@ public record LoginModel(String email, String password, UserType userType) {
         return userType == UserType.CANDIDATE ? "LOGIN_CANDIDATE" : "LOGIN_RECRUITER";
     }
 
-    public String getSingupOperation() {
+    public String getSingUpOperation() {
         return userType == UserType.CANDIDATE ? "SIGNUP_CANDIDATE" : "SIGNUP_RECRUITER";
     }
 

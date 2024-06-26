@@ -37,8 +37,8 @@ public class ParseSkillset {
     }
 
     public static class Skill {
-        private String name;
-        private String experience;
+        private final String name;
+        private final String experience;
 
         public Skill(String name, String experience) {
             this.name = name;

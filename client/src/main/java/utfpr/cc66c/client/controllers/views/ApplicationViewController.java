@@ -41,6 +41,11 @@ public class ApplicationViewController {
         stage.setScene(CandidateDashboardFactory.getProfileScene());
     }
 
+    public static void toCandidateJobset(boolean andFilter) {
+        stage.setScene(CandidateDashboardFactory.getJobsetScene());
+        CandidateDashboardFactory.updateJobsetView(andFilter);
+    }
+
     public static void toCandidateSkillset() {
         stage.setScene(CandidateDashboardFactory.getSkillsetScene());
     }

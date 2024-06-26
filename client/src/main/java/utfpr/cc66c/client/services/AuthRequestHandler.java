@@ -54,7 +54,7 @@ public class AuthRequestHandler {
 
     public static void sendSignupRequest(SignupModel model) {
         ObjectNode json = mapper.valueToTree(model);
-        json.put("operation", model.getLoginModel().getSingupOperation());
+        json.put("operation", model.getLoginModel().getSingUpOperation());
 
         var response = ClientConnectionController.requestResponse(json.toString());
         parseSignupResponse(response);

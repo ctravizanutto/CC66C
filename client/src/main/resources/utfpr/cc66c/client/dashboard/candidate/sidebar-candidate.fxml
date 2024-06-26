@@ -31,5 +31,5 @@
             <Image url="@../assets/computer_icon.png"/>
         </ImageView>
     </AnchorPane>
-    <ToggleSwitch fx:id="toogleAnd" layoutX="40.0" layoutY="280.0" text="AND"/>
+    <ToggleSwitch fx:id="toggleAnd" layoutX="40.0" layoutY="280.0" text="AND"/>
 </AnchorPane>

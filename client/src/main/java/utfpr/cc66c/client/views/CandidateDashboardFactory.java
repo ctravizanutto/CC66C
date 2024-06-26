@@ -5,6 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import utfpr.cc66c.client.controllers.views.DashboardController;
 import utfpr.cc66c.client.controllers.views.candidate.CandidateSkillController;
+import utfpr.cc66c.client.controllers.views.candidate.JobsetCandidateViewController;
 import utfpr.cc66c.client.controllers.views.candidate.SkillsetCandidateViewController;
 
 import java.io.IOException;
@@ -15,8 +16,10 @@ public class CandidateDashboardFactory {
     private static Node profile;
     private static Node skillset;
     private static Node skill;
+    private static Node jobset;
     private static CandidateSkillController skillController;
     private static SkillsetCandidateViewController viewSkillsetController;
+    private static JobsetCandidateViewController viewJobsetController;
 
     public static Scene getBlankScene() {
         var scene = DashboardController.getScene();
@@ -28,6 +31,12 @@ public class CandidateDashboardFactory {
     public static Scene getProfileScene() {
         var scene = DashboardController.getScene();
         DashboardController.getInstance().setRight(getCandidateProfileNode());
+        return scene;
+    }
+
+    public static Scene getJobsetScene() {
+        var scene = DashboardController.getScene();
+        DashboardController.getInstance().setRight(getJobsetNode());
         return scene;
     }
 
@@ -60,6 +69,10 @@ public class CandidateDashboardFactory {
 
     public static void updateSkillsetView() {
         viewSkillsetController.updateList();
+    }
+
+    public static void updateJobsetView(boolean andFilter) {
+        viewJobsetController.updateList(andFilter);
     }
 
     private static Node getCandidateProfileNode() {
@@ -122,6 +135,19 @@ public class CandidateDashboardFactory {
             }
         }
         return skill;
+    }
+
+    private static Node getJobsetNode() {
+        if (jobset == null) {
+            var fxmlLoader = new FXMLLoader(CandidateDashboardFactory.class.getResource("/utfpr/cc66c/client/dashboard/candidate/jobset-candidate.fxml"));
+            try {
+                jobset = fxmlLoader.load();
+                viewJobsetController = fxmlLoader.getController();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return jobset;
     }
 
 }

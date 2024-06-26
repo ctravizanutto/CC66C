@@ -1,11 +1,14 @@
 package utfpr.cc66c.client.services;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import utfpr.cc66c.client.controllers.views.LoginViewController;
 import utfpr.cc66c.client.views.LoginViewFactory;
 import utfpr.cc66c.core.models.CandidateModel;
 import utfpr.cc66c.core.models.LoginModel;
-import utfpr.cc66c.core.models.RecruiterModel;
 import utfpr.cc66c.core.models.SignupModel;
+import utfpr.cc66c.core.serializers.recruiter.RecruiterModelDeserializer;
+import utfpr.cc66c.core.serializers.recruiter.RecruiterModelSerializer;
 import utfpr.cc66c.core.types.UserType;
 import utfpr.cc66c.core.validators.FieldValidator;
 
@@ -64,5 +67,15 @@ public class SignupValidator {
         LoginViewFactory.clearErrorFields(industryField, descriptionField);
 
         return new RecruiterModel(name, description, industry, login);
+    }
+
+    @JsonSerialize(using = RecruiterModelSerializer.class)
+    @JsonDeserialize(using = RecruiterModelDeserializer.class)
+    public record RecruiterModel(String name, String description, String industry,
+                                 LoginModel login) implements SignupModel {
+        @Override
+        public LoginModel getLoginModel() {
+            return login;
+        }
     }
 }

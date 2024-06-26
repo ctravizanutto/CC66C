@@ -101,4 +101,31 @@ public class JobsetConnectionHandler {
 
         System.out.println(ClientConnectionController.requestResponse(json.toString()));
     }
+
+    public static String sendJobSearch(boolean andFilter) {
+        var json = JsonNodeFactory.instance.objectNode();
+        var data = JsonNodeFactory.instance.objectNode();
+        var skillNode = JsonNodeFactory.instance.arrayNode();
+
+        data.put("filter", andFilter ? "AND" : "OR");
+        data.put("experience", "20");
+        int experience = 0;
+
+        var response = SkillsetConnectionHandler.sendSkillsetLookup();
+        var skillset = ParseSkillset.parseSkillset(response);
+        for (var skill : skillset) {
+            if (Integer.parseInt(skill.getExperience()) > experience) {
+                experience = Integer.parseInt(skill.getExperience());
+            }
+            skillNode.add(skill.getName());
+        }
+        data.set("skill", skillNode);
+        json.set("data", data);
+        json.put("operation", "SEARCH_JOB");
+        json.put("token", SessionController.getToken());
+
+        var jobSearch = ClientConnectionController.requestResponse(json.toString());
+        System.out.println(jobSearch);
+        return jobSearch;
+    }
 }
