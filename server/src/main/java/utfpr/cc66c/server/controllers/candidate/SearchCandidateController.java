@@ -13,9 +13,9 @@ public class SearchCandidateController {
         if (!AuthValidator.validateTokenOnRequest(request)) {
             return request.toString();
         }
-        if (!assertFields(data)) {
-            return invalidField();
-        }
+//        if (!assertFields(data)) {
+//            return invalidField();
+//        }
         var experience = fields.get("experience");
         var filter = fields.get("filter");
         var skills = data.get("skill");

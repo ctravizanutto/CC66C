@@ -25,7 +25,7 @@ public class LoginCandidateController {
             if (dbPassword.equals(requestPassword)) {
                 var id = LoginCandidate.getCandidateIdByEmail(email);
 //                DashboardViewFactory.addLoggedClient(email);
-                return successResponse(id);
+                return successResponse(email, id);
             }
         }
 
@@ -80,12 +80,12 @@ public class LoginCandidateController {
         return json.toString();
     }
 
-    private static String successResponse(String id) {
+    private static String successResponse(String email, String id) {
         var json = JsonNodeFactory.instance.objectNode();
         var data = JsonNodeFactory.instance.objectNode();
         var token = JWTController.generateToken(id, "CANDIDATE");
 
-        ServerController.addSession(token);
+        ServerController.addSession(email, token);
 
         json.put("operation", "LOGIN_CANDIDATE");
         json.put("status", "SUCCESS");

@@ -40,8 +40,8 @@ public class ServerController extends Thread {
         return databaseService.getConnection();
     }
 
-    public static void addSession(String token) {
-        DashboardViewFactory.addLoggedClient(token);
+    public static void addSession(String email, String token) {
+        DashboardViewFactory.addLoggedClient(email, token);
         sessionPool.put(token, true);
     }
 

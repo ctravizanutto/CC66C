@@ -9,9 +9,9 @@ public class DashboardViewFactory {
         controller.getIpLabel().setText(ip);
     }
 
-    public static void addLoggedClient(String token) {
+    public static void addLoggedClient(String email, String token) {
         var controller = ApplicationViewController.getDashboardController();
-        controller.getConnectedClients().add(token);
+        controller.getConnectedClients().add(email + " " + token);
         Platform.runLater(() -> {
             controller.getListView().getItems().clear();
             controller.getListView().getItems().addAll(controller.getConnectedClients());

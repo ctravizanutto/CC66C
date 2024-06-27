@@ -25,7 +25,7 @@ public class LoginRecruiterController {
             if (dbPassword.equals(requestPassword)) {
                 var id = LoginRecruiter.getRecruiterIdByEmail(email);
 //                DashboardViewFactory.addLoggedClient(email);
-                return successResponse(id);
+                return successResponse(email, id);
             }
         }
         return loginErrorResponse();
@@ -79,12 +79,12 @@ public class LoginRecruiterController {
         return json.toString();
     }
 
-    private static String successResponse(String id) {
+    private static String successResponse(String email, String id) {
         var json = JsonNodeFactory.instance.objectNode();
         var data = JsonNodeFactory.instance.objectNode();
         var token = JWTController.generateToken(id, "RECRUITER");
 
-        ServerController.addSession(token);
+        ServerController.addSession(email, token);
 
         json.put("operation", "LOGIN_RECRUITER");
         json.put("status", "SUCCESS");

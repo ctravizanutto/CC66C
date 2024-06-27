@@ -31,9 +31,9 @@ public class ParseJobset {
             var experience = jobNode.get("experience").asText();
             var id = jobNode.get("id").asText();
             var available = Objects.equals(jobNode.get("available").asText(), "YES");
-            var searchable = Objects.equals(jobNode.get("searchable").asText(), "YES");
+//            var searchable = Objects.equals(jobNode.get("searchable").asText(), "YES");
 
-            jobs.add(new Job(skill, experience, id, available, searchable));
+            jobs.add(new Job(skill, experience, id, available, false));
         }
 
         // Return the list of parsed jobs as an iterable
