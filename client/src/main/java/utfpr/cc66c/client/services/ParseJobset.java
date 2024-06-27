@@ -27,13 +27,13 @@ public class ParseJobset {
 
         // Iterate through the jobset array and parse each job object
         for (JsonNode jobNode : jobsetNode) {
-            String jobName = jobNode.get("skill").asText();
+            String skill = jobNode.get("skill").asText();
             var experience = jobNode.get("experience").asText();
             var id = jobNode.get("id").asText();
             var available = Objects.equals(jobNode.get("available").asText(), "YES");
             var searchable = Objects.equals(jobNode.get("searchable").asText(), "YES");
 
-            jobs.add(new Job(jobName, experience, id, available, searchable));
+            jobs.add(new Job(skill, experience, id, available, searchable));
         }
 
         // Return the list of parsed jobs as an iterable
@@ -57,17 +57,17 @@ public class ParseJobset {
 
         // Iterate through the jobset array and parse each job object
         for (JsonNode jobNode : jobsetNode) {
-            String jobName = jobNode.get("skill").asText();
+            String skill = jobNode.get("skill").asText();
             var experience = jobNode.get("experience").asText();
             var id = jobNode.get("id").asText();
 
-            jobs.add(new Job(jobName, experience, id, false, false));
+            jobs.add(new Job(skill, experience, id, false, false));
         }
 
         // Return the list of parsed jobs as an iterable
         return jobs;
     }
 
-    public record Job(String name, String experience, String id, boolean available, boolean searchable) {
+    public record Job(String skill, String experience, String id, boolean available, boolean searchable) {
     }
 }

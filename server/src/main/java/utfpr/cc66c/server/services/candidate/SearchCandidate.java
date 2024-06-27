@@ -26,7 +26,7 @@ public class SearchCandidate {
 
     private static ArrayNode searchCandidateSkillset(String[] skillset) {
         var candidate_set = JsonNodeFactory.instance.arrayNode();
-        StringBuilder sql = new StringBuilder("SELECT * FROM skillsets WHERE ");
+        StringBuilder sql = new StringBuilder("SELECT skillsets.*, candidates.name FROM skillsets JOIN candidates ON skillsets.candidate_id = candidates.candidate_id WHERE ");
         for (var skill : skillset) {
             sql.append("skill=").append(String.format("'%s' OR ", skill));
         }
@@ -52,7 +52,7 @@ public class SearchCandidate {
 
     private static ArrayNode searchCandidateExperience(String experience) {
         var candidate_set = JsonNodeFactory.instance.arrayNode();
-        var sql = String.format("SELECT * FROM skillsets WHERE experience<='%s'", experience);
+        var sql = String.format("SELECT skillsets.*, candidates.name FROM skillsets JOIN candidates ON skillsets.candidate_id = candidates.candidate_id WHERE experience<='%s'", experience);
         var rs = DatabaseDriver.query(sql);
         assert rs != null;
         try {
@@ -73,7 +73,7 @@ public class SearchCandidate {
 
     private static ArrayNode searchCandidateSkillExperience(String[] skillset, String experience, String filter) {
         var candidate_set = JsonNodeFactory.instance.arrayNode();
-        StringBuilder sql = new StringBuilder("SELECT * FROM skillsets WHERE ");
+        StringBuilder sql = new StringBuilder("SELECT skillsets.*, candidates.name FROM skillsets JOIN candidates ON skillsets.candidate_id = candidates.candidate_id WHERE ");
         for (var skill : skillset) {
             sql.append("skill=").append(String.format("'%s' OR ", skill));
         }
@@ -89,6 +89,7 @@ public class SearchCandidate {
                 candidate.put("experience", rs.getString("experience"));
                 candidate.put("id_user", rs.getString("candidate_id"));
                 candidate.put("id", rs.getString("skill_id"));
+                candidate.put("name", "name");
                 candidate_set.add(candidate);
             }
         } catch (SQLException e) {

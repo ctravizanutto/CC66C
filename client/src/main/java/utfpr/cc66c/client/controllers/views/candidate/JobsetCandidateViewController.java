@@ -20,7 +20,7 @@ public class JobsetCandidateViewController {
     private void generateJobList(int jobsetSize, String response) {
         var jobset = ParseJobset.parseJobsetCandidate(response);
         for (var job : jobset) {
-            var hbox = CandidateSkillHboxFactory.createCandidateSkillHbox(job.name(), job.experience(), jobsetSize--);
+            var hbox = CandidateSkillHboxFactory.createCandidateSkillHbox(job.skill(), job.experience(), jobsetSize--);
             vbox.getChildren().add(hbox);
         }
     }

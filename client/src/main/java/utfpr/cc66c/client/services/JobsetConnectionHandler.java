@@ -108,7 +108,7 @@ public class JobsetConnectionHandler {
         var skillNode = JsonNodeFactory.instance.arrayNode();
 
         data.put("filter", andFilter ? "AND" : "OR");
-        data.put("experience", "20");
+//        data.put("experience", "20");
         int experience = 0;
 
         var response = SkillsetConnectionHandler.sendSkillsetLookup();
@@ -120,6 +120,7 @@ public class JobsetConnectionHandler {
             skillNode.add(skill.getName());
         }
         data.set("skill", skillNode);
+        data.put("experience", experience);
         json.set("data", data);
         json.put("operation", "SEARCH_JOB");
         json.put("token", SessionController.getToken());

@@ -24,6 +24,7 @@ public class LoginRecruiterController {
         if (dbPassword != null) {
             if (dbPassword.equals(requestPassword)) {
                 var id = LoginRecruiter.getRecruiterIdByEmail(email);
+//                DashboardViewFactory.addLoggedClient(email);
                 return successResponse(id);
             }
         }

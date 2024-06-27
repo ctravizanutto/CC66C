@@ -71,12 +71,12 @@ public class SearchJob {
 
     private static ArrayNode searchJobSkillExperience(String[] skillset, String experience, String filter) {
         var jobset = JsonNodeFactory.instance.arrayNode();
-        StringBuilder sql = new StringBuilder("SELECT skill, experience, job_id FROM jobs WHERE searchable='YES' AND (");
+        StringBuilder sql = new StringBuilder("SELECT skill, experience, job_id FROM jobs WHERE searchable='YES' (AND (");
         for (var skill : skillset) {
             sql.append("skill=").append(String.format("'%s' OR ", skill));
         }
         sql.append("skill=").append("'') ");
-        sql.append(String.format("%s experience <='%s'", filter, experience));
+        sql.append(String.format("%s experience <='%s')", filter, experience));
 
         var resultSet = DatabaseDriver.query(sql.toString());
         assert resultSet != null;

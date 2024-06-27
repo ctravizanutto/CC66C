@@ -9,20 +9,18 @@ public class DashboardViewFactory {
         controller.getIpLabel().setText(ip);
     }
 
-    public static void addClient(String ip, int port) {
-        var client = formatClient(ip, port);
+    public static void addLoggedClient(String token) {
         var controller = ApplicationViewController.getDashboardController();
-        controller.getConnectedClients().add(client);
+        controller.getConnectedClients().add(token);
         Platform.runLater(() -> {
             controller.getListView().getItems().clear();
             controller.getListView().getItems().addAll(controller.getConnectedClients());
         });
     }
 
-    public static void removeClient(String ip, int port) {
-        var client = formatClient(ip, port);
+    public static void removeLoggedClient(String token) {
         var controller = ApplicationViewController.getDashboardController();
-        controller.getConnectedClients().remove(client);
+        controller.getConnectedClients().remove(token);
         Platform.runLater(() -> {
             controller.getListView().getItems().clear();
             if (!controller.getConnectedClients().isEmpty()) {
@@ -31,8 +29,5 @@ public class DashboardViewFactory {
         });
     }
 
-    private static String formatClient(String ip, int port) {
-        return ip + ":" + port;
-    }
 
 }

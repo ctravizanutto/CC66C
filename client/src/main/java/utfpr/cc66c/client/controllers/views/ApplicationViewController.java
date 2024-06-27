@@ -33,7 +33,7 @@ public class ApplicationViewController {
     }
 
     public static void toCandidateDashboard() {
-        var scene = CandidateDashboardFactory.getBlankScene();
+        var scene = CandidateDashboardFactory.getCompanysetScene();
         stage.setScene(scene);
     }
 
@@ -70,6 +70,11 @@ public class ApplicationViewController {
 
     public static void toRecruiterJobset() {
         stage.setScene(RecruiterDashboardFactory.getJobsetScene());
+    }
+
+    public static void toRecruiterCandidateSet(boolean andFilter) {
+        stage.setScene(RecruiterDashboardFactory.getCandidatesetScene());
+        RecruiterDashboardFactory.updateList(andFilter);
     }
 
     public static void toRecruiterDashboard() {

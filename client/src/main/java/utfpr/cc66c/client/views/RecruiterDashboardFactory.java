@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import utfpr.cc66c.client.controllers.views.DashboardController;
+import utfpr.cc66c.client.controllers.views.recruiter.CandidatesetRecruiterViewController;
 import utfpr.cc66c.client.controllers.views.recruiter.JobsetRecruiterViewController;
 import utfpr.cc66c.client.controllers.views.recruiter.RecruiterJobController;
 
@@ -15,8 +16,10 @@ public class RecruiterDashboardFactory {
     private static Node profile;
     private static Node jobset;
     private static Node job;
+    private static Node candidateset;
     private static JobsetRecruiterViewController jobsetRecruiterViewController;
     private static RecruiterJobController recruiterJobController;
+    private static CandidatesetRecruiterViewController candidatesetRecruiterViewController;
 
     public static Scene getBlankScene() {
         var scene = DashboardController.getScene();
@@ -35,6 +38,16 @@ public class RecruiterDashboardFactory {
         var scene = DashboardController.getScene();
         DashboardController.getInstance().setRight(getRecruiterProfileNode());
         return scene;
+    }
+
+    public static Scene getCandidatesetScene() {
+        var scene = DashboardController.getScene();
+        DashboardController.getInstance().setRight(getCandidateSetNode());
+        return scene;
+    }
+
+    public static void updateList(boolean andFilter) {
+        candidatesetRecruiterViewController.updateList(andFilter);
     }
 
     public static Scene getJobAddScene() {
@@ -123,5 +136,18 @@ public class RecruiterDashboardFactory {
             }
         }
         return job;
+    }
+
+    private static Node getCandidateSetNode() {
+        if (candidateset == null) {
+            var loader = new FXMLLoader(RecruiterDashboardFactory.class.getResource("/utfpr/cc66c/client/dashboard/recruiter/candidateset-recruiter.fxml"));
+            try {
+                candidateset = loader.load();
+                candidatesetRecruiterViewController = loader.getController();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return candidateset;
     }
 }

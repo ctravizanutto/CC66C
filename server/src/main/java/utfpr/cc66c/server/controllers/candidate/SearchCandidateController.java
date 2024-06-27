@@ -34,7 +34,7 @@ public class SearchCandidateController {
         var skill = request.get("skill");
         var experience = request.get("experience");
 
-        return (skill != null && experience != null) && (skill.isEmpty() || experience.isEmpty());
+        return (skill != null && skill.isEmpty()) || (experience != null && experience.isEmpty());
     }
 
     private static String invalidField() {

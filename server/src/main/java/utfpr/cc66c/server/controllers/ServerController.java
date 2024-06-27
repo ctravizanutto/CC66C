@@ -41,10 +41,12 @@ public class ServerController extends Thread {
     }
 
     public static void addSession(String token) {
+        DashboardViewFactory.addLoggedClient(token);
         sessionPool.put(token, true);
     }
 
     public static void removeSession(String token) {
+        DashboardViewFactory.removeLoggedClient(token);
         sessionPool.put(token, false);
     }
 

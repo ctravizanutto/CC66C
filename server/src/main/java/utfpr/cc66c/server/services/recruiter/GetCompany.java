@@ -28,7 +28,7 @@ public class GetCompany {
 
     private static ObjectNode getCompanyData(String recruiter_id) {
         var sql = String.format
-                ("SELECT * FROM recruiter WHERE recruiter_id = '%s'", recruiter_id);
+                ("SELECT * FROM recruiters WHERE recruiter_id = '%s'", recruiter_id);
         var rs = DatabaseDriver.query(sql);
         assert rs != null;
         try {

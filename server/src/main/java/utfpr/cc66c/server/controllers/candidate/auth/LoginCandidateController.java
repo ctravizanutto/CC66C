@@ -24,9 +24,11 @@ public class LoginCandidateController {
         if (dbPassword != null) {
             if (dbPassword.equals(requestPassword)) {
                 var id = LoginCandidate.getCandidateIdByEmail(email);
+//                DashboardViewFactory.addLoggedClient(email);
                 return successResponse(id);
             }
         }
+
         return loginErrorResponse();
     }
 
