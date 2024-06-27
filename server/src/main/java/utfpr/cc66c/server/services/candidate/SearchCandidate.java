@@ -41,6 +41,7 @@ public class SearchCandidate {
                 candidate.put("experience", rs.getString("experience"));
                 candidate.put("id_user", rs.getString("candidate_id"));
                 candidate.put("id", rs.getString("skill_id"));
+                candidate.put("name", rs.getString("name"));
                 candidate_set.add(candidate);
             }
         } catch (SQLException e) {
@@ -62,6 +63,7 @@ public class SearchCandidate {
                 candidate.put("experience", rs.getString("experience"));
                 candidate.put("id_user", rs.getString("candidate_id"));
                 candidate.put("id", rs.getString("skill_id"));
+                candidate.put("name", rs.getString("name"));
                 candidate_set.add(candidate);
             }
         } catch (SQLException e) {
@@ -89,7 +91,7 @@ public class SearchCandidate {
                 candidate.put("experience", rs.getString("experience"));
                 candidate.put("id_user", rs.getString("candidate_id"));
                 candidate.put("id", rs.getString("skill_id"));
-                candidate.put("name", "name");
+                candidate.put("name", rs.getString("name"));
                 candidate_set.add(candidate);
             }
         } catch (SQLException e) {
